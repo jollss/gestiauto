@@ -1,7 +1,10 @@
 package gestion
 
-class AutomovilController {
+import grails.plugin.springsecurity.annotation.Secured
 
+
+class AutomovilController {
+    @Secured(['ROLE_ADMIN'])
     def index() { 
         [automoviles:Automovil.findAll()]
 
