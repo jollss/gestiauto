@@ -1,15 +1,18 @@
 dataSource {
-   pooled = true
+    pooled = true
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
-  
+    username = "postgres"
+    password = "123456"
+    dialect = org.hibernate.dialect.PostgreSQLDialect
 }
 
 hibernate {
     cache.use_second_level_cache = true
-    cache.use_query_cache = false
+    cache.use_query_cache = true
 //    cache.region.factory_class = 'org.hibernate.cache.SingletonEhCacheRegionFactory' // Hibernate 3
-    cache.region.factory_class = 'org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory' // Hibernate 4
+    //cache.region.factory_class = 'org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory' // Hibernate 4
+    cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory'
     singleSession = true // configure OSIV singleSession mode
     flush.mode = 'manual' // OSIV session flush mode outside of transactional context
 }
@@ -18,10 +21,14 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update" 
+            driverClassName = "org.postgresql.Driver"
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/mantenimientoauto"
+<<<<<<< refs/remotes/origin/master
                username = "postgres"
                password = 'joel'
+=======
+>>>>>>> Configuración DataSource / Plugin Spring Security
         }
     }
     test {
