@@ -1,11 +1,13 @@
 package gestion
 
-class UsuarioController {
+import grails.plugin.springsecurity.annotation.Secured
 
-    def index() 
+class UsuarioController {
     
-   { 
-   def usuarios = Usuario.findAll()
+    @Secured(['ROLE_ADMIN'])
+    def index() 
+    { 
+        def usuarios = Usuario.findAll()
         println usuarios.nombreUsuario
     }
 }
