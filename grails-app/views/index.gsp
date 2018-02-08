@@ -117,6 +117,8 @@
 					</g:each>
 				</ul>
 			</div>
+
+			<g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink>
 		</div>
 	</body>
 </html>

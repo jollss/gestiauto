@@ -118,6 +118,7 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
+<<<<<<< refs/remotes/origin/master
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.yourapp.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.yourapp.UsuarioRole'
 grails.plugin.springsecurity.authority.className = 'com.yourapp.Role'
@@ -126,6 +127,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
         '/sistemagestion':  ['permitAll'],
+=======
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'gestion.secureapp.SecAppUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secureapp.SecAppUserSecAppRole'
+grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                ['permitAll'],
+	'/index':           ['permitAll'],
+>>>>>>> Spring Security / Logout
 	'/index.gsp':       ['permitAll'],
 	'/assets/**':       ['permitAll'],
 	'/**/js/**':        ['permitAll'],
