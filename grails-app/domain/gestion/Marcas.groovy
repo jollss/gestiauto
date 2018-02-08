@@ -2,10 +2,9 @@ package gestion
 
 class Marcas {
 
-String nombreMarca
-
+    String nombreMarca
 
     static mapping= {
-      id generate  : 'sequence', column:'id_marca', params:[sequence:'marca']
+        id generate  : 'sequence', column:'id_marca', params:[sequence:'marca']
     }
 }
