@@ -7,7 +7,7 @@
         <title>citas terminadas</title>
     </head>
     <body>
-        <h1>cita terminada</h1>
+        <h1>Cita terminada</h1>
         <center><h1>Servicios pendientes</h1>
         <g:each in="${servicios}" var="serv">
              <table>

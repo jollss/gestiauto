@@ -12,7 +12,7 @@
         <title>Realizar servicio</title>
     </head>
     <body>
-    <center><h1>hacer servicio</h1></center>
+    <center><h1>Hacer servicio</h1></center>
          <g:form controller="Servicios" action="save"> 
              
             <g:hiddenField name="id" value="${servicios.id}"/> <br>

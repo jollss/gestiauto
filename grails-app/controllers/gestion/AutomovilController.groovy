@@ -7,7 +7,9 @@ class AutomovilController {
     
     @Secured(['ROLE_ADMIN'])
     def index() { 
-        [automoviles:Automovil.findAll()] 
+        //[automoviles:Automovil.findAll()]
+        render(view: "index",  model: [automoviles:Automovil.findAll()])
+        //render(template: 'pruebaAuto', model: [automoviles:Automovil.findAll()])
     }
     
     @Secured(['ROLE_ADMIN'])
