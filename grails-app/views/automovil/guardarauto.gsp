@@ -12,7 +12,7 @@
         <title>Sample title</title>
     </head>
     <body>
-        <h1>automovil</h1>
+        <h1>Automovil</h1>
          <g:form controller="Automovil" action="guardarauto">
             <label>nombre del automovil: </label>
             <g:textField name="nombreAuto"/><br/>

@@ -13,7 +13,7 @@
     </head>
     <body>
        
-        <h1>automovil a modificar</h1>
+        <h1>Automovil a modificar</h1>
         <g:form Controller="Marcas" action="guardar">
             <g:hiddenField name="id" value="${auto.id}"/><br/>
              

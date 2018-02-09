@@ -4,7 +4,7 @@
         <title>crear cita</title>
     </head>
     <body>
-        <h1>crear cita</h1>
+        <h1>Crear cita</h1>
           <g:form controller="Servicios" action="guardar">              
        <g:hiddenField name="estatus" value="pendiente"/><br/>
            

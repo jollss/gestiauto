@@ -12,7 +12,7 @@
         <title>automoviles</title>
     </head>
     <body>
-        <h1>consultar automoviles</h1>
+        <h1>Consultar automoviles</h1>
            <g:each in="${automoviles}" var="auto">
              <table>
   <tr>
