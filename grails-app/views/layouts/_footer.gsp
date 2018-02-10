@@ -7,27 +7,29 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <html>
-    <footer th:fragment="footer" class="container">
-        <hr />
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="/gestion/js/bootstrap.js"></script>
+    <script src="/gestion/js/miScript.js"></script>
+    <footer class="footer">
+      <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <img th:src="@{/images/spring.png}" alt="Spring logo" />
+                <img src="/gestion/images/logoGestionAuto.png" alt="Spring logo" />
             </div>
             <div class="col-sm-8">
                 <p>
-                    Powered by <a href="https://projects.spring.io/spring-boot/">Spring
-                        Boot</a> y <a href="http://www.thymeleaf.org">Thymeleaf</a>.
+                    Powered by <a href="http://groovy-lang.org/">Groovy</a> y <a href="https://grails.org/">Grails</a>.
                 </p>
                 <p>
-                    Este proyecto fue desarrollado en IDE Eclipse + Spring Plugins (STS
-                    Spring Tool), profesor Andrés Guzmán.<br /> &copy; Company 2017,
+                    Este proyecto fue desarrollado con Groovy y Grails.<br /> &copy; Company 2018,
                     Inc. Todos los derechos reservados. Términos de uso y privacidad.<br />
                 </p>
             </div>
         </div>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Bootstrap JS -->
-        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
+      </div>
     </footer>
 </html>

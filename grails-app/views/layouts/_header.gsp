@@ -9,22 +9,23 @@
             </button>      
         </div>
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <h3>Controllers</h3>
+            <h3>Controladores</h3>
 
             <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
-                <g:if test="${c.name != 'Dbdoc' && c.name != 'Logout' && c.name != 'Login' && c.name != 'Rol'}">
+                <g:if test="${c.name != 'Dbdoc' && c.name != 'Logout' && c.name != 'Login' && c.name != 'Rol'  && c.name != 'Dashboard'  && c.name != 'Tiposervicio'  && c.name != 'Usuario'  && c.name != 'UsuarioRol'}">
                     <ul class="nav navbar-nav">
-                        <li> <a class="btnMenu" id="${c.name}" >${c.name}</a>
+                        <li>
+                            <g:link controller="${c.logicalPropertyName}">${c.name}</g:link>
                         </li>
                     </ul>
                 </g:if>
             </g:each>
             <ul class="nav navbar-nav">
                 <li> 
-                    <g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink>
+                    <a id="btnCerrarSesion" type="button">Cerrar sesión</a>
                 </li>
             </ul>
-           
+
         </div>
     </div>
 </nav>

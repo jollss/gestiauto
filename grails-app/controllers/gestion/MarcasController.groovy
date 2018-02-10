@@ -12,7 +12,12 @@ import grails.plugin.springsecurity.annotation.Secured
 
 
 class MarcasController {
-    
+
+    /**
+     * Lista todas las marcas que existen en la base de datos.
+     * @param id
+     * @return
+     */
     @Secured(['ROLE_ADMIN'])
 >>>>>>> Sintaxis / @Secured
     def index (long id) {
@@ -22,7 +27,8 @@ class MarcasController {
    
     @Secured(['ROLE_ADMIN'])
     def guardarmarca(){}
- 
+
+    @Secured(['ROLE_ADMIN'])
     def save() {
         def marca = new Marcas(params)
         marca.save()

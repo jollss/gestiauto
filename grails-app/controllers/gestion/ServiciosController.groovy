@@ -80,7 +80,7 @@ class ServiciosController {
         p.observacionesMecanico = params.observacionesMecanico
         p.usuario = Usuario.get(params.selectusu as long) 
         if(p.save(flush:true)){
-            println "8=======================DDDDDDDD"
+            println ""
         }else{
             println "No se guardo nada vale chetos la vida "
         }

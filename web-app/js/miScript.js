@@ -1,10 +1,4 @@
 
-/*
-
-    <g:link controller="${c.logicalPropertyName}" onclik>${c.name}</g:link></li>
-*/
-
-
 $(document).ready(function($) {
 	
 });
@@ -34,6 +28,23 @@ $( ".btnMenu" ).click(function() {
   });
 });
 
+$( "#btnCerrarSesion" ).click(function() {
+  var urlCerrarSesion = 'http://localhost:8080/gestion/logout/index';
+  $.ajax({
+    url: urlCerrarSesion,
+    type: 'POST'
+  })
+  .done(function() {
+    alert("Cerrar sesión.")
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+    window.location.reload();
+  });
+});
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toLowerCase() + string.slice(1);
