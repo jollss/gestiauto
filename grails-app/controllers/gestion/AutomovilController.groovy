@@ -2,14 +2,12 @@ package gestion
 
 import grails.plugin.springsecurity.annotation.Secured
 
-
+@Secured([ "ROLE_USER", "ROLE_ADMIN" ])
 class AutomovilController {
-    
-    @Secured(['ROLE_ADMIN'])
-    def index() { 
-        //[automoviles:Automovil.findAll()]
-        render(view: "index",  model: [automoviles:Automovil.findAll()])
-        //render(template: 'pruebaAuto', model: [automoviles:Automovil.findAll()])
+
+    @Secured(['ROLE_USER', "ROLE_ADMIN"])
+    def index() {
+        render(view: 'index', model: [automoviles:Automovil.findAll()])
     }
     
     @Secured(['ROLE_ADMIN'])
