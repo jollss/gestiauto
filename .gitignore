@@ -1,0 +1,10 @@
+
+target/
+
+\.idea/
+
+\.slcache/
+
+gestiauto\.iml
+
+gestiauto-grailsPlugins\.iml

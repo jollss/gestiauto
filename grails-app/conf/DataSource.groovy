@@ -5,6 +5,8 @@ dataSource {
     username = "postgres"
     password = "123456"
     dialect = org.hibernate.dialect.PostgreSQLDialect
+    //username = "postgres"
+    //password = 'joel'
 }
 
 hibernate {
