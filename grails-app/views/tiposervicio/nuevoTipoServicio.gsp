@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Tipo servicio</title>
+    <title>Tipo servicios</title>
 </head>
 
 <body>
