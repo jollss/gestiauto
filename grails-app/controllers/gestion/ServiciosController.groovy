@@ -8,7 +8,10 @@ import com.yourapp.Role
 import grails.plugin.springsecurity.annotation.Secured
 
 
+<<<<<<< HEAD
 >>>>>>> Sintaxis / @Secured
+=======
+>>>>>>> angel-dev
 class ServiciosController {
     
     @Secured(['ROLE_ADMIN'])
@@ -32,6 +35,7 @@ class ServiciosController {
         redirect (action:"index")
     }
   
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
   def crearcita(){
     [marcas:Marcas.findAll(),automoviles:Automovil.findAll(),tiposervicios:Tiposervicio.findAll()
@@ -61,6 +65,8 @@ class ServiciosController {
    {
        
 =======
+=======
+>>>>>>> angel-dev
     @Secured(['ROLE_ADMIN'])
     def crearcita(){
         [marcas:Marcas.findAll(),automoviles:Automovil.findAll(),tiposervicios:Tiposervicio.findAll()
@@ -89,7 +95,10 @@ class ServiciosController {
     @Secured(['ROLE_ADMIN'])
     def citaterminada()
     {
+<<<<<<< HEAD
 >>>>>>> Sintaxis / @Secured
+=======
+>>>>>>> angel-dev
         [servicios:Servicios.findAll("from Servicios where estatus='terminado'")]
     }
    

@@ -5,6 +5,7 @@
     <title>crear cita</title>
 </head>
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
  tipo del servicio: <select name="selecttipo">
  <g:each in="${tiposervicios}" var="tipo">     
@@ -19,11 +20,16 @@
 <g:hiddenField name="observacionesMecanico" value="hacer" /><br/>
 <g:actionSubmit value="guardar"/>
 =======
+=======
+>>>>>>> angel-dev
 <body>
     <h1>Crear cita</h1>
     <g:form controller="Servicios" action="guardar">
         <g:hiddenField name="estatus" value="pendiente"/><br/>
+<<<<<<< HEAD
 >>>>>>> Diseño / Permisos
+=======
+>>>>>>> angel-dev
 
         <label>Día:</label>
         <g:textField name="diaServicio" placeholder="dia/mes/año"/><br/>

@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 <!--
 =======
 >>>>>>> Diseño / Permisos
+=======
+>>>>>>> angel-dev
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
    <head>
@@ -32,6 +35,7 @@
             </div>
 
         </g:form>
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
             <g:link controller="Marcas" action="index">consultar marca</g:link></td><br>
      <g:link url="[action:'index',controller:'Servicios']">regresar a realizar servicio</g:link>
@@ -361,9 +365,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../../js/jquery.scrollTo.js"></script>
 </body>
 =======
+=======
+>>>>>>> angel-dev
 
       </div>
       <g:render template="/layouts/footer"/>
    </body>
+<<<<<<< HEAD
 >>>>>>> Diseño / Permisos
+=======
+>>>>>>> angel-dev
 </html>

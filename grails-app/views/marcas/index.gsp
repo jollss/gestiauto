@@ -25,6 +25,7 @@
                         <td>
                             <g:link class="btn btn-warning " controller="Marcas" action="modificarmarca" id="${marca.id}"><i class="fas fa-edit"></i> Modificar</g:link>
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 <html>
     <head>
@@ -70,9 +71,23 @@
             </tbody>
         </table>
 
+=======
+                            <g:link class="btn btn-danger" controller="Marcas" action="eliminar" id="${marca.id}"><i class="fas fa-ban "></i> Eliminar</g:link>
+
+                        </td>
+                    </tr>
+                </g:each>
+            </tbody>
+        </table>
+
+>>>>>>> angel-dev
         <g:link controller="Marcas" action="guardarmarca" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar marca</g:link>
       </div>
       <g:render template="/layouts/footer"/>
    </body>
+<<<<<<< HEAD
 </html>
 >>>>>>> Diseño / Permisos
+=======
+</html>
+>>>>>>> angel-dev

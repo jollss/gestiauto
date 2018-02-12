@@ -5,6 +5,7 @@
     <title>Servicios</title>
 </head>
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 <html>
     <head>
@@ -85,6 +86,40 @@
     </body>
 </html>
 =======
+=======
+<body>
+    <g:render template="/layouts/navbar" />
+    <g:render template="/layouts/header" />
+    <div class="container col-sm-9">
+        <h1>Servicios pendientes</h1>
+
+        <table class="table table-bordered table-striped col-sm-4">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Observaciones</th>
+                    <th>Estatus</th>
+                    <th>Comentarios del usuario</th>
+                    <th>Marca del auto</th>
+                    <th>Nombre del usuario</th>
+                    <th>Estatus</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <g:each in="${servicios}" var="serv">
+                    <tr>
+                        <td>${serv.observacionesMecanico} </td>
+                        <td>${serv.estatus}</td>
+                        <td>${serv.comentariosUsuario}</td>
+                        <td>${serv.automovil.nombreAuto}</td>
+                        <td>${serv.usuario.nombreUsuario}</td>
+                        <td>${serv.estatus}</td>
+                        <td>
+                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
+
+                        </td>
+                    </tr>
+>>>>>>> angel-dev
                 </g:each>
             </tbody>
         </table>
@@ -96,5 +131,9 @@
       </div>
       <g:render template="/layouts/footer"/>
    </body>
+<<<<<<< HEAD
 </html>
 >>>>>>> Diseño / Permisos
+=======
+</html>
+>>>>>>> angel-dev

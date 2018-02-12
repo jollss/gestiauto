@@ -118,6 +118,7 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.yourapp.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.yourapp.UsuarioRole'
@@ -128,23 +129,31 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/index':           ['permitAll'],
         '/sistemagestion':  ['permitAll'],
 =======
+=======
+>>>>>>> angel-dev
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'gestion.secureapp.SecAppUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secureapp.SecAppUserSecAppRole'
 grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     "/login/auth":      ["permitAll"],
 	'/':                ['permitAll'],
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 	'/index':           ['permitAll'],
 >>>>>>> Spring Security / Logout
 	'/index.gsp':       ['permitAll'],
 	'/assets/**':       ['permitAll'],
 =======
+=======
+>>>>>>> angel-dev
 	'/index':           ['ROLE_USER','ROLE_ADMIN'],
 	'/index.gsp':       ['ROLE_USER','ROLE_ADMIN'],
 	'/assets/**':       ['ROLE_USER','ROLE_ADMIN'],
     '/templates/**':    ['ROLE_USER','ROLE_ADMIN'],
+<<<<<<< HEAD
 >>>>>>> Diseño / Permisos
+=======
+>>>>>>> angel-dev
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['ROLE_USER','ROLE_ADMIN'],

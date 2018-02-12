@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,13 @@
 		<link rel="stylesheet" href="/gestion/css/myEstilo.css">
 		<link rel="stylesheet" href="/gestion/css/libs/fontawesome-all.min.css">
 >>>>>>> Diseño / Permisos
+=======
+		<title><g:layoutTitle default="Grails"/></title>
+		
+		<link rel="stylesheet" href="/gestion/css/bootstrap.min.css">		
+		<link rel="stylesheet" href="/gestion/css/myEstilo.css">
+		<link rel="stylesheet" href="/gestion/css/libs/fontawesome-all.min.css">
+>>>>>>> angel-dev
 		<g:layoutHead/>
 	</head>
 	<body>

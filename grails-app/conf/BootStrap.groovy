@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 import com.yourapp.Role
 import com.yourapp.Usuario
@@ -20,6 +21,16 @@ import gestion.secureapp.SecAppUserSecAppRole
 class BootStrap {
 
     def init = { servletContext ->
+=======
+
+import gestion.secureapp.SecAppRole
+import gestion.secureapp.SecAppUser
+import gestion.secureapp.SecAppUserSecAppRole
+
+class BootStrap {
+
+    def init = { servletContext ->
+>>>>>>> angel-dev
     	def adminRole = new SecAppRole(authority: 'ROLE_ADMIN').save(flush: true)
         def userRole = new SecAppRole(authority: 'ROLE_USER').save(flush: true)
 
@@ -32,6 +43,7 @@ class BootStrap {
         SecAppUserSecAppRole.create userAdmin, adminRole, true
         SecAppUserSecAppRole.create userComun, userRole, true
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 		assert SecAppUser.count() == 2
 		assert SecAppRole.count() == 2
@@ -42,6 +54,11 @@ class BootStrap {
         assert SecAppRole.count() == 2
         assert SecAppUserSecAppRole.count() == 2
 >>>>>>> Sintaxis / @Secured
+=======
+        assert SecAppUser.count() == 2
+        assert SecAppRole.count() == 2
+        assert SecAppUserSecAppRole.count() == 2
+>>>>>>> angel-dev
     }
     def destroy = {
     }

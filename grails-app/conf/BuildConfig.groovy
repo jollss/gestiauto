@@ -77,11 +77,16 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
         //spring security
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
  compile "org.grails.plugins:spring-security-core:2.0.0"
 =======
         //compile "org.grails.plugins:spring-security-core:2.0.0"
         compile "org.grails.plugins:spring-security-core:2.0.0"
 >>>>>>> Configuración DataSource / Plugin Spring Security
+=======
+        //compile "org.grails.plugins:spring-security-core:2.0.0"
+        compile "org.grails.plugins:spring-security-core:2.0.0"
+>>>>>>> angel-dev
     }
 }

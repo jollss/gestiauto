@@ -24,11 +24,14 @@ environments {
             driverClassName = "org.postgresql.Driver"
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/mantenimientoauto"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
                username = "postgres"
                password = 'joel'
 =======
 >>>>>>> Configuración DataSource / Plugin Spring Security
+=======
+>>>>>>> angel-dev
         }
     }
     test {
