@@ -8,7 +8,7 @@
             <a class="navbar-brand" href="${createLink(uri:'/')}">Control Autos</a>
         </div>
         <ul class="nav navbar-nav">
-			<g:remoteLink class="logout btn" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Cerrar sesión</g:remoteLink>
+			
         </ul>
     </div>
 </nav>
