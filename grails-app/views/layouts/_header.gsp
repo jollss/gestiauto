@@ -12,7 +12,7 @@
             <h3>Controladores</h3>
 
             <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
-                <g:if test="${c.name != 'Dbdoc' && c.name != 'Logout' && c.name != 'Login' && c.name != 'Rol'  && c.name != 'Dashboard'  && c.name != 'Tiposervicio'  && c.name != 'Usuario'  && c.name != 'UsuarioRol'}">
+                <g:if test="${c.name != 'Dbdoc' && c.name != 'Logout' && c.name != 'Login' && c.name != 'Rol'  && c.name != 'Dashboard' && c.name != 'Usuario'  && c.name != 'UsuarioRol'}">
                     <ul class="nav navbar-nav">
                         <li>
                             <g:link controller="${c.logicalPropertyName}">${c.name}</g:link>
