@@ -1,6 +1,6 @@
 package gestion
 
-import com.yourapp.Usuario
+import gestion.Usuario
 
 class Servicios {
     
