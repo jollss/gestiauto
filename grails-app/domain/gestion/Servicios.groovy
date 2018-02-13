@@ -11,7 +11,7 @@ class Servicios {
     String horaServicio
     Marcas marca 
     Automovil automovil
-   SecAppUser usuario
+   SecAppUser usuarios
     Tiposervicio tiposervicio
     
     static mapping= {

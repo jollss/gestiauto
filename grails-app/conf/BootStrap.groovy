@@ -8,7 +8,7 @@ class BootStrap {
         def adminRole = new SecAppRole(authority: 'ROLE_ADMIN').save(flush: true)
         def userRole = new SecAppRole(authority: 'ROLE_USER').save(flush: true)
 
-        def userAdmin = new SecAppUser(username: 'admin', enabled: true, password: 'admin')
+        def userAdmin = new SecAppUser(username: 'joel', enabled: true, password: 'joel')
         userAdmin.save(flush: true)
 
         def userComun = new SecAppUser(username: 'user', enabled: true, password: 'user')

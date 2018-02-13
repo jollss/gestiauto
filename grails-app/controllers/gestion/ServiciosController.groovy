@@ -2,7 +2,9 @@ package gestion
 
 import grails.plugin.springsecurity.annotation.Secured
 
-
+import gestion.secureapp.SecAppUser
+import gestion.secureapp.SecAppUserSecAppRole
+import gestion.secureapp.SecAppRole
 class ServiciosController {
     
     @Secured(['ROLE_ADMIN'])

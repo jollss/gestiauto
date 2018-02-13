@@ -2,11 +2,11 @@ dataSource {
     pooled = true
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
-    username = "postgres"
-    password = "123456"
-    dialect = org.hibernate.dialect.PostgreSQLDialect
     //username = "postgres"
-    //password = 'joel'
+   // password = "123456"
+    dialect = org.hibernate.dialect.PostgreSQLDialect
+    username = "postgres"
+   password = 'joel'
 }
 
 hibernate {

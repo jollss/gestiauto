@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>crear cita</title>
-</head>
+
 
 <<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
- tipo del servicio: <select name="selecttipo">
- <g:each in="${tiposervicios}" var="tipo">     
-     <option value=${tipo.id}> ${tipo.nombreServicio}</option> 
-        </g:each></select><br> 
- <br>
- mecanico:<select name="selectusu"> 
-     <g:each in="${usuariosrol}" var="usr">
-     <option value=${usr.usuario.id}>${usr.usuario.username}</option> 
-        </g:each>   
-</select><br>
-<g:hiddenField name="observacionesMecanico" value="hacer" /><br/>
-<g:actionSubmit value="guardar"/>
+ 
+ 
+
 =======
 =======
 >>>>>>> angel-dev
