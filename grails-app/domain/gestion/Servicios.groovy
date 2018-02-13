@@ -1,6 +1,6 @@
 package gestion
 
-import gestion.Usuario
+import gestion.secureapp.SecAppUser
 
 class Servicios {
     
@@ -11,7 +11,7 @@ class Servicios {
     String horaServicio
     Marcas marca 
     Automovil automovil
-    Usuario usuario
+   SecAppUser usuario
     Tiposervicio tiposervicio
     
     static mapping= {
