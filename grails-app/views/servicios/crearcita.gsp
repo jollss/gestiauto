@@ -65,8 +65,8 @@
         <br><br>
         Mecánico:
         <select name="selectusu">
-            <g:each in="${usuariosrol}" var="usr">
-                <option value= ${usr.id}>${usr.usuario.nombreUsuario}</option>
+            <g:each in="${rol}" var="usr">
+                <option value= ${usr.secAppUser.id}> ${usr.secAppUser.username}</option>
             </g:each>
         </select>
         <br>
