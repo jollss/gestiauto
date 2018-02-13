@@ -29,7 +29,7 @@ class ServiciosController {
     @Secured(['ROLE_ADMIN'])
     def crearcita(){
         [marcas:Marcas.findAll(),automoviles:Automovil.findAll(),tiposervicios:Tiposervicio.findAll()
-            ,usuarios:Usuario.findAll(),usuariosrol:UsuarioRol.findAll("from UsuarioRol where rol='ADMIN'")]
+            ,usuarios:SecAppUser.findAll(),rol:SecAppUserSecAppRole.findAll("from SecAppUserSecAppRole where sec_app_role_id=1"),usuariosrol:SecAppRole.findAll()]
     }
    
     @Secured(['ROLE_ADMIN'])
@@ -43,7 +43,7 @@ class ServiciosController {
         p.automovil = Automovil.get(params.selectaut as long)
         p.tiposervicio = Tiposervicio.get(params.selecttipo as long)
         p.observacionesMecanico = params.observacionesMecanico
-        p.usuario = Usuario.get(params.selectusu as long) 
+         p.usuario = SecAppUser.get(params.selectusu as long) 
         if(p.save(flush:true)){
             println ""
         }else{
