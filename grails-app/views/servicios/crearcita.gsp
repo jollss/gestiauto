@@ -1,21 +1,9 @@
 
-
-<<<<<<< HEAD
-<<<<<<< refs/remotes/origin/master
- 
- 
-
-=======
-=======
->>>>>>> angel-dev
 <body>
     <h1>Crear cita</h1>
     <g:form controller="Servicios" action="guardar">
         <g:hiddenField name="estatus" value="pendiente"/><br/>
-<<<<<<< HEAD
->>>>>>> Diseño / Permisos
-=======
->>>>>>> angel-dev
+
 
         <label>Día:</label>
         <g:textField name="diaServicio" placeholder="dia/mes/año"/><br/>
