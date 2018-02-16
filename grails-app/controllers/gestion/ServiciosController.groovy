@@ -1,27 +1,25 @@
 package gestion
-
-import grails.plugin.springsecurity.annotation.Secured
-
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
 import gestion.secureapp.SecAppRole
 class ServiciosController {
     
-    @Secured(['ROLE_ADMIN'])
-    def index(){ 
+   
        
-def index(){  def usuario = UsuariosfindAll()
-def servicios = Servicios.findAll()
+def index()
+{     
+    def usuario = springSecurityService.currentUser
+def servicios = Servicios.findAllWhere(usuario:usuario,estatus:"pendiente")
  [servicios:servicios]
     }
    
-    @Secured(['ROLE_ADMIN'])
+   
     def hacerservicio(long id){  
         def servicios=Servicios.get(id )
         [servicios:servicios]
     }
    
-    @Secured(['ROLE_ADMIN'])
+   
     def save(long id)
     {
         def servicios=Servicios.get(id)
@@ -31,13 +29,13 @@ def servicios = Servicios.findAll()
         redirect (action:"index")
     }
   
-    @Secured(['ROLE_ADMIN'])
+   
     def crearcita(){
         [marcas:Marcas.findAll(),automoviles:Automovil.findAll(),tiposervicios:Tiposervicio.findAll()
             ,usuarios:SecAppUser.findAll(),rol:SecAppUserSecAppRole.findAll("from SecAppUserSecAppRole where sec_app_role_id=1"),usuariosrol:SecAppRole.findAll()]
     }
    
-    @Secured(['ROLE_ADMIN'])
+
     def guardar(){
         def p =  new Servicios()
         p.estatus = params.estatus
@@ -56,13 +54,13 @@ def servicios = Servicios.findAll()
         }
     }
    
-    @Secured(['ROLE_ADMIN'])
+  
     def citaterminada()
     {
         [servicios:Servicios.findAll("from Servicios where estatus='terminado'")]
     }
    
-    @Secured(['ROLE_ADMIN'])
+  
     def delete(long id)
     {
         def servicios=Servicios.get(params.id as long )

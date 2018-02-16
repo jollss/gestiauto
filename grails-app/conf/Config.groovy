@@ -122,15 +122,42 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'gestion.secureapp
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secureapp.SecAppUserSecAppRole'
 grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        "/login/auth":      ["permitAll"],
+       // "/login/auth":      ["permitAll"],
+        // '/':                ['permitAll'],
+         //'/index':           ['ROLE_USER','ROLE_ADMIN'],
+         //'/index.gsp':       ['ROLE_USER','ROLE_ADMIN'],
+         //'/sistemagestion':  ['ROLE_USER','ROLE_ADMIN'],
+         //'/assets/**':       ['ROLE_USER','ROLE_ADMIN'],
+         //'/templates/**':    ['ROLE_USER','ROLE_ADMIN'],
+         //'/**/js/**':        ['permitAll'],
+         //'/**/css/**':       ['permitAll'],
+         //'/**/images/**':    ['ROLE_USER','ROLE_ADMIN'],
+        //'/**/favicon.ico':  ['permitAll']
         '/':                ['permitAll'],
-        '/index':           ['ROLE_USER','ROLE_ADMIN'],
-        '/index.gsp':       ['ROLE_USER','ROLE_ADMIN'],
-        '/sistemagestion':  ['ROLE_USER','ROLE_ADMIN'],
-        '/assets/**':       ['ROLE_USER','ROLE_ADMIN'],
-        '/templates/**':    ['ROLE_USER','ROLE_ADMIN'],
-        '/**/js/**':        ['permitAll'],
-        '/**/css/**':       ['permitAll'],
-        '/**/images/**':    ['ROLE_USER','ROLE_ADMIN'],
-        '/**/favicon.ico':  ['permitAll']
+      //inicio de index de sistemagestion donde estan los cudraditos
+	'/index':           ['ROLE_MECANICO','ROLE_USUARIO'],
+     //fin
+     //Servicios inicio
+        '/servicios/hacerservicio': ['ROLE_MECANICO'],
+        '/servicios/index': ['ROLE_MECANICO'],
+        '/servicios/crearcita': ['ROLE_USUARIO'],
+        '/servicios/guardar': ['ROLE_USUARIO'],       
+        '/servicios/save': ['ROLE_MECANICO'], 
+    
+     //Servicios fin
+     //inicio Marcas
+        '/marcas/modificarmarca': ['ROLE_MECANICO'],
+        '/marcas/guardarmarca': ['ROLE_MECANICO'],
+        '/marcas/eliminar': ['ROLE_MECANICO'],
+        '/marcas/guardar': ['ROLE_MECANICO'],
+        '/marcas/index': ['ROLE_MECANICO'],
+        '/marcas/save': ['ROLE_MECANICO'],
+     //Marcas fin
+	'/index.gsp':       ['permitAll'],
+	'/assets/**':       ['permitAll'],
+	'/**/js/**':        ['permitAll'],
+	'/**/css/**':       ['permitAll'],
+	'/**/images/**':    ['permitAll'],
+	'/**/favicon.ico':  ['permitAll']
+]
 ]
