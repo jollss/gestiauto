@@ -4,12 +4,12 @@ import gestion.secureapp.SecAppUserSecAppRole
 import gestion.secureapp.SecAppRole
 class ServiciosController {
     
-   
+   def springSecurityService
        
 def index()
 {     
-    def usuario = springSecurityService.currentUser
-def servicios = Servicios.findAllWhere(usuario:usuario,estatus:"pendiente")
+    def usuarios = springSecurityService.currentUser
+def servicios = Servicios.findAllWhere(usuarios:usuarios,estatus:"pendiente")
  [servicios:servicios]
     }
    
@@ -46,7 +46,7 @@ def servicios = Servicios.findAllWhere(usuario:usuario,estatus:"pendiente")
         p.automovil = Automovil.get(params.selectaut as long)
         p.tiposervicio = Tiposervicio.get(params.selecttipo as long)
         p.observacionesMecanico = params.observacionesMecanico
-         p.usuario = SecAppUser.get(params.selectusu as long) 
+         p.usuarios = SecAppUser.get(params.selectusu as long) 
         if(p.save(flush:true)){
             println ""
         }else{

@@ -30,7 +30,7 @@
                         <td>${serv.estatus}</td>
                         <td>${serv.comentariosUsuario}</td>
                         <td>${serv.automovil.nombreAuto}</td>
-                        <td>${serv.usuario.nombreUsuario}</td>
+                        <td>${serv.usuarios.username}</td>
                         <td>${serv.estatus}</td>
                         <td>
                             <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
