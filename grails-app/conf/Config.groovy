@@ -16,19 +16,19 @@ grails.project.groupId = appName // change this to alter the default package nam
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 grails.mime.types = [ // the first one is the default format
-                      all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
-                      atom:          'application/atom+xml',
-                      css:           'text/css',
-                      csv:           'text/csv',
-                      form:          'application/x-www-form-urlencoded',
-                      html:          ['text/html','application/xhtml+xml'],
-                      js:            'text/javascript',
-                      json:          ['application/json', 'text/json'],
+                      all          : '*/*', // 'all' maps to '*' or the first available format in withFormat
+                      atom         : 'application/atom+xml',
+                      css          : 'text/css',
+                      csv          : 'text/csv',
+                      form         : 'application/x-www-form-urlencoded',
+                      html         : ['text/html', 'application/xhtml+xml'],
+                      js           : 'text/javascript',
+                      json         : ['application/json', 'text/json'],
                       multipartForm: 'multipart/form-data',
-                      rss:           'application/rss+xml',
-                      text:          'text/plain',
-                      hal:           ['application/hal+json','application/hal+xml'],
-                      xml:           ['text/xml', 'application/xml']
+                      rss          : 'application/rss+xml',
+                      text         : 'text/plain',
+                      hal          : ['application/hal+json', 'application/hal+xml'],
+                      xml          : ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -71,7 +71,7 @@ grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
-grails.web.disable.multipart=false
+grails.web.disable.multipart = false
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
@@ -103,7 +103,7 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
             'org.codehaus.groovy.grails.web.pages',          // GSP
             'org.codehaus.groovy.grails.web.sitemesh',       // layouts
             'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -116,48 +116,50 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
-
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'gestion.secureapp.SecAppUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secureapp.SecAppUserSecAppRole'
 grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-       // "/login/auth":      ["permitAll"],
-        // '/':                ['permitAll'],
-         //'/index':           ['ROLE_USER','ROLE_ADMIN'],
-         //'/index.gsp':       ['ROLE_USER','ROLE_ADMIN'],
-         //'/sistemagestion':  ['ROLE_USER','ROLE_ADMIN'],
-         //'/assets/**':       ['ROLE_USER','ROLE_ADMIN'],
-         //'/templates/**':    ['ROLE_USER','ROLE_ADMIN'],
-         //'/**/js/**':        ['permitAll'],
-         //'/**/css/**':       ['permitAll'],
-         //'/**/images/**':    ['ROLE_USER','ROLE_ADMIN'],
-        //'/**/favicon.ico':  ['permitAll']
-        '/':                ['permitAll'],
-      //inicio de index de sistemagestion donde estan los cudraditos
-	'/index':           ['ROLE_MECANICO','ROLE_USUARIO'],
-     //fin
-     //Servicios inicio
-        '/servicios/hacerservicio': ['ROLE_MECANICO'],
-        '/servicios/index': ['ROLE_MECANICO'],
-        '/servicios/crearcita': ['ROLE_USUARIO'],
-        '/servicios/guardar': ['ROLE_USUARIO'],       
-        '/servicios/save': ['ROLE_MECANICO'], 
-    
-     //Servicios fin
-     //inicio Marcas
-        '/marcas/modificarmarca': ['ROLE_MECANICO'],
-        '/marcas/guardarmarca': ['ROLE_MECANICO'],
-        '/marcas/eliminar': ['ROLE_MECANICO'],
-        '/marcas/guardar': ['ROLE_MECANICO'],
-        '/marcas/index': ['ROLE_MECANICO'],
-        '/marcas/save': ['ROLE_MECANICO'],
-     //Marcas fin
-	'/index.gsp':       ['permitAll'],
-	'/assets/**':       ['permitAll'],
-	'/**/js/**':        ['permitAll'],
-	'/**/css/**':       ['permitAll'],
-	'/**/images/**':    ['permitAll'],
-	'/**/favicon.ico':  ['permitAll']
-]
+        //inicio de index de sistemagestion donde estan los cudraditos
+        "/login/auth"                        : ["permitAll"],
+        '/'                                  : ['permitAll'],
+        '/index'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/index.gsp'                         : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        //fin
+        //Automoviles inicio
+        '/automovil/guardarauto'             : ['ROLE_MECANICO'],
+        '/automovil/guardar'                 : ['ROLE_MECANICO'],
+        '/automovil/index'                   : ['ROLE_MECANICO'],
+        '/automovil/modificarauto'           : ['ROLE_MECANICO'],
+        //Automoviles fin
+        //Servicios inicio
+        '/servicios/hacerservicio'           : ['ROLE_MECANICO'],
+        '/servicios/index'                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/crearcita'               : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/citasUsuario'            : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/guardar'                 : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/save'                    : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/servicios/citaterminada'           : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        //Servicios fin
+        //Servicios inicio
+        '/tiposervicio/index'                : ['ROLE_MECANICO'],
+        '/tiposervicio/modificarTipoServicio': ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/tiposervicio/nuevoTipoServicio'    : ['ROLE_MECANICO'],
+        '/tiposervicio/crearServicio'        : ['ROLE_MECANICO'],
+        //Servicios fin
+        //inicio Marcas
+        '/marcas/modificarmarca'             : ['ROLE_MECANICO'],
+        '/marcas/guardarmarca'               : ['ROLE_MECANICO'],
+        '/marcas/eliminar'                   : ['ROLE_MECANICO'],
+        '/marcas/guardar'                    : ['ROLE_MECANICO'],
+        '/marcas/index'                      : ['ROLE_MECANICO'],
+        '/marcas/save'                       : ['ROLE_MECANICO'],
+        //Marcas fin
+        '/index.gsp'                         : ['permitAll'],
+        '/assets/**'                         : ['permitAll'],
+        '/**/js/**'                          : ['permitAll'],
+        '/**/css/**'                         : ['permitAll'],
+        '/**/images/**'                      : ['permitAll'],
+        '/**/favicon.ico'                    : ['permitAll']
 ]

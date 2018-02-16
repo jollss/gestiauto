@@ -10,16 +10,57 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <h3>Controladores</h3>
-
-            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
-                <g:if test="${c.name != 'Dbdoc' && c.name != 'Logout' && c.name != 'Login' && c.name != 'Rol'  && c.name != 'Dashboard' && c.name != 'Usuario'  && c.name != 'UsuarioRol'}">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <g:link controller="${c.logicalPropertyName}">${c.name}</g:link>
-                        </li>
-                    </ul>
-                </g:if>
-            </g:each>
+            <sec:ifAnyGranted roles="ROLE_USUARIO">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                    <g:if test="${c.name != 'Dbdoc' &&
+                                  c.name != 'Logout' &&
+                                  c.name != 'Login' &&
+                                  c.name != 'Rol'  &&
+                                  c.name != 'Dashboard' &&
+                                  c.name != 'Usuario'  &&
+                                  c.name != 'Automovil'  &&
+                                  c.name != 'Automovil'  &&
+                                  c.name != 'Marcas'  &&
+                                  c.name != 'Tiposervicio'  &&
+                                  c.name != 'UsuarioRol'}">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <g:if test="${c.name == 'Servicios'}">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <g:link controller="${c.logicalPropertyName}">Crear cita</g:link>
+                                        </li>
+                                    </ul>
+                                </g:if>
+                                <g:if test="${c.name == 'Servicios'}">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <g:link controller="${c.logicalPropertyName}" action="citasUsuario">Historial citas</g:link>
+                                        </li>
+                                    </ul>
+                                </g:if>
+                            </li>
+                        </ul>
+                    </g:if>
+                </g:each>
+            </sec:ifAnyGranted>
+            <sec:ifAnyGranted roles="ROLE_MECANICO">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                    <g:if test="${c.name != 'Dbdoc' &&
+                            c.name != 'Logout' &&
+                            c.name != 'Login' &&
+                            c.name != 'Rol'  &&
+                            c.name != 'Dashboard' &&
+                            c.name != 'Usuario'  &&
+                            c.name != 'UsuarioRol'}">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <g:link controller="${c.logicalPropertyName}">${c.name}</g:link>
+                            </li>
+                        </ul>
+                    </g:if>
+                </g:each>
+            </sec:ifAnyGranted>
             <ul class="nav navbar-nav">
                 <li> 
                     <a id="btnCerrarSesion" type="button">Cerrar sesión</a>
