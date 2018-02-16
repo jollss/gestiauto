@@ -9,7 +9,10 @@ class ServiciosController {
     
     @Secured(['ROLE_ADMIN'])
     def index(){ 
-        [servicios:Servicios.findAll("from Servicios where estatus='pendiente'")]
+       
+def index(){  def usuario = UsuariosfindAll()
+def servicios = Servicios.findAll()
+ [servicios:servicios]
     }
    
     @Secured(['ROLE_ADMIN'])

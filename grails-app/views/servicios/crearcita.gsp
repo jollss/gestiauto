@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Marcas</title>
+</head>
 
 <body>
+    <g:render template="/layouts/navbar" />
+    <g:render template="/layouts/header" />
+    <div class="container col-sm-9">
+
     <h1>Crear cita</h1>
     <g:form controller="Servicios" action="guardar">
         <g:hiddenField name="estatus" value="pendiente"/><br/>
@@ -47,6 +57,8 @@
         <g:hiddenField name="observacionesMecanico" value="hacer"/><br/>
         <g:actionSubmit value="guardar"/>
 
-    </g:form>
+    </g:form></div><br><br><br><br><br><br><br><br>         
+ <g:render template="/layouts/footer"/>
 </body>
+
 </html>
