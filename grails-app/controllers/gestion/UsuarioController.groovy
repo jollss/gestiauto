@@ -10,4 +10,5 @@ class UsuarioController {
         def usuarios = Usuario.findAll()
         println usuarios.nombreUsuario
     }
+
 }

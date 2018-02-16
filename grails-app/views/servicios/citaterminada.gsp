@@ -1,37 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>citas terminadas</title>
+    <title>Servicios</title>
 </head>
 
 <body>
-    <h1>Cita terminada</h1>
-    <center>
-        <h1>Servicios pendientes</h1>
-        <g:each in="${servicios}" var="serv">
-            <table>
+    <g:render template="/layouts/navbar" />
+    <g:render template="/layouts/header" />
+    <div class="container col-sm-9">
+        <h1>Citas terminadas</h1>
+        <table class="table table-bordered table-striped col-sm-4">
+            <thead class="thead-inverse">
                 <tr>
-                    <th>observaciones</th>
-                    <th>modelo</th>
-                    <th>marca del auto</th>
-                    <th>nombre del usuario</th>
-                    <th>estatus</th>
-                    <th>acciones</th>
+                    <th>Observaciones</th>
+                    <th>Modelo</th>
+                    <th>Marca del auto</th>
+                    <th>Nombre del usuario</th>
+                    <th>Estatus</th>
+                    <th>Acciones</th>
                 </tr>
-                <tr>
-                    <td>${serv.observacionesMecanico} </td>
-                    <td>${serv.marca.nombreMarca}</td>
-                    <td>${serv.automovil.nombreAuto}</td>
-                    <td>${serv.usuario.nombreUsuario}</td>
-                    <td>${serv.estatus}</td>
-                    <td>
-                      <g:link controller="Servicios" action="delete" id="${serv.id}">eliminar</g:link>
-                    </td>
-                </tr>
-            </table>
-        </g:each>
-    </center>
-</body>
+            </thead>
+            <tbody>
+                <g:each in="${servicios}" var="serv">
+                    <tr>
+                        <td>
+                            <g:if test="${serv.observacionesMecanico == ''}">
+                                Ninguna
+                            </g:if>
+                            <g:if test="${serv.observacionesMecanico != ''}">
+                                ${serv.observacionesMecanico}
+                            </g:if>
+                        </td>
+                        <td>${serv.marca.nombreMarca}</td>
+                        <td>${serv.automovil.nombreAuto}</td>
+                        <td>${serv.usuarios.username}</td>
+                        <td>${serv.estatus}</td>
+                        <td>
+                            <g:link controller="Servicios" action="delete" id="${serv.id}">eliminar</g:link>
+                        </td>
+                    </tr>
+                </g:each>
+            </tbody>
+        </table>
+      </div>
+      <g:render template="/layouts/footer"/>
+   </body>
 </html>

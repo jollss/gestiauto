@@ -8,12 +8,10 @@
 
 <html>
 
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="/gestion/js/bootstrap.js"></script>
-    <script src="/gestion/js/miScript.js"></script>
+    <script src="/gestion/js/libs/jquery.min.js"></script>
+    <script src="/gestion/js/libs/jquery-ui.min.js"></script>
+    <script src="/gestion/js/libs/bootstrap.js"></script>
+    <script src="/gestion/js/libs/miScript.js"></script>
     <footer class="footer">
       <div class="container">
         <div class="row">

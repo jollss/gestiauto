@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title><g:layoutTitle default="Sistema de gestión"/></title>
 
-	<link rel="stylesheet" href="/gestion/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/gestion/css/myEstilo.css">
+	<link rel="stylesheet" href="/gestion/css/libs/bootstrap.min.css">
+	<link rel="stylesheet" href="/gestion/css/libs/myEstilo.css">
 	<link rel="stylesheet" href="/gestion/css/libs/fontawesome-all.min.css">
 	<g:layoutHead/>
 </head>
@@ -22,12 +22,10 @@
 
 <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 
-<script
-		src="https://code.jquery.com/jquery-3.3.1.min.js"
-		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		crossorigin="anonymous"></script>
-<script src="/gestion/js/bootstrap.js"></script>
-<script src="/gestion/js/miScript.js"></script>
+<script src="/gestion/js/libs/jquery.min.js"></script>
+<script src="/gestion/js/libs/bootstrap.js"></script>
+<script src="/gestion/js/libs/jquery-ui.min.js"></script>
+<script src="/gestion/js/libs/miScript.js"></script>
 </body>
 </html>
 

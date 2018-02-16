@@ -4,7 +4,6 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class UsuarioRolController {
 
-    @Secured(['ROLE_ADMIN'])
     def index() { 
         def usuario_roles = UsuarioRol.findAll()
         println usuario_roles
