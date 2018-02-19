@@ -40,6 +40,21 @@
                         </select>
                     </div>
                 </div>
+                <%@ page import="gestion.Marcas" %>
+                <g:select name="marca.id" from="${Marcas.list()}" optionKey="id" optionValue="nombreMarca"
+                noSelection="['':'Choose Marca']"
+                onchange="${remoteFunction (
+                            controller: 'Servicios', 
+                            action: 'findAutoByMarca', 
+                            params: 'marca.id=' + this.value, 
+                            update: 'autoSelection')}"
+                />
+
+                <td id="autoSelection" valign="top">
+                    <select>
+                        <option>Choose auto</option>
+                    </select>
+                </td>
 
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Modelo del auto:</label>

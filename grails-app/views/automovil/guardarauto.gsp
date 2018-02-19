@@ -9,7 +9,18 @@
       <g:render template="/layouts/header"/>
       <div class="container col-sm-9">
         <h1>Agregar automóvil</h1>
-         <g:form controller="Automovil" action="guardarauto">
+         <g:form controller="Automovil" action="guardarAutoMarca">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label">Marca:</label>
+                <div class="col-sm-4">
+                    <select name="id_marca">
+                        <g:each in="${marcas}" var="marca">
+                            <option value= ${marca.id}>${marca.nombreMarca}</option>
+                        </g:each>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-12 col-form-label">Nombre del automóvil:</label>
                 <br/>

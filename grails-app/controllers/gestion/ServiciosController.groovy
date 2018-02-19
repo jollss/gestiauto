@@ -78,5 +78,11 @@ class ServiciosController {
     def citasUsuario(){
         [servicios: Servicios.findAll()]
     }
+
+    def findAutoByMarca(){
+        def marca = Marcas.findById(params.marca.id)
+        println("Entre controller")
+        render(template: 'autoSelection', model:  [marcas: marca.automoviles])
+    }
 }
 
