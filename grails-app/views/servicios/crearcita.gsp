@@ -33,37 +33,17 @@
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Marca:</label>
                     <div class="col-sm-4">
-                        <select name="selectmarcas">
-                            <g:each in="${marcas}" var="marca">
-                                <option value= ${marca.id}>${marca.nombreMarca}</option>
-                            </g:each>
-                        </select>
+                        <%@ page import="gestion.Marcas" %>
+                        <g:select name="selectmarcas" from="${marcas}" optionKey="id" optionValue="nombreMarca" noSelection="['':'Choose Marca']" onchange="${remoteFunction(controller: 'Servicios', action: 'findAutoByMarca', params: '\'marca.id=\' + this.value', update: 'autoSelection')}" id="selectMarcas"/>
                     </div>
-                </div>
-                <%@ page import="gestion.Marcas" %>
-                <g:select name="marca.id" from="${Marcas.list()}" optionKey="id" optionValue="nombreMarca"
-                noSelection="['':'Choose Marca']"
-                onchange="${remoteFunction (
-                            controller: 'Servicios', 
-                            action: 'findAutoByMarca', 
-                            params: 'marca.id=' + this.value, 
-                            update: 'autoSelection')}"
-                />
-
-                <td id="autoSelection" valign="top">
-                    <select>
-                        <option>Choose auto</option>
-                    </select>
-                </td>
+                </div>        
 
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Modelo del auto:</label>
                     <div class="col-sm-4">
-                        <select name="selectaut">
-                            <g:each in="${automoviles}" var="aut">
-                                <option value= ${aut.id}>${aut.nombreAuto}</option>
-                            </g:each><br>
-                        </select>
+                        <div id="autoSelection">
+                            <g:render template="/servicios/autoSelection" />
+                        </div>
                     </div>
                 </div>
 

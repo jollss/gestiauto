@@ -15,9 +15,9 @@
             <thead class="thead-inverse">
                 <tr>
                     <th>Observaciones</th>
-                    <th>Estatus</th>
                     <th>Comentarios del usuario</th>
                     <th>Marca del auto</th>
+                    <th>Nombre auto</th>
                     <th>Nombre del usuario</th>
                     <th>Estatus</th>
                     <th>Acciones</th>
@@ -34,8 +34,8 @@
                                 ${serv.observacionesMecanico}
                             </g:if>
                         </td>
-                        <td>${serv.estatus}</td>
                         <td>${serv.comentariosUsuario}</td>
+                        <td>${serv.automovil.marcas.nombreMarca}</td>
                         <td>${serv.automovil.nombreAuto}</td>
                         <td>${serv.usuarios.username}</td>
                         <g:if test="${serv.estatus == 'terminado'}" >

@@ -80,9 +80,14 @@ class ServiciosController {
     }
 
     def findAutoByMarca(){
-        def marca = Marcas.findById(params.marca.id)
-        println("Entre controller")
-        render(template: 'autoSelection', model:  [marcas: marca.automoviles])
+        def paramIdRec = params.marca.id
+        paramIdRec.trim()
+        if (paramIdRec == ''){
+            println("Es null")
+            return render(template: 'autoSelection', model:  [automoviles: null])
+        }
+        def marca = Marcas.get(paramIdRec)
+        println("Marca": marca.automoviles.nombreAuto)
+        render(template: 'autoSelection', model:  [automoviles: marca.automoviles])
     }
 }
-

@@ -13,6 +13,22 @@
             <g:hiddenField name="id" value="${auto.id}"/><br/>
 
             <div class="form-group row">
+                <label class="col-sm-12 col-form-label">Marca:</label>
+                <div class="col-sm-4">
+                    <select name="id_marca">
+                        <g:each in="${marcas}" var="marca">
+                            <g:if test="${auto.marcas.nombreMarca.toString().trim() ==  marca.nombreMarca.toString().trim()}" >
+                                <option id="Select" value="${marca.id}" selected="selected">${marca.nombreMarca}</option>
+                            </g:if>
+                            <g:if test="${auto.marcas.nombreMarca.toString().trim() !=  marca.nombreMarca.toString().trim()}" >
+                                <option id="NoSelect" value="${marca.id}">${marca.nombreMarca}</option>
+                            </g:if>
+                        </g:each>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-sm-12 col-form-label">Nombre</label>
                 <br/>
                 <div class="col-sm-4">

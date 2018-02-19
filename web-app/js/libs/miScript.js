@@ -55,3 +55,5 @@ $( "#btnCerrarSesion" ).click(function() {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toLowerCase() + string.slice(1);
 }
+
+

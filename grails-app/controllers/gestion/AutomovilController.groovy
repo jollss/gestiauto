@@ -32,15 +32,21 @@ class AutomovilController {
     {
         println id 
         def auto=Automovil.get(id)
-        [auto:auto]
+        def marca = Marcas.findAll()
+        [auto:auto, marcas:marca.findAll()]
     }
 
     def guardar(long id)
     {     
-        def auto=Automovil.get(id)
-        auto.nombreAuto = params.nombre
-        auto.save(flush:true) 
-        redirect (action:"index")
+        def autoOriginal=Automovil.get(id)
+        def marca = Marcas.findById(Long.valueOf(params.id_marca))
+        println(params)
+        if (String.valueOf(params.nombre.trim()) != '') {
+            autoOriginal.nombreAuto = params.nombre
+        }
+        autoOriginal.marcas = marca
+        autoOriginal.save(flush: true)
+        redirect(action: "index")
     }
 }
     
