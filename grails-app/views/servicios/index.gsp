@@ -26,12 +26,27 @@
             <tbody>
                 <g:each in="${servicios}" var="serv">
                     <tr>
-                        <td>${serv.observacionesMecanico} </td>
+                        <td>
+                            <g:if test="${serv.observacionesMecanico == ''}">
+                                Ninguna
+                            </g:if>
+                            <g:if test="${serv.observacionesMecanico != ''}">
+                                ${serv.observacionesMecanico}
+                            </g:if>
+                        </td>
                         <td>${serv.estatus}</td>
                         <td>${serv.comentariosUsuario}</td>
                         <td>${serv.automovil.nombreAuto}</td>
                         <td>${serv.usuarios.username}</td>
-                        <td>${serv.estatus}</td>
+                        <g:if test="${serv.estatus == 'terminado'}" >
+                            <td style="background-color: #009688; color: white;">${serv.estatus}</td>
+                        </g:if>
+                        <g:if test="${serv.estatus == 'pendiente'}" >
+                            <td style="background-color: #E65100; color: white;">${serv.estatus}</td>
+                        </g:if>
+                        <g:if test="${serv.estatus != 'pendiente' && serv.estatus != 'terminado'}" >
+                            <td>${serv.estatus}</td>
+                        </g:if>
                         <td>
                             <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
 

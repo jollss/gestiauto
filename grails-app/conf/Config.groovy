@@ -129,6 +129,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //fin
         //Automoviles inicio
         '/automovil/guardarauto'             : ['ROLE_MECANICO'],
+        '/automovil/guardarAutoMarca'        : ['ROLE_MECANICO'],
         '/automovil/guardar'                 : ['ROLE_MECANICO'],
         '/automovil/index'                   : ['ROLE_MECANICO'],
         '/automovil/modificarauto'           : ['ROLE_MECANICO'],
@@ -141,6 +142,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/servicios/guardar'                 : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/save'                    : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/citaterminada'           : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/servicios/findAutoByMarca'         : ['ROLE_MECANICO'],
         //Servicios fin
         //Servicios inicio
         '/tiposervicio/index'                : ['ROLE_MECANICO'],

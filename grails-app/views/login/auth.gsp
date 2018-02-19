@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/gestion/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/gestion/css/myEstilo.css">
+    <link rel="stylesheet" href="/gestion/css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="/gestion/css/libs/myEstilo.css">
     <title>Iniciar sesión</title>
 </head>
 <body>
@@ -49,12 +49,9 @@
     </div>
       <div class="footer" role="contentinfo"></div>
       <div id="spinner" class="spinner" style="display:none;">Loading&hellip;</div>
-      <script
-         src="https://code.jquery.com/jquery-3.3.1.min.js"
-         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-         crossorigin="anonymous"></script>
-      <script src="/gestion/js/bootstrap.js"></script>
-      <script src="/gestion/js/miScript.js"></script>
-      <script src="/gestion/js/verificaLogin.js"></script>
+      <script src="/gestion/js/libs/jquery.min.js"></script>
+      <script src="/gestion/js/libs/bootstrap.js"></script>
+      <script src="/gestion/js/libs/miScript.js"></script>
+      <script src="/gestion/js/libs/verificaLogin.js"></script>
 </body>
 </html>
