@@ -22,7 +22,7 @@
                     <th>Marca del auto</th>
                     <th>Nombre del usuario</th>
                     <th>Estatus</th>
-                    <th>Acciones</th>
+                    <th>Hacer</th>
                 </tr>
             </thead>
  <g:each in="${servicios}" var="serv">
@@ -35,7 +35,10 @@
                         <td>${serv.automovil.nombreAuto}</td>
                         <td>${serv.usuarios.username}</td>
                         <td>${serv.estatus}</td>
-                      
+                        <td>
+                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
+
+                        </td>
                     </tr>
                 
             </tbody>
@@ -53,6 +56,7 @@
                     <th>Marca del auto</th>
                     <th>Nombre del usuario</th>
                     <th>Estatus</th>
+                     
                   
                 </tr>
             </thead>
@@ -65,7 +69,7 @@
                         <td>${servi.automovil.nombreAuto}</td>
                         <td>${servi.usuarios.username}</td>
                         <td>${servi.estatus}</td>
-                       
+                      
                     </tr>
                 </g:each>
             </tbody>
