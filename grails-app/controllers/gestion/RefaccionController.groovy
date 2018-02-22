@@ -32,7 +32,7 @@ class RefaccionController {
                 println("Dem: " + objRefaccion.tipoPedido)
                 flow.refaccion = new Refaccion()
                 flow.refaccion = objRefaccion
-                println("\n\n 1. Tiene: ${flow.refaccion.dump()}")
+                println("\n\n Tiene 1: " + flow.refaccion)
             }.to "detallesRefaccionPorDemanda"
 
             //Siniestro
@@ -40,7 +40,7 @@ class RefaccionController {
                 println("Sin: " + objRefaccion.tipoPedido)
                 flow.refaccion = new Refaccion()
                 flow.refaccion = objRefaccion
-                println("\n\n 1. Tiene: ${flow.refaccion.dump()}")
+                println("\n\n Tiene 1: " + flow.refaccion)
             }.to "detallesRefaccionPorSiniestro"
 
         }
@@ -50,7 +50,7 @@ class RefaccionController {
             on("submitDetalle"){
                 println("Params: " + params)
                 def validFields = ["nombreRefaccion", "precioRefaccion"]
-                println("\n\n 2. Tiene: ${flow.refaccion.dump()}")
+                println("\n\n Tiene: " + flow.refaccion)
                 bindData(flow.refaccion, params,  [include: validFields])
             }.to "resumenPeticion"
 
@@ -65,7 +65,6 @@ class RefaccionController {
             on("submitDetalle"){
                 println("Params: " + params)
                 def validFields = ["nombreRefaccion", "precioRefaccion"]
-                println("\n\n 2. Tiene: ${flow.refaccion.dump()}")
                 bindData(flow.refaccion, params,  [include: validFields])
             }.to "resumenPeticion"
 
