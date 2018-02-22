@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="/gestion/css/libs/myEstilo.css">
 <link rel="stylesheet" href="/gestion/css/libs/jquery-ui.min.css">
 <link rel="stylesheet" href="/gestion/css/libs/fontawesome-all.min.css">
-
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/funciones.js"></script>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">

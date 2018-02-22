@@ -9,53 +9,71 @@
     <g:render template="/layouts/navbar" />
     <g:render template="/layouts/header" />
     <div class="container col-sm-9">
-        <h1>Servicios pendientes</h1>
-
-        <table class="table table-bordered table-striped col-sm-4">
+        <button class="btn btn-primary" onclick="verPendientes()">Ver Servicios Pendientes</button>
+        <button  class="btn btn-primary" onclick="verTerminados()">Ver Servicios Terminados</button> 
+   <h1>Servicios pendientes</h1>
+<div id="verPendientes">    
+   <table class="table table-bordered table-striped col-sm-4">
             <thead class="thead-inverse">
                 <tr>
                     <th>Observaciones</th>
+                    <th>Estatus</th>
                     <th>Comentarios del usuario</th>
                     <th>Marca del auto</th>
-                    <th>Nombre auto</th>
                     <th>Nombre del usuario</th>
                     <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
+ <g:each in="${servicios}" var="serv">
             <tbody>
-                <g:each in="${servicios}" var="serv">
+               
                     <tr>
-                        <td>
-                            <g:if test="${serv.observacionesMecanico == ''}">
-                                Ninguna
-                            </g:if>
-                            <g:if test="${serv.observacionesMecanico != ''}">
-                                ${serv.observacionesMecanico}
-                            </g:if>
-                        </td>
+                        <td>${serv.observacionesMecanico} </td>
+                        <td>${serv.estatus}</td>
                         <td>${serv.comentariosUsuario}</td>
-                        <td>${serv.automovil.marcas.nombreMarca}</td>
                         <td>${serv.automovil.nombreAuto}</td>
                         <td>${serv.usuarios.username}</td>
-                        <g:if test="${serv.estatus == 'terminado'}" >
-                            <td style="background-color: #009688; color: white;">${serv.estatus}</td>
-                        </g:if>
-                        <g:if test="${serv.estatus == 'pendiente'}" >
-                            <td style="background-color: #E65100; color: white;">${serv.estatus}</td>
-                        </g:if>
-                        <g:if test="${serv.estatus != 'pendiente' && serv.estatus != 'terminado'}" >
-                            <td>${serv.estatus}</td>
-                        </g:if>
-                        <td>
-                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
-
-                        </td>
+                        <td>${serv.estatus}</td>
+                      
+                    </tr>
+                
+            </tbody>
+</g:each>
+        </table>
+        </div>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<div style="display:none;" id="verTerminados">    
+   <table class="table table-bordered table-striped col-sm-4">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Observaciones</th>
+                    <th>Estatus</th>
+                    <th>Comentarios del usuario</th>
+                    <th>Marca del auto</th>
+                    <th>Nombre del usuario</th>
+                    <th>Estatus</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <g:each in="${serviciosTerminados}" var="servi">
+                    <tr>
+                        <td>${servi.observacionesMecanico} </td>
+                        <td>${servi.estatus}</td>
+                        <td>${servi.comentariosUsuario}</td>
+                        <td>${servi.automovil.nombreAuto}</td>
+                        <td>${servi.usuarios.username}</td>
+                        <td>${servi.estatus}</td>
+                       
                     </tr>
                 </g:each>
             </tbody>
         </table>
-        
+        </div>
+
+
+
         <g:link controller="Marcas" action="guardarmarca" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar marca</g:link>
 
         <g:link controller="Automovil" action="guardarauto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar automóvil</g:link>

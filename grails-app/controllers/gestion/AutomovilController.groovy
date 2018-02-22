@@ -1,6 +1,5 @@
 package gestion
 
-import grails.plugin.springsecurity.annotation.Secured
 
 
 class AutomovilController {
@@ -11,11 +10,11 @@ class AutomovilController {
 
     def guardarauto()
     {
-        render(view: 'guardarauto', model: [marcas:Marcas.findAll()])
+        render(view: 'guardarauto',model: [marcas:Marcas.findAll()])
     }
     def guardarAutoMarca()
     {
-        println("ReAuto: " + params)
+       
         def auto = new Automovil(nombreAuto: params.nombreAuto, marcas: params.id_marca)
         auto.save(flush:true)
         redirect (action:"index")
@@ -30,7 +29,7 @@ class AutomovilController {
 
     def modificarauto(long id )
     {
-        println id 
+      
         def auto=Automovil.get(id)
         def marca = Marcas.findAll()
         [auto:auto, marcas:marca.findAll()]

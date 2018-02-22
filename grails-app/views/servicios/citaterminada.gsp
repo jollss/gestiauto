@@ -16,7 +16,7 @@
                     <th>Observaciones</th>
                     <th>Modelo</th>
                     <th>Marca del auto</th>
-                    <th>Nombre del usuario</th>
+                    <th>Nombre del usuariosssssss</th>
                     <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>

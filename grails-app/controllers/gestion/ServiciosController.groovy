@@ -2,25 +2,34 @@ package gestion
 
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
+import groovy.sql.Sql
+import org.postgresql.core.Query
+
 import gestion.secureapp.SecAppRole
 
 class ServiciosController {
 
     def springSecurityService
     def UsuarioService
+def dataSource //Need it to connect to your database
+
+    
+
 
     def index() {
         def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
         def servicios = null
+        def serviciosTerminados =null
         if (tipoUsuarioActual == "[ROLE_MECANICO]"){
-            servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
+            servicios = Servicios.findAllWhere(usuarios:usuarios,estatus:"pendiente")
+        serviciosTerminados = Servicios.findAllWhere(usuarios:usuarios,estatus:"terminado")
         }else if (tipoUsuarioActual == "[ROLE_USUARIO]"){
             redirect(action: "crearcita")
         }else{
             println "No existe el tipo de usuario: Controller Servicios - Index"
         }
-        [servicios: servicios]
+         [servicios:servicios,serviciosTerminados:serviciosTerminados]
     }
 
 
@@ -39,12 +48,27 @@ class ServiciosController {
     }
 
     def crearcita() {
-        [marcas    : Marcas.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll()
-         , usuarios: SecAppUser.findAll(), rol: SecAppUserSecAppRole.findAll("from SecAppUserSecAppRole where sec_app_role_id=1"), usuariosrol: SecAppRole.findAll()]
+        def rol=SecAppRole.findByAuthority("ROLE_MECANICO")
+
+    def usuario=SecAppUserSecAppRole.findAllBySecAppRole(rol)
+    
+
+         def usuarios = springSecurityService.currentUser
+         
+   
+ [marcas: Marcas.findAll(), 
+      automoviles: Automovil.findAll(), 
+      tiposervicios: Tiposervicio.findAll()
+         , 
+         usuario:usuario]
+
+
+
     }
 
 
     def guardar() {
+        def usuarios = springSecurityService.currentUser
         def p = new Servicios()
         p.estatus = params.estatus
         p.comentariosUsuario = params.comentariosUsuario
@@ -55,18 +79,22 @@ class ServiciosController {
         p.tiposervicio = Tiposervicio.get(params.selecttipo as long)
         p.observacionesMecanico = params.observacionesMecanico
         p.usuarios = SecAppUser.get(params.selectusu as long)
-        if (p.save(flush: true)) {
-            println ""
-            redirect(action: "index")
+       if (p.save(flush: true)) {
+            def detalleservicio = new DetalleServicio()
+            detalleservicio.servicios=p
+            detalleservicio.usuarios=springSecurityService.currentUser
+            detalleservicio.save(flush:true)
+           // [detalleservicio:detalleservicio]
+            redirect( action: "citasUsuario")
+           
+           
         } else {
             println "No se guardo nada vale chetos la vida "
         }
     }
 
 
-    def citaterminada() {
-        [servicios: Servicios.findAll("from Servicios where estatus='terminado'")]
-    }
+    
 
 
     def delete(long id) {
@@ -76,7 +104,8 @@ class ServiciosController {
     }
 
     def citasUsuario(){
-        [servicios: Servicios.findAll()]
+        def usuarios = springSecurityService.currentUser
+     [detalleservicio : DetalleServicio.findAllWhere(usuarios:usuarios)]
     }
 
     def findAutoByMarca(){
@@ -87,7 +116,7 @@ class ServiciosController {
             return render(template: 'autoSelection', model:  [automoviles: null])
         }
         def marca = Marcas.get(paramIdRec)
-        println("Marca": marca.automoviles.nombreAuto)
+       
         render(template: 'autoSelection', model:  [automoviles: marca.automoviles])
     }
 }

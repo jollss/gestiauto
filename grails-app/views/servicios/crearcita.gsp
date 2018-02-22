@@ -9,12 +9,15 @@
     <g:render template="/layouts/navbar" />
     <g:render template="/layouts/header" />
     <div class="container col-sm-9">
+        
         <h1>Crear cita</h1>
         <g:form controller="Servicios" action="guardar">
             
             <div class="col-sm-7">
             <g:hiddenField name="estatus" value="pendiente"/><br/>
-            
+
+      
+      
             <div class="form-group row col-sm-6">
                 <label class="col-sm-12 col-form-label">Fecha:</label>
                 <div class="col-sm-12">
@@ -56,13 +59,14 @@
                             </g:each>
                         </select>
                     </div>
+                  
                 </div>
 
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Mecánico: </label>
                     <div class="col-sm-4">
                         <select name="selectusu">
-                            <g:each in="${rol}" var="usr">
+                            <g:each in="${usuario}" var="usr">
                                 <option value= ${usr.secAppUser.id}> ${usr.secAppUser.username}</option>
                             </g:each>
                         </select>
