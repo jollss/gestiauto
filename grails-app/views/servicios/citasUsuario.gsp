@@ -17,11 +17,14 @@
                  <thead class="thead-inverse">
                     <tr>
                         <th>observaciones</th>
+                        <th>Servicio Realizado</th>
                         <th>modelo</th>
                         <th>marca del auto</th>
                         <th>nombre del Mecanico</th>
                          <th>nombre del usuario</th>
+                        
                         <th>estatus</th>
+                         
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +39,7 @@
                                     ${deta.servicios.observacionesMecanico}
                                 </g:if>
                             </td>
+                             <td>${deta.servicios.tiposervicio.nombreServicio}</td>
                             <td>${deta.servicios.marca.nombreMarca}</td>
                             <td>${deta.servicios.automovil.nombreAuto}</td>
                             <td>${deta.servicios.usuarios.username}</td>
@@ -46,6 +50,7 @@
                             <g:if test="${deta.servicios.estatus == 'pendiente'}" >
                                 <td style="background-color: #E65100; color: white;">${deta.servicios.estatus}</td>
                             </g:if>
+                               
                         </tr>
                     </g:each>
                 </tbody>
