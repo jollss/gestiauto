@@ -122,47 +122,54 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secure
 grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //inicio de index de sistemagestion donde estan los cudraditos
-        "/login/auth"                        : ["permitAll"],
-        '/'                                  : ['permitAll'],
-        '/index'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/index.gsp'                         : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        "/login/auth"                                            : ["permitAll"],
+        '/'                                                      : ['permitAll'],
+        '/index'                                                 : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/index.gsp'                                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         //fin
         //Automoviles inicio
-        '/automovil/guardarauto'             : ['ROLE_MECANICO'],
-        '/automovil/guardarAutoMarca'        : ['ROLE_MECANICO'],
-        '/automovil/guardar'                 : ['ROLE_MECANICO'],
-        '/automovil/index'                   : ['ROLE_MECANICO'],
-        '/automovil/modificarauto'           : ['ROLE_MECANICO'],
-        '/automovil/eliminar'                : ['ROLE_MECANICO'],
+        '/automovil/guardarauto'                                 : ['ROLE_MECANICO'],
+        '/automovil/guardarAutoMarca'                            : ['ROLE_MECANICO'],
+        '/automovil/guardar'                                     : ['ROLE_MECANICO'],
+        '/automovil/index'                                       : ['ROLE_MECANICO'],
+        '/automovil/modificarauto'                               : ['ROLE_MECANICO'],
+        '/automovil/eliminar'                                    : ['ROLE_MECANICO'],
         //Automoviles fin
         //Servicios inicio
-        '/servicios/hacerservicio'           : ['ROLE_MECANICO'],
-        '/servicios/index'                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/crearcita'               : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/citasUsuario'            : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/guardar'                 : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/save'                    : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/servicios/citaterminada'           : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/servicios/findAutoByMarca'         : ['ROLE_MECANICO'],
+        '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
+        '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/citasUsuario'                                : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/guardar'                                     : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/save'                                        : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/servicios/citaterminada'                               : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/servicios/findAutoByMarca'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         //Servicios fin
         //Servicios inicio
-        '/tiposervicio/index'                : ['ROLE_MECANICO'],
-        '/tiposervicio/modificarTipoServicio': ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/tiposervicio/nuevoTipoServicio'    : ['ROLE_MECANICO'],
-        '/tiposervicio/crearServicio'        : ['ROLE_MECANICO'],
+        '/tiposervicio/index'                                    : ['ROLE_MECANICO'],
+        '/tiposervicio/modificarTipoServicio'                    : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/tiposervicio/nuevoTipoServicio'                        : ['ROLE_MECANICO'],
+        '/tiposervicio/crearServicio'                            : ['ROLE_MECANICO'],
         //Servicios fin
         //inicio Marcas
-        '/marcas/modificarmarca'             : ['ROLE_MECANICO'],
-        '/marcas/guardarmarca'               : ['ROLE_MECANICO'],
-        '/marcas/eliminar'                   : ['ROLE_MECANICO'],
-        '/marcas/guardar'                    : ['ROLE_MECANICO'],
-        '/marcas/index'                      : ['ROLE_MECANICO'],
-        '/marcas/save'                       : ['ROLE_MECANICO'],
+        '/marcas/modificarmarca'                                 : ['ROLE_MECANICO'],
+        '/marcas/guardarmarca'                                   : ['ROLE_MECANICO'],
+        '/marcas/eliminar'                                       : ['ROLE_MECANICO'],
+        '/marcas/guardar'                                        : ['ROLE_MECANICO'],
+        '/marcas/index'                                          : ['ROLE_MECANICO'],
+        '/marcas/save'                                           : ['ROLE_MECANICO'],
         //Marcas fin
-        '/index.gsp'                         : ['permitAll'],
-        '/assets/**'                         : ['permitAll'],
-        '/**/js/**'                          : ['permitAll'],
-        '/**/css/**'                         : ['permitAll'],
-        '/**/images/**'                      : ['permitAll'],
-        '/**/favicon.ico'                    : ['permitAll']
+        //Inicio Refaccion
+        '/refaccion/pedirRefaccion'                              : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/refaccion/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/refaccion/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/refaccion/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/refaccion/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        //Fin refaccion
+        '/index.gsp'                                             : ['permitAll'],
+        '/assets/**'                                             : ['permitAll'],
+        '/**/js/**'                                              : ['permitAll'],
+        '/**/css/**'                                             : ['permitAll'],
+        '/**/images/**'                                          : ['permitAll'],
+        '/**/favicon.ico'                                        : ['permitAll']
 ]
