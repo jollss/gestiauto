@@ -160,11 +160,20 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/marcas/save'                                           : ['ROLE_MECANICO'],
         //Marcas fin
         //Inicio Refaccion
-        '/refaccion/pedirRefaccion'                              : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/refaccion/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/refaccion/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/refaccion/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        '/refaccion/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/refaccion/listaPedidos'                                : ['ROLE_MECANICO'],
+        '/refaccion/pedirRefaccion'                              : ['ROLE_MECANICO'],
+        '/refaccion/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO'],
+        '/refaccion/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO'],
+        '/refaccion/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO'],
+        '/refaccion/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO'],
+        //Fin refaccion
+        //Inicio Refaccion
+        '/pedido/listaPedidos'                                : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion'                              : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO'],
         //Fin refaccion
         '/index.gsp'                                             : ['permitAll'],
         '/assets/**'                                             : ['permitAll'],

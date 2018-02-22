@@ -1,13 +1,11 @@
 package gestion
 
-class Refaccion {
+class Refaccion implements Serializable {
 
     String nombreRefaccion
+    String modeloRefaccion
     double precioRefaccion
-    String tipoPedido
+    static belongsTo = [pedido: Pedido]
 
-    static mapping= {
-        id generate  : 'sequence', column:'id_refaccion', params:[sequence:'refaccion']
-    }
 }
 
