@@ -90,7 +90,7 @@
                     </button>
                 </div>
             </div>
-            </div>
+          
         </g:form>
     </div>
  <g:render template="/layouts/footer"/>

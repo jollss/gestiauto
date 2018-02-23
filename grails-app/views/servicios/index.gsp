@@ -12,6 +12,7 @@
         <button class="btn btn-primary" onclick="verPendientes()">Ver Servicios Pendientes</button>
         <button  class="btn btn-primary" onclick="verTerminados()">Ver Servicios Terminados</button> 
    <h1>Servicios pendientes</h1>
+   
 <div id="verPendientes">    
    <table class="table table-bordered table-striped col-sm-4">
             <thead class="thead-inverse">
@@ -21,22 +22,24 @@
                     <th>Comentarios del usuario</th>
                     <th>Marca del auto</th>
                     <th>Nombre del usuario</th>
+                       <th>Nombre del Mecanico</th>
                     <th>Estatus</th>
                     <th>Hacer</th>
                 </tr>
             </thead>
- <g:each in="${servicios}" var="serv">
+ <g:each in="${detalles}" var="serv">
             <tbody>
                
                     <tr>
-                        <td>${serv.observacionesMecanico} </td>
-                        <td>${serv.estatus}</td>
-                        <td>${serv.comentariosUsuario}</td>
-                        <td>${serv.automovil.nombreAuto}</td>
-                        <td>${serv.usuarios.username}</td>
-                        <td>${serv.estatus}</td>
+                        <td>${serv[0].servicios.observacionesMecanico} </td>
+                        <td>${serv[0].servicios.estatus}</td>
+                        <td>${serv[0].servicios.comentariosUsuario}</td>
+                        <td>${serv[0].servicios.automovil.nombreAuto}</td>
+                        <td>${serv[0].servicios.usuarios.username}</td>
+                        <td>${serv[0].usuarios.username}</td>
+                        <td>${serv[0].servicios.estatus}</td>
                         <td>
-                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
+                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv[0].servicios.id}"><i class="fas fa-check "></i> Hacer</g:link>
 
                         </td>
                     </tr>

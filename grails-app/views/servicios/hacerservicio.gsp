@@ -7,6 +7,9 @@
 </head>
 
 <body>
+     <g:render template="/layouts/navbar" />
+    <g:render template="/layouts/header" />
+    <div class="container col-sm-9">
     <center>
         <h1>Hacer servicio</h1>
     </center>
@@ -31,7 +34,11 @@
         <g:actionSubmit value="save" />
 
     </g:form>
+       
     <g:link action="index">regresar</g:link><br>
+    
+    </div>
+    <g:render template="/layouts/footer"/>
 </body>
 
 </html>
