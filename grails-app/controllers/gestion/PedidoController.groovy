@@ -2,7 +2,11 @@ package gestion
 
 class PedidoController {
 
-    def index() { }
+    def index() {
+        def listPedidos = Pedido.list()
+        def listRefacciones = Refaccion.list()
+        return ["refacciones":listRefacciones, "pedidos": listPedidos]
+    }
 
     /**
      * [Flujo/Flow]     pedirRefaccionFlow

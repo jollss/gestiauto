@@ -1,29 +1,31 @@
 <nav class="navbar navbar-default sidebar col-sm-3 py-4" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-sidebar-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>      
+            </button>
         </div>
+
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <h3>Controladores</h3>
             <sec:ifAnyGranted roles="ROLE_USUARIO">
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name }}">
                     <g:if test="${c.name != 'Dbdoc' &&
-                                  c.name != 'Logout' &&
-                                  c.name != 'Login' &&
-                                  c.name != 'Rol'  &&
-                                  c.name != 'Dashboard' &&
-                                  c.name != 'Usuario'  &&
-                                  c.name != 'Automovil'  &&
-                                  c.name != 'Automovil'  &&
-                                  c.name != 'Marcas'  &&
-                                  c.name != 'Tiposervicio'  &&
-                                  c.name != 'Refaccion'  &&
-                                  c.name != 'UsuarioRol'}">
+                            c.name != 'Logout' &&
+                            c.name != 'Login' &&
+                            c.name != 'Rol' &&
+                            c.name != 'Dashboard' &&
+                            c.name != 'Usuario' &&
+                            c.name != 'Automovil' &&
+                            c.name != 'Automovil' &&
+                            c.name != 'Marcas' &&
+                            c.name != 'Tiposervicio' &&
+                            c.name != 'Refaccion' &&
+                            c.name != 'UsuarioRol'}">
                         <ul class="nav navbar-nav">
                             <li>
                                 <g:if test="${c.name == 'Servicios'}">
@@ -36,7 +38,8 @@
                                 <g:if test="${c.name == 'Servicios'}">
                                     <ul class="nav navbar-nav">
                                         <li>
-                                            <g:link controller="${c.logicalPropertyName}" action="citasUsuario">Historial citas</g:link>
+                                            <g:link controller="${c.logicalPropertyName}"
+                                                    action="citasUsuario">Historial citas</g:link>
                                         </li>
                                     </ul>
                                 </g:if>
@@ -46,14 +49,14 @@
                 </g:each>
             </sec:ifAnyGranted>
             <sec:ifAnyGranted roles="ROLE_MECANICO">
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name }}">
                     <g:if test="${c.name != 'Dbdoc' &&
                             c.name != 'Logout' &&
                             c.name != 'Login' &&
-                            c.name != 'Rol'  &&
+                            c.name != 'Rol' &&
                             c.name != 'Dashboard' &&
-                            c.name != 'Usuario'  &&
-                            c.name != 'Refaccion'  &&
+                            c.name != 'Usuario' &&
+                            c.name != 'Refaccion' &&
                             c.name != 'UsuarioRol'}">
                         <ul class="nav navbar-nav">
                             <li>
@@ -64,7 +67,7 @@
                 </g:each>
             </sec:ifAnyGranted>
             <ul class="nav navbar-nav">
-                <li> 
+                <li>
                     <a id="btnCerrarSesion" type="button">Cerrar sesión</a>
                 </li>
             </ul>
