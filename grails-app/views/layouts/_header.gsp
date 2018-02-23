@@ -22,6 +22,7 @@
                                   c.name != 'Automovil'  &&
                                   c.name != 'Marcas'  &&
                                   c.name != 'Tiposervicio'  &&
+                                  c.name != 'Refaccion'  &&
                                   c.name != 'UsuarioRol'}">
                         <ul class="nav navbar-nav">
                             <li>
@@ -52,6 +53,7 @@
                             c.name != 'Rol'  &&
                             c.name != 'Dashboard' &&
                             c.name != 'Usuario'  &&
+                            c.name != 'Refaccion'  &&
                             c.name != 'UsuarioRol'}">
                         <ul class="nav navbar-nav">
                             <li>
