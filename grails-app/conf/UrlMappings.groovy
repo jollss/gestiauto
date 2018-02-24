@@ -7,6 +7,10 @@ class UrlMappings {
             }
         }
 
+        "/$controller"(parseRequest: true) {
+            action = [GET: "consultaRefacciones"]
+        }
+
         "/"(view:"/index")
         "500"(view:'/error')
 	}

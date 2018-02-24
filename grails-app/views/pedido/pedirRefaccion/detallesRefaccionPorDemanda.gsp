@@ -28,20 +28,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><input placeholder="Nombre" type="text" name="nombreRefaccion"/></td>
-                        <th><input placeholder="Precio" type="text" name="precioRefaccion"/></th>
-                        <th><input placeholder="Modelo" type="text" name="modeloRefaccion"/></th>
-                        <th>
-                            <button type="button" class="btn btn-warning btnEditarCampo"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-primary btnGuardarCampo"><i class="fas fa-save"></i></button>
-                            <button type="button" class="btn btn-danger btnEliminarCampo"><i class="fas fa-ban"></i></button>
-                        </th>
-                    </tr>
+                    <g:each in="${refacciones}" var="refaccion">
+                        <tr>
+                            <td>${refaccion.pedido.folioPedido}</td>
+                            <td>${refaccion.nombreRefaccion}</td>
+                            <td>${refaccion.modeloRefaccion}</td>
+                            <td>${refaccion.precioRefaccion}</td>
+                        </tr>
+                    </g:each>
                 </tbody>
             </table>
-            <button type="button" id="addRow" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+            <div style="float: right; color: #fff;">
+                <button id="btnAgregarCampo" type="button" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Editar">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button id="btnGuardarCampo" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Guardar">
+                    <i class="fas fa-save"></i>
+                </button>
+
+                <button id="btnCarga" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Carga">
+                    <i class="fas fa-edit"></i>
+                </button>
+
+            </div>
+
             <g:submitButton name="submitDetalle" value="Detalle"/>
             <g:submitButton name="submitRegresar" value="Regresar"/>
         </g:form>

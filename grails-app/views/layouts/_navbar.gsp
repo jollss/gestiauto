@@ -6,7 +6,7 @@
 
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/libs/pedidoController.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
+
 <script src="../js/funciones.js"></script>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">

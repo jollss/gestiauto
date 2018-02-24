@@ -168,12 +168,15 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/refaccion/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO'],
         //Fin refaccion
         //Inicio Refaccion
-        '/pedido/listaPedidos'                                : ['ROLE_MECANICO'],
-        '/pedido/pedirRefaccion'                              : ['ROLE_MECANICO'],
-        '/pedido/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO'],
-        '/pedido/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO'],
-        '/pedido/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO'],
-        '/pedido/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO'],
+        '/pedido/listaPedidos'                                   : ['ROLE_MECANICO'],
+        '/pedido/guardaRefaccion'                                : ['ROLE_MECANICO'],
+        '/pedido/eliminaRefaccion'                               : ['ROLE_MECANICO'],
+        '/pedido/consultaRefacciones'                            : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion'                                 : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/refaccionPor'                    : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/detallesRefaccionPorDemanda'     : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/detallesRefaccionPorSiniestro'   : ['ROLE_MECANICO'],
+        '/pedido/pedirRefaccion/resumenPeticion'                 : ['ROLE_MECANICO'],
         //Fin refaccion
         '/index.gsp'                                             : ['permitAll'],
         '/assets/**'                                             : ['permitAll'],
