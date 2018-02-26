@@ -20,6 +20,7 @@
             <input placeholder="Nombre" type="text" name="nombreRefaccion"/>
             <input placeholder="Precio" type="text" name="precioRefaccion"/>
             <input placeholder="Modelo" type="text" name="modeloRefaccion"/>
+            <input placeholder="Modelo" type="text" name="tempIdRefaccion" value="1" hidden/>
             <g:submitButton name="submitDetalle" value="Detalle"/>
             <g:submitButton name="submitRegresar" value="Regresar"/>
         </g:form>

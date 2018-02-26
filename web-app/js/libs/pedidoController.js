@@ -63,6 +63,7 @@ $(document).ready(function () {
 
 function agregarFilaRefaccion() {
     var tempCont = counter + 1;
+    console.log('ID Actual: ' + counter);
     counter++;
     var row = $('<tr class="nuevoTR">')
         .append('<td id="tempIdRefaccion">' + tempCont + '</td>')
@@ -204,8 +205,15 @@ function cargaDatosTabla() {
             });
 
             max = Math.max.apply(null,values); //<----
-            counter = max;
+            
             console.log(max); //25
+
+            if (max == Number.POSITIVE_INFINITY || max == Number.NEGATIVE_INFINITY)
+            {
+                console.warn("1. Es infinity: " + max);
+                max = 0;
+            }
+            counter = max;
         },
         error: function(e) {
            console.log("Error");
