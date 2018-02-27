@@ -132,26 +132,34 @@ class PedidoController {
                     /** *******************************************************************************/
 
                     def objFlujoPedido = new Pedido(tipoPedido: flow.pedidoGral.tipoPedido, folioPedido: flow.pedidoGral.folioPedido, create_at: flow.pedidoGral.create_at)
-                    //objFlujoPedido.save()
-                    def objPedidoFind = Pedido.last(sort: 'id')
-                    def objFlujoRefaccion = new Refaccion(pedido: objPedidoFind, nombreRefaccion: flow.refacciones.nombreRefaccion, modeloRefaccion: flow.refacciones.modeloRefaccion, precioRefaccion: flow.refacciones.precioRefaccion, tempIdRefaccion: flow.refacciones.tempIdRefaccion)
-
-                    println("Guardando...\n" +
-                            "Folio: " + objFlujoRefaccion.pedido.folioPedido +
-                            "\nTipo: " + objFlujoRefaccion.pedido.tipoPedido +
-                            "\nNombre: " + objFlujoRefaccion.nombreRefaccion +
-                            "\nPrecio: " + objFlujoRefaccion.precioRefaccion)
-
-                    println("3 A guardar: " + objFlujoRefaccion)
-
+                    println("Guarda Pedido")
                     objFlujoPedido.save()
-                    objFlujoRefaccion.save(flush: true)
+                    def objPedidoFind = Pedido.last(sort: 'id')
+                    if (objArrayRefacciones.size() <= 0) {
+                        println("Guarda uno...")
+                        def objFlujoRefaccion = new Refaccion(pedido: objPedidoFind, nombreRefaccion: flow.refacciones.nombreRefaccion, modeloRefaccion: flow.refacciones.modeloRefaccion, precioRefaccion: flow.refacciones.precioRefaccion, tempIdRefaccion: flow.refacciones.tempIdRefaccion)
+                        objFlujoRefaccion.save(flush: true)
+                        if (!objFlujoRefaccion.save(flush: true)) {
+                            objFlujoRefaccion.errors.allErrors.each {
+                                println it
+                            }
+                        }
+                    } else {
+                        /** *************************************************************************/
+                        println("Guarda arreglo...")
+                        for (int i = 0; i < objArrayRefacciones.size(); i++) {
+                            println("For Modelo: " + objArrayRefacciones.get(i).modeloRefaccion)
+                            def objFlujoRefacFor = new Refaccion(pedido: objPedidoFind,
+                                    nombreRefaccion: objArrayRefacciones.get(i).nombreRefaccion,
+                                    modeloRefaccion: objArrayRefacciones.get(i).modeloRefaccion,
+                                    precioRefaccion: objArrayRefacciones.get(i).precioRefaccion,
+                                    tempIdRefaccion: objArrayRefacciones.get(i).tempIdRefaccion)
+                            objFlujoRefacFor.save(flush: true)
 
-                    if (!objFlujoRefaccion.save(flush: true)) {
-                        objFlujoRefaccion.errors.allErrors.each {
-                            println it
                         }
                     }
+
+
                 } catch (Exception e) {
                     log.info("Error guardando: " + e)
                 }

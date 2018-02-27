@@ -21,21 +21,15 @@
             <tr>
                 <th>Folio</th>
                 <th>Fecha</th>
-                <th>Nombre</th>
-                <th>Modelo</th>
-                <th>Precio</th>
                 <th>Tipo</th>
             </tr>
             </thead>
-            <g:each in="${refacciones}" var="refaccion">
+            <g:each in="${pedidos}" var="pedido">
                 <tbody>
                 <tr>
-                    <td>${refaccion.pedido.folioPedido}</td>
-                    <td>${refaccion.pedido.create_at}</td>
-                    <td>${refaccion.nombreRefaccion}</td>
-                    <td>${refaccion.modeloRefaccion}</td>
-                    <td>${refaccion.precioRefaccion}</td>
-                    <td>${refaccion.pedido.tipoPedido}</td>
+                    <td>${pedido.folioPedido}</td>
+                    <td>${pedido.create_at}</td>
+                    <td>${pedido.tipoPedido}</td>
                 </tr>
                 </tbody>
             </g:each>
