@@ -22,6 +22,7 @@
                 <th>Folio</th>
                 <th>Fecha</th>
                 <th>Tipo</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <g:each in="${pedidos}" var="pedido">
@@ -30,6 +31,10 @@
                     <td>${pedido.folioPedido}</td>
                     <td>${pedido.create_at}</td>
                     <td>${pedido.tipoPedido}</td>
+                    <td>
+                        <g:link class="btn btn-primary " controller="Pedido" action="consultaPedido" id="${pedido.id}"><i class="fas fa-info-circle  "></i> Ver</g:link>
+
+                    </td>
                 </tr>
                 </tbody>
             </g:each>

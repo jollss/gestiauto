@@ -169,6 +169,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //Fin refaccion
         //Inicio Refaccion
         '/pedido/listaPedidos'                                   : ['ROLE_MECANICO'],
+        '/pedido/consultaPedido'                                 : ['ROLE_MECANICO'],
         '/pedido/guardaRefaccion'                                : ['ROLE_MECANICO'],
         '/pedido/eliminaRefaccion'                               : ['ROLE_MECANICO'],
         '/pedido/consultaRefacciones'                            : ['ROLE_MECANICO'],

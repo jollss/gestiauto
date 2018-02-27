@@ -10,9 +10,7 @@ class PedidoController {
     def objPedidoGral = new Pedido()
 
     def index() {
-        def listPedidos = Pedido.list()
-        def listRefacciones = Refaccion.list()
-        return ["refacciones": listRefacciones, "pedidos": listPedidos]
+        redirect(controller: "pedido", action: "listaPedidos")
     }
 
     /**
@@ -179,7 +177,7 @@ class PedidoController {
     }
 
     def guardaRefaccion() {
-        println("Recibi: " + params)
+        //println("Recibi: " + params)
         def validFields = ["tempIdRefaccion", "nombreRefaccion", "precioRefaccion", "modeloRefaccion"]
 
         Refaccion objRefaccion = new Refaccion()
@@ -215,5 +213,16 @@ class PedidoController {
         }
         //println object as JSON
         render object as JSON
+    }
+
+    def consultaPedido(long id){
+        def pedido = Pedido.get(id)
+        def refacciones = pedido.refacciones
+        def arr = pedido.refacciones.precioRefaccion
+        def precioTotal=0
+        for (int i = 0; i < arr.size(); i++) {
+            precioTotal += arr[i]
+        }
+        ["pedido":pedido, 'refacciones': refacciones, 'precioTotal':precioTotal]
     }
 }
