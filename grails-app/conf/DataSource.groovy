@@ -3,7 +3,7 @@ dataSource {
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
-    password = "123456"
+    password = "joel"
     dialect = org.hibernate.dialect.PostgreSQLDialect
     //username = "postgres"
     //password = 'joel'
