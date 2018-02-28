@@ -6,87 +6,86 @@
 </head>
 
 <body>
-<g:render template="/layouts/navbar"/>
-<g:render template="/layouts/header"/>
-<div class="container col-sm-9">
-    <button class="btn btn-primary" onclick="verPendientes()">Ver Servicios Pendientes</button>
-    <button class="btn btn-primary" onclick="verTerminados()">Ver Servicios Terminados</button>
-
-    <h1>Servicios pendientes</h1>
-
-    <div id="verPendientes">
-        <table class="table table-bordered table-striped col-sm-4">
+    <g:render template="/layouts/navbar" />
+    <g:render template="/layouts/header" />
+    <div class="container col-sm-9">
+        <button class="btn btn-primary" onclick="verPendientes()">Ver Servicios Pendientes</button>
+        <button  class="btn btn-primary" onclick="verTerminados()">Ver Servicios Terminados</button> 
+   <h1>Servicios pendientes</h1>
+   
+<div id="verPendientes">    
+   <table class="table table-bordered table-striped col-sm-4">
             <thead class="thead-inverse">
-            <tr>
-                <th>Observaciones</th>
-                <th>Estatus</th>
-                <th>Comentarios del usuario</th>
-                <th>Marca del auto</th>
-                <th>Nombre del usuario</th>
-                <th>Estatus</th>
-                <th>Hacer</th>
-            </tr>
-            </thead>
-            <g:each in="${servicios}" var="serv">
-                <tbody>
-
                 <tr>
-                    <td>${serv.observacionesMecanico}</td>
-                    <td>${serv.estatus}</td>
-                    <td>${serv.comentariosUsuario}</td>
-                    <td>${serv.automovil.nombreAuto}</td>
-                    <td>${serv.usuarios.username}</td>
-                    <td>${serv.estatus}</td>
-                    <td>
-                        <g:link class="btn btn-success " controller="Servicios" action="hacerservicio"
-                                id="${serv.id}"><i class="fas fa-check "></i> Hacer</g:link>
-
-                    </td>
+                    <th>Observaciones</th>
+                    <th>Estatus</th>
+                    <th>Comentarios del usuario</th>
+                    <th>Marca del auto</th>
+                    <th>Nombre del usuario</th>
+                       <th>Nombre del Mecanico</th>
+                    <th>Estatus</th>
+                    <th>Hacer</th>
                 </tr>
+            </thead>
+ <g:each in="${detalles}" var="serv">
+            <tbody>
+               
+                    <tr>
+                        <td>${serv[0].servicios.observacionesMecanico} </td>
+                        <td>${serv[0].servicios.estatus}</td>
+                        <td>${serv[0].servicios.comentariosUsuario}</td>
+                        <td>${serv[0].servicios.automovil.nombreAuto}</td>
+                        <td>${serv[0].servicios.usuarios.username}</td>
+                        <td>${serv[0].usuarios.username}</td>
+                        <td>${serv[0].servicios.estatus}</td>
+                        <td>
+                            <g:link class="btn btn-success " controller="Servicios" action="hacerservicio" id="${serv[0].servicios.id}"><i class="fas fa-check "></i> Hacer</g:link>
 
-                </tbody>
-            </g:each>
+                        </td>
+                    </tr>
+                
+            </tbody>
+</g:each>
         </table>
-    </div>
-    <!-- ------------------------------------------------------------------------------------------------- -->
-    <div style="display:none;" id="verTerminados">
-        <table class="table table-bordered table-striped col-sm-4">
+        </div>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<div style="display:none;" id="verTerminados">    
+   <table class="table table-bordered table-striped col-sm-4">
             <thead class="thead-inverse">
-            <tr>
-                <th>Observaciones</th>
-                <th>Estatus</th>
-                <th>Comentarios del usuario</th>
-                <th>Marca del auto</th>
-                <th>Nombre del usuario</th>
-                <th>Estatus</th>
-
-            </tr>
+                <tr>
+                    <th>Observaciones</th>
+                    <th>Estatus</th>
+                    <th>Comentarios del usuario</th>
+                    <th>Marca del auto</th>
+                    <th>Nombre del usuario</th>
+                    <th>Estatus</th>
+                     
+                  
+                </tr>
             </thead>
             <tbody>
-            <g:each in="${serviciosTerminados}" var="servi">
-                <tr>
-                    <td>${servi.observacionesMecanico}</td>
-                    <td>${servi.estatus}</td>
-                    <td>${servi.comentariosUsuario}</td>
-                    <td>${servi.automovil.nombreAuto}</td>
-                    <td>${servi.usuarios.username}</td>
-                    <td>${servi.estatus}</td>
-
-                </tr>
-            </g:each>
+                <g:each in="${serviciosTerminados}" var="servi">
+                    <tr>
+                        <td>${servi.observacionesMecanico} </td>
+                        <td>${servi.estatus}</td>
+                        <td>${servi.comentariosUsuario}</td>
+                        <td>${servi.automovil.nombreAuto}</td>
+                        <td>${servi.usuarios.username}</td>
+                        <td>${servi.estatus}</td>
+                      
+                    </tr>
+                </g:each>
             </tbody>
         </table>
-    </div>
+        </div>
 
 
 
-    <g:link controller="Marcas" action="guardarmarca" class="btn btn-primary"><i
-            class="fas fa-plus"></i> Agregar marca</g:link>
+        <g:link controller="Marcas" action="guardarmarca" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar marca</g:link>
 
-    <g:link controller="Automovil" action="guardarauto" class="btn btn-primary"><i
-            class="fas fa-plus"></i> Agregar automóvil</g:link>
+        <g:link controller="Automovil" action="guardarauto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar automóvil</g:link>
 
-</div>
-<g:render template="/layouts/footer"/>
-</body>
+      </div>
+      <g:render template="/layouts/footer"/>
+   </body>
 </html>

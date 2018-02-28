@@ -72,7 +72,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+           
 
             <div class="form-group row col-sm-12">
                 <label class="col-sm-12 col-form-label">Comentarios:</label>

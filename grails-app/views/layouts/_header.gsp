@@ -66,6 +66,32 @@
                     </g:if>
                 </g:each>
             </sec:ifAnyGranted>
+             <sec:ifAnyGranted roles="ROLE_ADMIN">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name }}">
+                    <g:if test="${c.name != 'Dbdoc' &&
+                            c.name != 'Logout' &&
+                                 c.name != 'Marcas' &&
+                                  c.name != 'Automovil' &&
+                                  c.name != 'Pedido' &&
+                                    c.name != 'Tiposervicio' &&
+                            c.name != 'Login' &&
+                            c.name != 'Rol' &&
+                            c.name != 'Dashboard' &&
+                            c.name != 'Usuario' &&
+                            c.name != 'Refaccion' &&
+                            c.name != 'UsuarioRol'}">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <g:link controller="${c.logicalPropertyName}">Alta Usuario</g:link>
+                            </li>
+                             <li>
+                                <g:link controller="${c.logicalPropertyName}" action="detalleUsuario">Consultar Usuarios</g:link>
+                              
+                            </li>
+                        </ul>
+                    </g:if>
+                </g:each>
+            </sec:ifAnyGranted>
             <ul class="nav navbar-nav">
                 <li>
                     <a id="btnCerrarSesion" type="button">Cerrar sesión</a>
