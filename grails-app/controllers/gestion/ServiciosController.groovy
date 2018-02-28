@@ -8,29 +8,34 @@ import gestion.secureapp.SecAppRole
 class ServiciosController {
     def springSecurityService
     def UsuarioService
+
     def index() {
-        def usuarios = springSecurityService.currentUser    
+        def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
         def servicios = null
-        def serviciosTerminados =null
-        def detalle =null
-        def deta=null
-        if (tipoUsuarioActual == "[ROLE_MECANICO]"){
-            servicios = Servicios.findAllWhere(usuarios:usuarios,estatus:"pendiente")
-            serviciosTerminados = Servicios.findAllWhere(usuarios:usuarios,estatus:"terminado")              
-            def detalles=[]
-            servicios.each{                
-                detalle=DetalleServicio.findAllByServicios(it)     
-                detalles << detalle            
-            }       
-            [servicios:servicios,serviciosTerminados:serviciosTerminados,detalles:detalles]
-        }else if (tipoUsuarioActual == "[ROLE_USUARIO]"){
+        def serviciosTerminados = null
+        def detalle = null
+        def deta = null
+        if (tipoUsuarioActual == "[ROLE_MECANICO]") {
+            servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
+            serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
+            def detalles = []
+            servicios.each {
+                detalle = DetalleServicio.findAllByServicios(it)
+                detalles << detalle
+
+            }
+
+            // println detalles.getAt(0)
+
+            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
+        } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
             redirect(action: "crearcita")
-        }else if (tipoUsuarioActual == "[ROLE_ADMIN]"){
-            redirect(action: "crearUsuario")
-        }else{
+        } else {
             println "No existe el tipo de usuario: Controller Servicios - Index"
-        }     
+        }
+
+
     }
     def hacerservicio(long id) {
         def servicios = Servicios.get(id)
@@ -41,13 +46,24 @@ class ServiciosController {
         servicios.observacionesMecanico = params.observaciones
         servicios.estatus = params.estatus
         servicios.save(flush: true)
-        redirect(action: "index") 
+        redirect(action: "index")
     }
     def crearcita() {
-        def rol=SecAppRole.findByAuthority("ROLE_MECANICO")
-        def usuario=SecAppUserSecAppRole.findAllBySecAppRole(rol)
-        def usuarios = springSecurityService.currentUser   
-        [marcas: Marcas.findAll(),automoviles: Automovil.findAll(),tiposervicios: Tiposervicio.findAll(),usuario:usuario] 
+        def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
+
+        def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
+
+
+        def usuarios = springSecurityService.currentUser
+
+
+        [marcas       : Marcas.findAll(),
+         automoviles  : Automovil.findAll(),
+         tiposervicios: Tiposervicio.findAll()
+         ,
+         usuario      : usuario]
+
+
     }
     def guardar() {
         def usuarios = springSecurityService.currentUser
@@ -63,33 +79,40 @@ class ServiciosController {
         p.usuarios = SecAppUser.get(params.selectusu as long)
         if (p.save(flush: true)) {
             def detalleservicio = new DetalleServicio()
-            detalleservicio.servicios=p
-            detalleservicio.usuarios=springSecurityService.currentUser
-            detalleservicio.save(flush:true)
-            redirect( action: "citasUsuario")          
+            detalleservicio.servicios = p
+            detalleservicio.usuarios = springSecurityService.currentUser
+            detalleservicio.save(flush: true)
+            // [detalleservicio:detalleservicio]
+            redirect(action: "citasUsuario")
+
+
         } else {
             println "No se guardo nada vale chetos la vida "
         }
     }
+
+
     def delete(long id) {
         def servicios = Servicios.get(params.id as long)
         servicios.delete(flush: true)
         redirect(action: "citaterminada")
     }
-    def citasUsuario(){
+
+    def citasUsuario() {
         def usuarios = springSecurityService.currentUser
-        [detalleservicio : DetalleServicio.findAllWhere(usuarios:usuarios)]
+        [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]
     }
-    def findAutoByMarca(){
+
+    def findAutoByMarca() {
         def paramIdRec = params.marca.id
         paramIdRec.trim()
-        if (paramIdRec == ''){
+        if (paramIdRec == '') {
             println("Es null")
-            return render(template: 'autoSelection', model:  [automoviles: null])
+            return render(template: 'autoSelection', model: [automoviles: null])
         }
         def marca = Marcas.get(paramIdRec)
-       
-        render(template: 'autoSelection', model:  [automoviles: marca.automoviles])
+
+        render(template: 'autoSelection', model: [automoviles: marca.automoviles])
     }
     def  crearUsuario()
     {        
