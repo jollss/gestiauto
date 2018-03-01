@@ -90,19 +90,15 @@ class ServiciosController {
             println "No se guardo nada vale chetos la vida "
         }
     }
-
-
     def delete(long id) {
         def servicios = Servicios.get(params.id as long)
         servicios.delete(flush: true)
         redirect(action: "citaterminada")
     }
-
     def citasUsuario() {
         def usuarios = springSecurityService.currentUser
         [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]
     }
-
     def findAutoByMarca() {
         def paramIdRec = params.marca.id
         paramIdRec.trim()
@@ -138,22 +134,23 @@ class ServiciosController {
     {   
         def  activo = SecAppUser.findAllWhere(enabled:true)
         def  desactivo = SecAppUser.findAllWhere(enabled:false)      
-        def detalle=null
+        
         def detalles=[]
         activo.each{   
-            def mapa=[:]
+            def mapa=[:]  
+        
             def servicios = Servicios.findAllWhere(usuarios:it)
-            detalle=SecAppUserSecAppRole.findAllBySecAppUser(it)
+             def servicio = DetalleServicio.findAllWhere(usuarios:it)
+           def detalle=SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detalle
-            mapa.cuantos = servicios.size()
+           mapa.cuantos = servicios.size()
             detalles<<mapa
                } 
-        def detal=null
         def deta=[]
         desactivo.each{   
             def mapa=[:]
             def servicios = Servicios.findAllWhere(usuarios:it)
-            detal=SecAppUserSecAppRole.findAllBySecAppUser(it)  
+            def detal=SecAppUserSecAppRole.findAllBySecAppUser(it)  
             mapa.usuarios = detal
             mapa.cuantos = servicios.size()
             deta << mapa   

@@ -12,17 +12,16 @@
 <div class="container col-sm-9">
         <button class="btn btn-primary" onclick="verActivos()">Ver Usuarios Activos</button>
         <button  class="btn btn-primary" onclick="verDesactivos()">Ver Usuarios Desactivados</button> 
-  
-   
 <div id="verActivos">    
      <h1>Usuarios Activos</h1>
    <table class="table table-bordered table-striped col-sm-4">
             <thead class="thead-inverse">
-                <tr>
+                <tr>      <th>Role de Usuario</th>  
                     <th>Nombre de Usuario</th>
-                    <th>Role de Usuario</th>                    
+                                
                       <th>Estatus</th>    
     <th>  Servicios Pendientes</th>
+      
                     <th>Acciones</th>
                  
                 </tr>
@@ -36,10 +35,11 @@
                           <td>  
                               ${act.usuarios[0].secAppUser.enabled ? "Activo":"NO"}
                            </td>
+                           
                            <td>  
                               ${act.cuantos ? "Servicos pendientes":"Sin Servicio"}
-                     
-                           </td>
+</td>
+                          
                         <td>
    <g:link style="background-color: #E65100; color: white;" class="btn btn-success " controller="Servicios" action="editarUsuario" id="${act.usuarios[0].secAppUser.id}"> Desactivar</g:link>
 <g:if test="${act.cuantos==0}">

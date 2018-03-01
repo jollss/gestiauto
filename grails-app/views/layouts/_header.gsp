@@ -82,7 +82,7 @@
                             c.name != 'UsuarioRol'}">
                         <ul class="nav navbar-nav">
                             <li>
-                                <g:link controller="${c.logicalPropertyName}">Alta Usuario</g:link>
+                                <g:link controller="${c.logicalPropertyName}" action="detalleUsuario">Alta Usuario</g:link>
                             </li>
                              <li>
                                 <g:link controller="${c.logicalPropertyName}" action="detalleUsuario">Consultar Usuarios</g:link>
