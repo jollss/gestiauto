@@ -36,7 +36,7 @@
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Marca:</label>
                     <div class="col-sm-4">
-                        <%@ page import="gestion.Marcas" %>
+                        <%@ page import="gestion.Marca" %>
                         <g:select name="selectmarcas" from="${marcas}" optionKey="id" optionValue="nombreMarca" noSelection="['':'Choose Marca']" onchange="${remoteFunction(controller: 'Servicios', action: 'findAutoByMarca', params: '\'marca.id=\' + this.value', update: 'autoSelection')}" id="selectMarcas"/>
                     </div>
                 </div>        
