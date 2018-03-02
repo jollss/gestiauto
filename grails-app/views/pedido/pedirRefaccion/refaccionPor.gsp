@@ -30,7 +30,7 @@
         </div>
         <div class="form-group row col-sm-4">
             <div class="col-sm-4 col-md-offset-2">
-                <g:submitButton name="submitPorDemanda" value="Demanda" class="btn btn-primary"><i
+                <g:submitButton name="submitPorDemanda" value="Demanda" class="btn btn btn-info"><i
                         class="fas fa-save"></i> Demanda</g:submitButton>
             </div>
             <div class="col-sm-4">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <g:link controller="Pedido" action="listaPedidos" class="btn btn-primary"><i class="fas fa-list"></i> Pedidos</g:link>
+        <g:link controller="Pedido" action="listaPedidos" class="btn btn-success"><i class="fas fa-list"></i> Pedidos</g:link>
 
     </g:form>
 </div>

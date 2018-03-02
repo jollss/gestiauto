@@ -163,6 +163,10 @@ class PedidoController {
                 }
 
             }.to "terminaPeticion"
+            //Regresar
+            on("submitRegresar") {
+                //flow.clear()
+            }.to "refaccionPor"
 
         }
         terminaPeticion {

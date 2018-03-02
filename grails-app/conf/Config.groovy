@@ -124,7 +124,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //inicio de index de sistemagestion donde estan los cudraditos
         "/login/auth"                                            : ["permitAll"],
         '/'                                                      : ['permitAll'],
-        '/index'                                                 : ['ROLE_USUARIO', 'ROLE_MECANICO','ROLE_ADMIN'],
+        '/index'                                                 : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/index.gsp'                                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         //fin
         //Automoviles inicio
@@ -137,20 +137,20 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //Automoviles fin
         //Servicios inicio
         '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
-    '/servicios/crearUsuario'                                    : ['ROLE_ADMIN'],
-        '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO','ROLE_ADMIN'],
+        '/servicios/crearUsuario'                                : ['ROLE_ADMIN'],
+        '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/citasUsuario'                                : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/guardar'                                     : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/save'                                        : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/citaterminada'                               : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/findAutoByMarca'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-          '/servicios/guardarusu'                             : ['ROLE_ADMIN'],
-        '/servicios/detalleUsuario'                             : ['ROLE_ADMIN'],
-    '/servicios/eliminarUsuario'                             : ['ROLE_ADMIN'],
-    '/servicios/editarUsuario'                             : ['ROLE_ADMIN'],
-    
- //Servicios fin
+        '/servicios/guardarusu'                                  : ['ROLE_ADMIN'],
+        '/servicios/detalleUsuario'                              : ['ROLE_ADMIN'],
+        '/servicios/eliminarUsuario'                             : ['ROLE_ADMIN'],
+        '/servicios/editarUsuario'                               : ['ROLE_ADMIN'],
+
+        //Servicios fin
         //Servicios inicio
         '/tiposervicio/index'                                    : ['ROLE_MECANICO'],
         '/tiposervicio/modificarTipoServicio'                    : ['ROLE_USUARIO', 'ROLE_MECANICO'],

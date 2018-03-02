@@ -74,8 +74,11 @@
     </div>
 
     <g:form action='pedirRefaccion'>
-        <div class="col-sm-8">
-            <g:submitButton name="submitGuardarPedido" value="Guardar" class="btn btn-primary"/>
+        <div class="col-md-12 col-sm-12">
+            <div class="botonesFlujo" style="float: right; padding: 2em 0em 0em 0em;">
+                <g:submitButton class="btn btn-danger" name="submitRegresar" value="Cancelar"/>
+                <g:submitButton class="btn btn-success" name="submitGuardarPedido" value="Finalizar"/>
+            </div>
         </div>
     </g:form>
 </div>
