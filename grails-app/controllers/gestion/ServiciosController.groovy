@@ -1,56 +1,61 @@
 package gestion
+
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
 import groovy.sql.Sql
 import org.postgresql.core.Query
 
 import gestion.secureapp.SecAppRole
+
 class ServiciosController {
     def springSecurityService
     def UsuarioService
 
     def index() {
 
-      def usuarios = springSecurityService.currentUser
+        def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
-       def servicios = null
-def serviciosTerminados = null
-def detalle = null
- def deta = null
+        def servicios = null
+        def serviciosTerminados = null
+        def detalle = null
+        def deta = null
 
- if (tipoUsuarioActual == "[ROLE_MECANICO]") {
-       servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
-     serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
-    def detalles = []
-    servicios.each {
-      detalle = DetalleServicio.findAllByServicios(it)
-    detalles << detalle
-    }
-           [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
-       } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
-         redirect(action: "crearcita")
+        if (tipoUsuarioActual == "[ROLE_MECANICO]") {
+            servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
+            serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
+            def detalles = []
+            servicios.each {
+                detalle = DetalleServicio.findAllByServicios(it)
+                detalles << detalle
+            }
+            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
+        } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
+            redirect(action: "crearcita")
         } else {
-           println "No existe el tipo de usuario: Controller Servicios - Index"
+            println "No existe el tipo de usuario: Controller Servicios - Index"
         }
-  }
-  
+    }
+
     def hacerservicio(long id) {
         def servicios = Servicios.get(id)
         [servicios: servicios]
     }
-    def save(long id) {        
+
+    def save(long id) {
         def servicios = Servicios.get(id)
         servicios.observacionesMecanico = params.observaciones
         servicios.estatus = params.estatus
         servicios.save(flush: true)
         redirect(action: "index")
     }
+
     def crearcita() {
         def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
         def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
         def usuarios = springSecurityService.currentUser
-        [marcas: Marcas.findAll(),automoviles  : Automovil.findAll(),tiposervicios: Tiposervicio.findAll(),usuario:usuario]
+        [marcas: Marcas.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
     }
+
     def guardar() {
         def usuarios = springSecurityService.currentUser
         def p = new Servicios()
@@ -76,15 +81,18 @@ def detalle = null
             println "No se guardo nada vale chetos la vida "
         }
     }
+
     def delete(long id) {
         def servicios = Servicios.get(params.id as long)
         servicios.delete(flush: true)
         redirect(action: "citaterminada")
     }
+
     def citasUsuario() {
         def usuarios = springSecurityService.currentUser
         [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]
     }
+
     def findAutoByMarca() {
         def paramIdRec = params.marca.id
         paramIdRec.trim()
@@ -96,88 +104,85 @@ def detalle = null
 
         render(template: 'autoSelection', model: [automoviles: marca.automoviles])
     }
-    def  crearUsuario()
-    {        
-        def rol=SecAppRole.findAll()
-        [rol:rol]         
+
+    def crearUsuario() {
+        def rol = SecAppRole.findAll()
+        [rol: rol]
     }
-    def guardarusu()
-    {
-        def nuevo=new SecAppUser()     
-        nuevo.username=params.username
-        nuevo.password=params.password       
-        nuevo.enabled=params.select.toBoolean()     
-        def rol=SecAppRole.get(params.selectusuario as long )
-        nuevo.save(flush:true)   
-        def nuevorol=new SecAppUserSecAppRole()
-        nuevorol.secAppUser=nuevo
-        nuevorol.secAppRole=rol
-        nuevorol.save(flush:true)
-        redirect (action: "detalleUsuario")
+
+    def guardarusu() {
+        def nuevo = new SecAppUser()
+        nuevo.username = params.username
+        nuevo.password = params.password
+        nuevo.enabled = params.select.toBoolean()
+        def rol = SecAppRole.get(params.selectusuario as long)
+        nuevo.save(flush: true)
+        def nuevorol = new SecAppUserSecAppRole()
+        nuevorol.secAppUser = nuevo
+        nuevorol.secAppRole = rol
+        nuevorol.save(flush: true)
+        redirect(action: "detalleUsuario")
     }
-    def detalleUsuario() 
-    {   
-        def  activo = SecAppUser.findAllWhere(enabled:true)
-        def  desactivo = SecAppUser.findAllWhere(enabled:false)      
-        
-        def detalles=[]
-        activo.each{   
-            def mapa=[:]  
-          def servicios = Servicios.findAllWhere(usuarios:it)
-             def servicio = DetalleServicio.findAllWhere(usuarios:it)
-           def detalle=SecAppUserSecAppRole.findAllBySecAppUser(it)
+
+    def detalleUsuario() {
+        def activo = SecAppUser.findAllWhere(enabled: true)
+        def desactivo = SecAppUser.findAllWhere(enabled: false)
+
+        def detalles = []
+        activo.each {
+            def mapa = [:]
+
+            def servicios = Servicios.findAllWhere(usuarios: it)
+            def servicio = DetalleServicio.findAllWhere(usuarios: it)
+            def detalle = SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detalle
-           mapa.cuantos = servicios.size()
-           mapa.cuanto = servicio.size()
-            detalles<<mapa
-               } 
-        def deta=[]
-        desactivo.each{   
-            def mapa=[:]
-            def servicios = Servicios.findAllWhere(usuarios:it)
-            def servicio = DetalleServicio.findAllWhere(usuarios:it)
-            def detal=SecAppUserSecAppRole.findAllBySecAppUser(it)  
+            mapa.cuantos = servicios.size()
+            detalles << mapa
+        }
+        def deta = []
+        desactivo.each {
+            def mapa = [:]
+            def servicios = Servicios.findAllWhere(usuarios: it)
+            def detal = SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detal
             mapa.cuantos = servicios.size()
-            mapa.cuanto = servicio.size()
-            deta << mapa   
+            deta << mapa
         }
-        [deta:deta,detalles:detalles]
+        [deta: deta, detalles: detalles]
     }
-    def editarUsuario()
-    {
-        
-        
-       def desactivarusuario=SecAppUser.get(params.id as long)
-       if(desactivarusuario.enabled==true){
-             desactivarusuario.enabled = false
-       }
-       else if(desactivarusuario.enabled==false){
-       desactivarusuario.enabled=true
-       }
-   desactivarusuario.save(flush:true)
-       redirect(action:"detalleUsuario")
-        
-       
-}
-def eliminarUsuario()
-    {
-        def usuarios=SecAppUser.get(params.id as long)
-        def consultarservicios=Servicios.findAllWhere(usuarios:usuarios)
-        def consultardetalle=DetalleServicio.findAllWhere(usuarios:usuarios)
-        if(consultarservicios[0]==null & consultardetalle[0]==null){
-            def eliminarusuariorole=SecAppUser.get(params.id as long)
-            def eliminar=SecAppUserSecAppRole.findAllWhere(secAppUser:eliminarusuariorole)
+
+    def editarUsuario() {
+
+
+        def desactivarusuario = SecAppUser.get(params.id as long)
+        if (desactivarusuario.enabled == true) {
+            desactivarusuario.enabled = false
+        } else if (desactivarusuario.enabled == false) {
+            desactivarusuario.enabled = true
+        }
+        desactivarusuario.save(flush: true)
+        redirect(action: "detalleUsuario")
+
+
+    }
+
+    def eliminarUsuario() {
+        def usuarios = SecAppUser.get(params.id as long)
+        def consultarservicios = Servicios.findAllWhere(usuarios: usuarios)
+        def consultardetalle = DetalleServicio.findAllWhere(usuarios: usuarios)
+        if (consultarservicios[0] == null & consultardetalle[0] == null) {
+            def eliminarusuariorole = SecAppUser.get(params.id as long)
+            def eliminar = SecAppUserSecAppRole.findAllWhere(secAppUser: eliminarusuariorole)
             eliminar.each
-            {     
-            }
-            eliminar[0].delete(flush:true)
-            def eli=SecAppUser.get(params.id as long)
-            eli.delete(flush:true)
-            redirect (action: "detalleUsuario")
-        }else if(consultarservicios!=null & consultardetalle!=null){
-         //   render(view: "detalleUsuario",  model: [name:"el usuario tiene servicios pendientes "])
-          redirect(action:"detalleUsuario")
+                    {
+                    }
+            eliminar[0].delete(flush: true)
+            def eli = SecAppUser.get(params.id as long)
+            eli.delete(flush: true)
+            redirect(action: "detalleUsuario")
+        } else if (consultarservicios != null & consultardetalle != null) {
+            //   render(view: "detalleUsuario",  model: [name:"el usuario tiene servicios pendientes "])
+            redirect(action: "detalleUsuario")
         }
     }
 }
