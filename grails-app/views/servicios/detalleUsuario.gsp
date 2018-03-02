@@ -37,16 +37,19 @@
                            </td>
                            
                            <td>  
-                              ${act.cuantos ? "Servicos pendientes":"Sin Servicio"}
+                              ${act.cuantos + act.cuanto? "Servicos pendientes":"Sin Servicio"}
+                          
 </td>
                           
                         <td>
    <g:link style="background-color: #E65100; color: white;" class="btn btn-success " controller="Servicios" action="editarUsuario" id="${act.usuarios[0].secAppUser.id}"> Desactivar</g:link>
 <g:if test="${act.cuantos==0}">
+    <g:if test="${act.cuanto==0}">
    <g:link style="background-color: #009688; color: white;" class="btn btn-success " controller="Servicios" action="eliminarUsuario" id="${act.usuarios[0].secAppUser.id}"> Eliminar</g:link>
 
                         </td>
                          </g:if>
+                                                  </g:if>
                     </tr>
                 
             </tbody>
@@ -77,18 +80,21 @@
                         
  <td>${des.usuarios[0].secAppUser.enabled ? "Activo":"Desactivado"}</td> 
  <td>  
-                              ${des.cuantos}
+     ${des.cuantos + des.cuanto? "Servicos pendientes":"Sin Servicio"}
+                           
                      
                            </td>
 
                       <td>
 <g:link style="background-color: #E65100; color: white;" class="btn btn-success " controller="Servicios" action="editarUsuario" id="${des.usuarios[0].secAppUser.id}"> Activar</g:link>
-<g:if test="${des.cuantos==0}">
+<g:if test="${des.cuantos==0}" >
+<g:if test="${des.cuanto==0}">
 <g:link style="background-color: #009688; color: white;" class="btn btn-success " controller="Servicios" action="eliminarUsuario" id="${des.usuarios[0].secAppUser.id}"> Eliminar</g:link>
  </g:if>
                         </td>
                     </tr>
                      </g:if>
+                       </g:if>
                 </g:each>
             </tbody>
         </table>
