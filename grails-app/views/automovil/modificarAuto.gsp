@@ -9,7 +9,7 @@
       <g:render template="/layouts/header"/>
       <div class="container col-sm-9">
          <h1>Modificar automóvil</h1>
-        <g:form Controller="Marcas" action="guardar">
+        <g:form Controller="Marcas" action="guardarModificacion">
             <g:hiddenField name="id" value="${auto.id}"/><br/>
 
             <div class="form-group row">

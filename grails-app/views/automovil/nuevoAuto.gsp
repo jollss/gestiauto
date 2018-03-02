@@ -9,7 +9,7 @@
       <g:render template="/layouts/header"/>
       <div class="container col-sm-9">
         <h1>Agregar automóvil</h1>
-         <g:form controller="Automovil" action="guardarAutoMarca">
+         <g:form controller="Automovil" action="guardarAuto">
             <div class="form-group row">
                 <label class="col-sm-12 col-form-label">Marca:</label>
                 <div class="col-sm-4">

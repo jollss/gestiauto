@@ -22,9 +22,9 @@
                <tr>
                  <td>${auto.nombreAuto}</td>
                  <td>
-                  <g:link class="btn btn-warning " controller="Automovil" action="modificarauto" id="${auto.id}"><i class="fas fa-edit"></i> Modificar</g:link>
+                  <g:link class="btn btn-warning " controller="Automovil" action="modificarAuto" id="${auto.id}"><i class="fas fa-edit"></i> Modificar</g:link>
 
-                   <g:link class="btn btn-danger" controller="Automovil" action="eliminar" id="${auto.id}"><i class="fas fa-ban "></i> Eliminar</g:link>
+                   <g:link class="btn btn-danger" controller="Automovil" action="eliminarAuto" id="${auto.id}"><i class="fas fa-ban "></i> Eliminar</g:link>
                    
                  </td>
                </tr>
@@ -32,7 +32,7 @@
              </tbody>
            </table>
        
-         <g:link controller="Automovil" action="guardarauto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar automóvil</g:link>
+         <g:link controller="Automovil" action="nuevoAuto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar automóvil</g:link>
          </td><br>
       </div>
       <g:render template="/layouts/footer"/>
