@@ -22,12 +22,12 @@ class AutomovilController {
 
     /**
      * nuevoAuto:
-     * -- Consulta datos del domain Marcas en la BD, y los devuelve como modelo para
+     * -- Consulta datos del domain Marca en la BD, y los devuelve como modelo para
      *    auxiliar a la creación de un Auto.
      * @return render con vista y modelo.
      */
     def nuevoAuto() {
-        def marcas = Marcas.executeQuery(" from Marcas")
+        def marcas = Marca.executeQuery(" from Marca")
         render(view: 'nuevoAuto', model: [marcas: marcas])
     }
 
@@ -45,8 +45,8 @@ class AutomovilController {
 
     /**
      * eliminarAuto:
-     * -- Recibe el parametro de ID, para buscar en los registros de la base de datos y eliminarlo.
-     * @param id - Parametro necesario para la eliminación de un registro.
+     * -- Recibe el parámetro de ID, para buscar en los registros de la base de datos y eliminarlo.
+     * @param id - Parámetro necesario para la eliminación de un registro.
      * @return redirect; Redirecciona a action 'index'.
      */
     def eliminarAuto(long id) {
@@ -54,10 +54,8 @@ class AutomovilController {
         def autos = Servicios.findByAutomovil(auto)
         if (autos) {
             flash.error = "Tiene un servicio, no se puede eliminar"
-            println('Tiene un servicio, no se puede eliminar.')
         } else {
             flash.message = "Se ha eliminado correctamente"
-            println('Se puede eliminar.')
             auto.delete(flush: true)
         }
         redirect(action: "index")
@@ -65,27 +63,27 @@ class AutomovilController {
 
     /**
      * modificarAuto:
-     * -- Recibe el parametro de ID, para buscar en los registros de la base de datos y mostrar pantalla
+     * -- Recibe el parámetro de ID, para buscar en los registros de la base de datos y mostrar pantalla
      *    para modificarlo.
-     * @param id - Parametro necesario para la modificación de un registro.
+     * @param id - Parámetro necesario para la modificación de un registro.
      * @return render con vista y modelos.
      */
     def modificarAuto(long id) {
         def auto = Automovil.get(id)
-        def marca = Marcas.findAll()
+        def marca = Marca.findAll()
         [auto: auto, marcas: marca.findAll()]
     }
 
     /**
      * guardarModificacion:
-     * -- Recibe el parametro de ID(Obligatorio) y datos correspondientes al domain Automovil, para buscar
+     * -- Recibe el parámetro de ID(Obligatorio) y datos correspondientes al domain Automovil, para buscar
      *    en los registros de la base de datos, mostrar pantalla y modificarlo.
-     * @param id - Parametro necesario para la modificación de un registro.
+     * @param id - Parámetro necesario para la modificación de un registro.
      * @return redirect; Redirecciona a action 'index'.
      */
     def guardarModificacion(long id) {
         def autoTemp = Automovil.get(id)
-        def marca = Marcas.findById(Long.valueOf(params.id_marca))
+        def marca = Marca.findById(Long.valueOf(params.id_marca))
         println(params)
         if (String.valueOf(params.nombre.trim()) != '') {
             autoTemp.nombreAuto = params.nombre

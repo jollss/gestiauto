@@ -22,7 +22,7 @@
                             c.name != 'Usuario' &&
                             c.name != 'Automovil' &&
                             c.name != 'Automovil' &&
-                            c.name != 'Marcas' &&
+                            c.name != 'Marca' &&
                             c.name != 'Tiposervicio' &&
                             c.name != 'Refaccion' &&
                             c.name != 'UsuarioRol'}">
@@ -70,7 +70,7 @@
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name }}">
                     <g:if test="${c.name != 'Dbdoc' &&
                             c.name != 'Logout' &&
-                                 c.name != 'Marcas' &&
+                                 c.name != 'Marca' &&
                                   c.name != 'Automovil' &&
                                   c.name != 'Pedido' &&
                                     c.name != 'Tiposervicio' &&

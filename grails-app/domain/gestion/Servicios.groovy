@@ -9,7 +9,7 @@ class Servicios {
     String comentariosUsuario
     String diaServicio
     String horaServicio
-    Marcas marca 
+    Marca marca
     Automovil automovil
     SecAppUser usuarios
     Tiposervicio tiposervicio

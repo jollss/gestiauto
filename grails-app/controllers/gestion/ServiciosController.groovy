@@ -2,9 +2,6 @@ package gestion
 
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
-import groovy.sql.Sql
-import org.postgresql.core.Query
-
 import gestion.secureapp.SecAppRole
 
 class ServiciosController {
@@ -53,7 +50,7 @@ class ServiciosController {
         def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
         def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
         def usuarios = springSecurityService.currentUser
-        [marcas: Marcas.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
+        [marcas: Marca.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
     }
 
     def guardar() {
@@ -63,7 +60,7 @@ class ServiciosController {
         p.comentariosUsuario = params.comentariosUsuario
         p.diaServicio = params.diaServicio
         p.horaServicio = params.horaServicio
-        p.marca = Marcas.get(params.selectmarcas as long)
+        p.marca = Marca.get(params.selectmarcas as long)
         p.automovil = Automovil.get(params.selectaut as long)
         p.tiposervicio = Tiposervicio.get(params.selecttipo as long)
         p.observacionesMecanico = params.observacionesMecanico
@@ -100,7 +97,7 @@ class ServiciosController {
             println("Es null")
             return render(template: 'autoSelection', model: [automoviles: null])
         }
-        def marca = Marcas.get(paramIdRec)
+        def marca = Marca.get(paramIdRec)
 
         render(template: 'autoSelection', model: [automoviles: marca.automoviles])
     }

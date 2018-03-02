@@ -3,150 +3,141 @@ package gestion
 import grails.converters.JSON
 import grails.converters.XML
 
+/**
+ * Controla el flujo de información entre la vista y el modelo de Pedido
+ */
 class PedidoController {
-
+    // Definición de tipo de métodos para que puedan ser utilizados mediante AJAX.
     static allowedMethods = [guardaRefaccion: 'POST', eliminaRefaccion: 'POST', consultaRefacciones: 'GET']
+
+    // Definición de variables para almacenar datos en memoria.
     def objArrayRefacciones = []
     def objPedidoGral = new Pedido()
 
-    def index() {
-        redirect(controller: "pedido", action: "listaPedidos")
-    }
-
     /**
-     * [Flujo/Flow]     pedirRefaccionFlow
-     * [Estado/State]   refaccionPorDemanda
-     * [Estado/State]   refaccionPorSiniestro
+     * pedirRefaccionFlow: Uso de el plugin Web Flow.
+     * -- Crea un flujo para realizar pedidos, tiene dos opciones de manera visual,
+     *    por 'demanda' o 'siniestro'.
      */
     def pedirRefaccionFlow = {
         refaccionPor {
 
             //Demanda
             on("submitPorDemanda") {
-                println("Eliminando...")
+
+                // Elimina todos los datos en el arreglo
                 if (objArrayRefacciones.removeIf { it instanceof Refaccion }) {
                     println "Se elimino"
                 } else {
                     println "No se elimino"
                 }
-                try {
-                    println objArrayRefacciones[0]
-                } catch (Exception e) {
-                    println e
-                }
+
+                // Crea objeto Pedido, sera utilizado durante el flujo.
                 def fechaActual = new Date()
 
+                // Declara solo las variables que seran obtenidas de 'params'.
                 def validFields = ["tipoPedido", "folioPedido", "create_at"]
+
                 def temBindData = [tipoPedido: "Por demanda", folioPedido: params.folio, create_at: fechaActual]
                 bindData(objPedidoGral, temBindData, [include: validFields])
 
+                // Pasa los valores del flujo en memoria a la memoria del flujo.
                 flow.pedidoGral = new Pedido()
                 bindData(flow.pedidoGral, temBindData, [include: validFields])
 
-                println("\n\n| 1. Tiene: " + flow.pedidoGral.tipoPedido + " \n| 1.1Mem: " + objPedidoGral.tipoPedido)
-            }.to "detallesRefaccionPorDemanda"
+            }.to "detallesRefaccionPorDemanda" // Redirecciona a la vista de refacciones por demanda.
 
             //Siniestro
             on("submitPorSiniestro") { Refaccion objRefaccion ->
-                println("Eliminando...")
+
+                // Elimina todos los datos en el arreglo
                 if (objArrayRefacciones.removeIf { it instanceof Refaccion }) {
                     println "Se elimino"
                 } else {
                     println "No se elimino"
                 }
-                try {
-                    println objArrayRefacciones[0]
-                } catch (Exception e) {
-                    println e
-                }
+
+                // Crea objeto Pedido, sera utilizado durante el flujo.
                 def fechaActual = new Date()
 
+                // Declara solo las variables que seran obtenidas de 'params'.
                 def validFieldsPedido = ["tipoPedido", "folioPedido", "create_at"]
-                def temBindData = [tipoPedido: "Por siniestro", folioPedido: params.folio, create_at: fechaActual]
 
+                // Declara solo las variables que seran obtenidas de 'params'.
+                def temBindData = [tipoPedido: "Por siniestro", folioPedido: params.folio, create_at: fechaActual]
                 bindData(objPedidoGral, temBindData, [include: validFieldsPedido])
 
+                // Pasa los valores del flujo en memoria a la memoria del flujo.
                 flow.pedidoGral = new Pedido()
                 bindData(flow.pedidoGral, temBindData, [include: validFieldsPedido])
 
-                println("\n\n| 1. Tiene: " + flow.pedidoGral.tipoPedido + " \n| 1.1Mem: " + objPedidoGral.tipoPedido)
-
+                // Crea un objeto de tipo Refaccion que será utilizado en la memoria del flujo.
                 flow.refacciones = new Refaccion()
                 flow.refacciones.pedido = objPedidoGral
 
-
-            }.to "detallesRefaccionPorSiniestro"
+            }.to "detallesRefaccionPorSiniestro" // Redirecciona a la vista de refacciones por siniestro.
 
         }
         detallesRefaccionPorDemanda {
 
             //Detalle
             on("submitDetalle") {
-                println("Refacciones:")
+
+                // Carga todos nuestros objetos de Refacciones en memoria, a la memoria del flujo.
                 flow.refacciones = objArrayRefacciones.findAll()
-                println("\n\n| Refacciones: " + flow.refacciones)
-                println("\n\n| 2. Tiene: " + flow.pedidoGral)
-            }.to "resumenPeticion"
+
+            }.to "resumenPeticion" // Redirecciona a la vista de resumen.
 
             //Regresar
             on("submitRegresar") {
                 //flow.clear()
-            }.to "refaccionPor"
+            }.to "refaccionPor" // Redirecciona a la primer vista.
         }
         detallesRefaccionPorSiniestro {
 
             //Detalle
             on("submitDetalle") {
-                println("Params: " + params)
+
+                // Declara solo las variables que seran obtenidas de 'params'.
                 def validFields = ["nombreRefaccion", "precioRefaccion", "modeloRefaccion", "tempIdRefaccion"]
-                println("\n\n| 2. Tiene: " + flow.refacciones)
+
+                // Si encuentra el objeto en memoria le agrega los datos en 'params'.
                 if (flow.refacciones != null) {
                     bindData(flow.refacciones, params, [include: validFields])
-                    println("\nPedido: " + flow.refacciones.tempIdRefaccion)
                 } else {
-                    println("\n\n Flow no tiene valores")
+                    println("\n\nFlow no tiene valores")
                 }
-            }.to "resumenPeticion"
+            }.to "resumenPeticion" // Redirecciona a la vista de resumen.
 
             //Regresar
             on("submitRegresar") {
                 //flow.clear()
-            }.to "refaccionPor"
+            }.to "refaccionPor" // Redirecciona a la primer vista.
         }
         resumenPeticion {
             on("submitGuardarPedido") {
-
                 try {
 
-                    println("Guardando sig:\n" +
-                            "Folio: " + flow.refacciones.pedido.folioPedido +
-                            "\nTemp ID: " + flow.refacciones.tempIdRefaccion +
-                            "\nNombre: " + flow.refacciones.nombreRefaccion +
-                            "\nModelo: " + flow.refacciones.modeloRefaccion +
-                            "\nPrecio: " + flow.refacciones.precioRefaccion +
-                            "\nTipo: " + flow.refacciones.pedido.tipoPedido +
-                            "\nNombre: " + flow.refacciones.pedido.create_at)
-
-                    /** *******************************************************************************/
-
+                    //Obtiene valores del flujo y los asigna a un nuevo objeto para guardarlo.
                     def objFlujoPedido = new Pedido(tipoPedido: flow.pedidoGral.tipoPedido, folioPedido: flow.pedidoGral.folioPedido, create_at: flow.pedidoGral.create_at)
-                    println("Guarda Pedido")
                     objFlujoPedido.save()
+
+                    // Ordena por id y busca el ultimo registro.
                     def objPedidoFind = Pedido.last(sort: 'id')
+
+                    // Valida si el arreglo tiene más de 1 registro de objeto Refaccion, si es así recorre el arreglo y los guarda en la base de datos.
                     if (objArrayRefacciones.size() <= 0) {
-                        println("Guarda uno...")
+
+                        // Crea objeto Refaccion y lo guarda en la base de datos.
                         def objFlujoRefaccion = new Refaccion(pedido: objPedidoFind, nombreRefaccion: flow.refacciones.nombreRefaccion, modeloRefaccion: flow.refacciones.modeloRefaccion, precioRefaccion: flow.refacciones.precioRefaccion, tempIdRefaccion: flow.refacciones.tempIdRefaccion)
                         objFlujoRefaccion.save(flush: true)
-                        if (!objFlujoRefaccion.save(flush: true)) {
-                            objFlujoRefaccion.errors.allErrors.each {
-                                println it
-                            }
-                        }
+
                     } else {
-                        /** *************************************************************************/
-                        println("Guarda arreglo...")
+
+                        // Recorre el arreglo y almacena sus objetos en base de datos.
                         for (int i = 0; i < objArrayRefacciones.size(); i++) {
-                            println("For Modelo: " + objArrayRefacciones.get(i).modeloRefaccion)
+
+                            // Crea objeto a partir de los valores en el arreglo, lo almacena en la base de datos.
                             def objFlujoRefacFor = new Refaccion(pedido: objPedidoFind,
                                     nombreRefaccion: objArrayRefacciones.get(i).nombreRefaccion,
                                     modeloRefaccion: objArrayRefacciones.get(i).modeloRefaccion,
@@ -156,77 +147,109 @@ class PedidoController {
 
                         }
                     }
-
-
                 } catch (Exception e) {
                     log.info("Error guardando: " + e)
                 }
 
-            }.to "terminaPeticion"
+            }.to "terminaPeticion" // Redirecciona a terminaPeticion
             //Regresar
             on("submitRegresar") {
                 //flow.clear()
-            }.to "refaccionPor"
+            }.to "refaccionPor" // Redirecciona a la primer vista.
 
         }
         terminaPeticion {
+            // Termina el flujo y redirecciona a la lista de los pedidos.
             redirect(controller: "pedido", action: "listaPedidos")
         }
     }
 
+    /**
+     * listaPedidos:
+     * -- Consulta registros del domain Pedido y Refaccion en la BD y los retorna como modelo, en la vista listaPedidos.
+     * @return render con vista y modelos.
+     */
     def listaPedidos() {
         def listPedidos = Pedido.list()
         def listRefacciones = Refaccion.list()
-        return ["refacciones": listRefacciones, "pedidos": listPedidos]
+        ["refacciones": listRefacciones, "pedidos": listPedidos]
     }
 
     def guardaRefaccion() {
-        //println("Recibi: " + params)
+
+        // Declara solo las variables que seran obtenidas de 'params'.
         def validFields = ["tempIdRefaccion", "nombreRefaccion", "precioRefaccion", "modeloRefaccion"]
 
+        // Crea el objeto y agrega valores de 'params'.
         Refaccion objRefaccion = new Refaccion()
-
-        println "Obj: " + objRefaccion.nombreRefaccion
         bindData(objRefaccion, params, [include: validFields])
-        objRefaccion.pedido = objPedidoGral
-        println "ObjBind: " + objRefaccion.nombreRefaccion
 
+        // Copia los datos de objPedidoGral al objeto, esto para mantener la relación.
+        objRefaccion.pedido = objPedidoGral
+
+        // Agrega el objeto a nuestra lista de objetos.
         objArrayRefacciones.add(objRefaccion)
-        println(objArrayRefacciones.findAll())
     }
 
+    /**
+     * eliminaRefaccion:
+     * -- Recibe el parámetro de ID, para buscar en nuestro arreglo de refacciones en memoria y eliminarlo.
+     * @return
+     */
     def eliminaRefaccion() {
-        println("Recibi: " + params)
+
+        // Define una variable temporal que sera utilizada para la eliminación de nuestro objeto.
         def idELiminar = params.tempIdRefaccion as Integer
+
+        //Busca y elimina el objeto en el arreglo.
         if (objArrayRefacciones.removeIf { it.tempIdRefaccion == idELiminar }) {
             println "Se elimino"
         } else {
             println "No se elimino"
         }
-        println(objArrayRefacciones.findAll())
     }
 
+    /**
+     * consultaRefacciones:
+     * -- Consulta todos nuestros registros en memoria almacenados en el arreglo de Refacciones y los
+     *    regresa en formato JSON.
+     * @return render con valores en formato JSON.
+     */
     def consultaRefacciones() {
-        //println "Consultando..."
+        // Obtiene todos los valores en memoria del arreglo de Refacciones y los almacena en una variable temporal
         def objArrayRefacciones = objArrayRefacciones.findAll()
+
+        // Define un objeto y conversiones html/json/xml
         def object = [objArrayRefacciones: objArrayRefacciones]
         withFormat {
             html { object }
             json { render object as JSON }
             xml { render object as XML }
         }
-        //println object as JSON
+
+        // Regresa el objeto con los datos y los convierte a JSON.
         render object as JSON
     }
 
-    def consultaPedido(long id){
+    /**
+     * consultaPedido:
+     * -- Recibe parámetro ID y lo usa para realizar una consulta en la base de datos de Pedido.
+     * @param id Parámetro necesario para la consulta individual del registro.
+     * @return regresa modelos resultado de la consulta.
+     */
+    def consultaPedido(long id) {
+        // Obtiene registro pedido de la base de datos, mediante el ID.
         def pedido = Pedido.get(id)
         def refacciones = pedido.refacciones
         def arr = pedido.refacciones.precioRefaccion
-        def precioTotal=0
+        def precioTotal = 0
+
+        // Recorre en busca de los precios por refacción y hace una suma total.
         for (int i = 0; i < arr.size(); i++) {
             precioTotal += arr[i]
         }
-        ["pedido":pedido, 'refacciones': refacciones, 'precioTotal':precioTotal]
+
+        // Regresa modelos resultado de la consulta.
+        ["pedido": pedido, 'refacciones': refacciones, 'precioTotal': precioTotal]
     }
 }
