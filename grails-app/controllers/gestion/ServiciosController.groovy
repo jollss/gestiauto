@@ -2,7 +2,7 @@ package gestion
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
 import groovy.sql.Sql
-import org.postgresql.core.Query
+import org.postgresql.core.Querywefsdfrsdfsdfsdfsd
 
 import gestion.secureapp.SecAppRole
 class ServiciosController {
