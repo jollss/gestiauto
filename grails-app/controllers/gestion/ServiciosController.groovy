@@ -10,33 +10,30 @@ class ServiciosController {
     def UsuarioService
 
     def index() {
-        def usuarios = springSecurityService.currentUser
+
+      def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
-        def servicios = null
-        def serviciosTerminados = null
-        def detalle = null
-        def deta = null
-        if (tipoUsuarioActual == "[ROLE_MECANICO]") {
-            servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
-            serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
-            def detalles = []
-            servicios.each {
-                detalle = DetalleServicio.findAllByServicios(it)
-                detalles << detalle
+       def servicios = null
+def serviciosTerminados = null
+def detalle = null
+ def deta = null
 
-            }
-
-            // println detalles.getAt(0)
-
-            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
-        } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
-            redirect(action: "crearcita")
-        } else {
-            println "No existe el tipo de usuario: Controller Servicios - Index"
-        }
-
-
+ if (tipoUsuarioActual == "[ROLE_MECANICO]") {
+       servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
+     serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
+    def detalles = []
+    servicios.each {
+      detalle = DetalleServicio.findAllByServicios(it)
+    detalles << detalle
     }
+           [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
+       } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
+         redirect(action: "crearcita")
+        } else {
+           println "No existe el tipo de usuario: Controller Servicios - Index"
+        }
+  }
+  
     def hacerservicio(long id) {
         def servicios = Servicios.get(id)
         [servicios: servicios]
@@ -50,20 +47,9 @@ class ServiciosController {
     }
     def crearcita() {
         def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
-
         def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
-
-
         def usuarios = springSecurityService.currentUser
-
-
-        [marcas       : Marcas.findAll(),
-         automoviles  : Automovil.findAll(),
-         tiposervicios: Tiposervicio.findAll()
-         ,
-         usuario      : usuario]
-
-
+        [marcas: Marcas.findAll(),automoviles  : Automovil.findAll(),tiposervicios: Tiposervicio.findAll(),usuario:usuario]
     }
     def guardar() {
         def usuarios = springSecurityService.currentUser
@@ -117,7 +103,6 @@ class ServiciosController {
     }
     def guardarusu()
     {
-
         def nuevo=new SecAppUser()     
         nuevo.username=params.username
         nuevo.password=params.password       
