@@ -3,17 +3,28 @@ package gestion
 
 class AutomovilController {
 
+//con criteria te vas a traer el nombre del usuario que dio de alta , 
+//el nombre del mecanico a quien fue asignado el servicio y los datos de servicio donde los automoviles sean chevy
     def index() {
-        render(view: 'index', model: [automoviles:Automovil.findAll()])
+        def automoviles = Automovil.createCriteria().list{ 
+          order ("nombreAuto", "asc")
+        }
+
+
+        //def automoviles=Automovil.executeQuery ( " from Automovil") 
+       // [automoviles:automoviles]
+       // println automoviles
+    render(view: 'index', model: [automoviles:automoviles])
+        
     }
 
     def guardarauto()
     {
-        render(view: 'guardarauto',model: [marcas:Marcas.findAll()])
+        def marcas=Marcas.executeQuery ( " from Marcas") 
+        render(view: 'guardarauto',model: [marcas:marcas])
     }
     def guardarAutoMarca()
     {
-       
         def auto = new Automovil(nombreAuto: params.nombreAuto, marcas: params.id_marca)
         auto.save(flush:true)
         redirect (action:"index")
