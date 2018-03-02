@@ -7,7 +7,7 @@ import org.postgresql.core.Query
 import gestion.secureapp.SecAppRole
 class ServiciosController {
     def springSecurityService
-    def UsuarioService sdfsfsdfsdfsdf
+    def UsuarioService 
 
     def index() {
 
