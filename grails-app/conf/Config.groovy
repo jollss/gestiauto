@@ -128,12 +128,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/index.gsp'                                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         //fin
         //Automoviles inicio
-        '/automovil/guardarauto'                                 : ['ROLE_MECANICO'],
-        '/automovil/guardarAutoMarca'                            : ['ROLE_MECANICO'],
-        '/automovil/guardar'                                     : ['ROLE_MECANICO'],
+        '/automovil/nuevoAuto'                                   : ['ROLE_MECANICO'],
+        '/automovil/guardarAuto'                                 : ['ROLE_MECANICO'],
+        '/automovil/guardarModificacion'                         : ['ROLE_MECANICO'],
         '/automovil/index'                                       : ['ROLE_MECANICO'],
-        '/automovil/modificarauto'                               : ['ROLE_MECANICO'],
-        '/automovil/eliminar'                                    : ['ROLE_MECANICO'],
+        '/automovil/modificarAuto'                               : ['ROLE_MECANICO'],
+        '/automovil/eliminarAuto'                                : ['ROLE_MECANICO'],
         //Automoviles fin
         //Servicios inicio
         '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
@@ -141,7 +141,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/citasUsuario'                                : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/guardar'                                     : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/guardarModificacion'                         : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/save'                                        : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/citaterminada'                               : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/findAutoByMarca'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
@@ -160,8 +160,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         //inicio Marcas
         '/marcas/modificarmarca'                                 : ['ROLE_MECANICO'],
         '/marcas/guardarmarca'                                   : ['ROLE_MECANICO'],
-        '/marcas/eliminar'                                       : ['ROLE_MECANICO'],
-        '/marcas/guardar'                                        : ['ROLE_MECANICO'],
+        '/marcas/eliminarAuto'                                   : ['ROLE_MECANICO'],
+        '/marcas/guardarModificacion'                            : ['ROLE_MECANICO'],
         '/marcas/index'                                          : ['ROLE_MECANICO'],
         '/marcas/save'                                           : ['ROLE_MECANICO'],
         //Marcas fin

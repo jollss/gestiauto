@@ -99,5 +99,12 @@
             </ul>
 
         </div>
+
+        <g:if test="${flash.error}">
+            <div class="alert alert-error" style="display: block;background-color: #B71C1C; color: white;">${flash.error}</div>
+        </g:if>
+        <g:if test="${flash.message}">
+            <div class="alert alert-success message" style="display: block; background-color: #00695C; color: white;" >${flash.message}</div>
+        </g:if>
     </div>
 </nav>
