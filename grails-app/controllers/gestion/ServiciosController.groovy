@@ -2,12 +2,12 @@ package gestion
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
 import groovy.sql.Sql
-import org.postgresql.core.Querywefsdfrsdfsdfsdfsd
+import org.postgresql.core.Query
 
 import gestion.secureapp.SecAppRole
 class ServiciosController {
     def springSecurityService
-    def UsuarioService 
+    def UsuarioService
 
     def index() {
 
