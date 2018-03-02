@@ -3,8 +3,7 @@ package gestion
 
 class AutomovilController {
 
-//con criteria te vas a traer el nombre del usuario que dio de alta , 
-//el nombre del mecanico a quien fue asignado el servicio y los datos de servicio donde los automoviles sean chevy
+
     def index() {
         def automoviles = Automovil.createCriteria().list{ 
           order ("nombreAuto", "asc")
