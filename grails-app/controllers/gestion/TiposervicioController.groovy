@@ -25,9 +25,18 @@ class TiposervicioController {
 
     def actualizaServicio(Long id) {
         def objTipoServicio = Tiposervicio.get(id)
-        objTipoServicio.nombreServicio = params.nombreServicio
-        objTipoServicio.save(flush: true)
+        def consultarModificacionTipoTervicio=Servicios.findAllByTiposervicio(objTipoServicio)
+         if (consultarModificacionTipoTervicio) {
+            flash.error = "Tiene un servicio, no se puede Modificar"
+            
+       } else {
+            flash.message = "Se ha eliminado correctamente"
+          objTipoServicio.nombreServicio = params.nombreServicio
+       objTipoServicio.save(flush: true)
+       redirect(action: "index")
+        }
         redirect(action: "index")
+      
     }
 
 
@@ -42,9 +51,7 @@ class TiposervicioController {
         }
         redirect(action: "index")
     }
-
-
-    def nuevoTipoServicio() {
+ def nuevoTipoServicio() {
 
     }
 
