@@ -33,7 +33,13 @@ class TiposervicioController {
 
     def eliminaServicio(Long id) {
         def objTipoServicio = Tiposervicio.get(params.id as long)
-        objTipoServicio.delete(flush: true)
+        def consultarTipoServicio=Servicios.findAllByTiposervicio(objTipoServicio)
+        if (consultarTipoServicio) {
+            flash.error = "Tiene un servicio, no se puede eliminar"
+       } else {
+            flash.message = "Se ha eliminado correctamente"
+          objTipoServicio.delete(flush: true)
+        }
         redirect(action: "index")
     }
 
