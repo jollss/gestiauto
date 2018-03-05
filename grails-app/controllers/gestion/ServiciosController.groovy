@@ -137,15 +137,18 @@ class ServiciosController {
             def detalle = SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detalle
             mapa.cuantos = servicios.size()
+            mapa.cuanto=servicio.size()
             detalles << mapa
         }
         def deta = []
         desactivo.each {
             def mapa = [:]
             def servicios = Servicios.findAllWhere(usuarios: it)
+             def servicio = DetalleServicio.findAllWhere(usuarios: it)
             def detal = SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detal
             mapa.cuantos = servicios.size()
+             mapa.cuanto=servicio.size()
             deta << mapa
         }
         [deta: deta, detalles: detalles]
