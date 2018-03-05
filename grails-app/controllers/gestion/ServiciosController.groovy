@@ -1,18 +1,40 @@
 package gestion
 /*import
- * del package 
-*/
+import:Este import es del package gestion.secureapp que permite utilizar los domains de SecAppUser,SecAppRole y su SecAppUserSecAppRole,
+ya que sin este packge no se podria utilizar las propiedades de estos objetos ya que como tal no existen en el package de gestion.
+ */
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
 import gestion.secureapp.SecAppRole
-
 class ServiciosController {
+    /*Service
+     * springSecurityService:Es la forma de inyectar un service,este service en particular se utiliza para poder ver 
+    que usuarios esta logeado en ese instante 
+     *UsuarioService:De igual manera es un service(UsuarioService) que permite ver que rol del usuario logeado tiene  
+     */
     def springSecurityService
     def UsuarioService
-
+    /*Index:En este metodo se pinta los servicios que tiene ese usuario logeado  y con ROLE_MECANICO,ademas muestra los servcios activos e inactivos,
+    donde se utiliza un JS llamado funciones.js
+     *Variables:
+     *usuarios:Se declara usuarios porque asi en el domains de servicio se hace referencia SecAppUser=usuarios
+     *tipoUsuarioActual:de igual manera en el service(UsuarioService) se declaro para conocer el rol del usaurio logeado
+     *IF:Se genera un condicion para que especificamente el usuario con ROLE_MECANICO  pueda ver lo enviado para esa vista
+     *servicios:En esta varible se hace la consulta de los servicios que tiene el usuario logeado y por el estatus pendiente,se empuja 
+    la variable usuarios ya que esa contiene el usuario que esta logeado,y hara la busqueda de ese usuario por sus servicios pendientes
+     *serviciosTerminados:En esta varible se hace la consulta de los servicios que tiene el usuario logeado y por el estatus Terminado,se empuja 
+    la variable usuarios ya que esa contiene el usuario que esta logeado,y hara la busqueda de ese usuario por sus servicios terminados
+     *detalles:Se declara esta variable para empujar ahi todos sus servicios y su detalle 
+     *servicios:Se recorre la varible para ver todos los servicios de ese usuario 
+     *detalle:se hace la consulta del servicios y se busca por el detalle de servicio  
+     *detalles << detalle: De esta manera se empuja toda la consulta de la variable detalle 
+     *[servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]:de esta manera se emṕuja pára que en la vista
+    se pueda visualizar lo obtenido de la consulta
+     *elseif:se valida otro rol para poder mostrale otro tipo de informacion a la vista 
+     */
     def index() {
         def usuarios = springSecurityService.currentUser
-        def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
+        def tipoUsuarioActual = UsuarioService.tipoUsuarioActual    
         if (tipoUsuarioActual == "[ROLE_MECANICO]") {
             def servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
             def serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
@@ -28,7 +50,13 @@ class ServiciosController {
             println "No existe el tipo de usuario: Controller Servicios - Index"
         }
     }
-
+    /*
+     * hacerservicio:Metodo donde se muestra un formulario con el detalle de ese servico 
+     * variables:
+     * servicios:Se ocupa la variable para poder en el formulario mandar todo los datos de la tabla servicio para pintalos en la vista de hacerservico,
+    ademas se obtiene el valor enviado de la vista del index
+     *[servicios: servicios]:Se empuja de esta manera a la vista 
+     */
     def hacerservicio(long id) {
         def servicios = Servicios.get(id)
         [servicios: servicios]

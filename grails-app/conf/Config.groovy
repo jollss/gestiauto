@@ -150,6 +150,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/servicios/detalleUsuario'                              : ['ROLE_ADMIN'],
         '/servicios/eliminarUsuario'                             : ['ROLE_ADMIN'],
         '/servicios/editarUsuario'                               : ['ROLE_ADMIN'],
+            '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
+    
 
         //Servicios fin
         //Servicios inicio
