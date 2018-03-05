@@ -140,9 +140,10 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/servicios/crearUsuario'                                : ['ROLE_ADMIN'],
         '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
+        '/servicios/guardar'                                     : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/citasUsuario'                                : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/servicios/guardarModificacion'                         : ['ROLE_USUARIO', 'ROLE_MECANICO'],
-        '/servicios/guardar'                                        : ['ROLE_MECANICO', 'ROLE_USUARIO'],
+        '/servicios/guardarMarca'                                : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/citaterminada'                               : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/findAutoByMarca'                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
         '/servicios/guardarusu'                                  : ['ROLE_ADMIN'],
@@ -156,19 +157,16 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/tiposervicio/modificarTipoServicio'                    : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/tiposervicio/nuevoTipoServicio'                        : ['ROLE_MECANICO'],
         '/tiposervicio/crearServicio'                            : ['ROLE_MECANICO'],
-       '/tiposervicio/eliminaServicio'                            : ['ROLE_MECANICO'],
-     '/tiposervicio/actualizaServicio'                            : ['ROLE_MECANICO'],
-    
-    
+        '/tiposervicio/eliminaServicio'                          : ['ROLE_MECANICO'],
         //Servicios fin
-        //inicio Marcas
-        '/marcas/modificarmarca'                                 : ['ROLE_MECANICO'],
-        '/marcas/guardar'                                        : ['ROLE_MECANICO'],
-        '/marcas/eliminar'                                       : ['ROLE_MECANICO'],
-        '/marcas/guardarModificacion'                            : ['ROLE_MECANICO'],
-        '/marcas/index'                                          : ['ROLE_MECANICO'],
-        '/marcas/save'                                           : ['ROLE_MECANICO'],
-        //Marcas fin
+        //inicio Marca
+        '/marca/modificarMarca'                                  : ['ROLE_MECANICO'],
+        '/marca/nuevaMarca'                                      : ['ROLE_MECANICO'],
+        '/marca/eliminarMarca'                                   : ['ROLE_MECANICO'],
+        '/marca/guardarModificacion'                             : ['ROLE_MECANICO'],
+        '/marca/index'                                           : ['ROLE_MECANICO'],
+        '/marca/guardarMarca'                                    : ['ROLE_MECANICO'],
+        //Marca fin
         //Inicio Refaccion
         '/refaccion/listaPedidos'                                : ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion'                              : ['ROLE_MECANICO'],
