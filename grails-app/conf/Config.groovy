@@ -136,7 +136,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/automovil/eliminarAuto'                                : ['ROLE_MECANICO'],
         //Automoviles fin
         //Servicios inicio
-        '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
+        '/servicios/save'                               : ['ROLE_MECANICO'],
         '/servicios/crearUsuario'                                : ['ROLE_ADMIN'],
         '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
