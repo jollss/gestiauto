@@ -1,10 +1,9 @@
 package gestion
-
+/*import
+ * del package 
+*/
 import gestion.secureapp.SecAppUser
 import gestion.secureapp.SecAppUserSecAppRole
-import groovy.sql.Sql
-import org.postgresql.core.Query
-
 import gestion.secureapp.SecAppRole
 
 class ServiciosController {
@@ -12,20 +11,14 @@ class ServiciosController {
     def UsuarioService
 
     def index() {
-
         def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual
-        def servicios = null
-        def serviciosTerminados = null
-        def detalle = null
-        def deta = null
-
         if (tipoUsuarioActual == "[ROLE_MECANICO]") {
-            servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
-            serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
+            def servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
+            def serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
             def detalles = []
             servicios.each {
-                detalle = DetalleServicio.findAllByServicios(it)
+                def detalle = DetalleServicio.findAllByServicios(it)
                 detalles << detalle
             }
             [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
