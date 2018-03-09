@@ -2,8 +2,8 @@ package gestion
 
 import gestion.secureapp.SecAppUser
 
-class Servicios {
-    
+class Bitacora {
+    Servicios servicio    
     String observacionesMecanico
     String estatus
     String comentariosUsuario
@@ -13,15 +13,11 @@ class Servicios {
     Automovil automovil
     SecAppUser usuarios
     Tiposervicio tiposervicio
-    Date  fechaterminacion
-    String comentariosNuevoUsuario
-     static constraints = {
-        comentariosNuevoUsuario  nullable: true
-        usuarios nullbel:true
-      
-    }
+    DetalleServicio detalleservicio
+    int nombreUsuario
+    
+    
     static mapping= {
-        id generate  : 'sequence', column:'id_servicio', params:[sequence:'servicio']
+        id generate  : 'sequence', column:'id_bitacora', params:[sequence:'bitacora']
     }
- 
 }

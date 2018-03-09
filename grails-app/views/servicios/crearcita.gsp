@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <g:hiddenField name="observacionesMecanico" value="hacer"/>
+            <g:hiddenField name="observacionesMecanico" value="En proceso"/>
 
             <div class="form-group row col-sm-4 col-md-offset-6">
                 <div class="col-sm-8">

@@ -31,11 +31,10 @@
           <option value=terminado> terminado </option> 
         </select>
         <br><br>
-        <g:actionSubmit value="save" />
-
-    </g:form>
+        <input  type="submit" value="guardar">
+     </g:form>
        
-    <g:link action="index">regresar</g:link><br>
+   
     
     </div>
     <g:render template="/layouts/footer"/>

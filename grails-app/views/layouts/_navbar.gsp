@@ -8,6 +8,9 @@
 
 <script src="../js/funciones.js"></script>
     <script src="../js/funciones2.js"></script>
+      <script src="../js/funcioneslocas.js"></script>
+    
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">

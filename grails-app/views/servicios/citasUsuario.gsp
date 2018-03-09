@@ -16,6 +16,7 @@
             <table class="table table-bordered table-striped col-sm-4">
                  <thead class="thead-inverse">
                     <tr>
+                        <th>Fecha de Termiacion</th>
                         <th>observaciones</th>
                         <th>Servicio Realizado</th>
                         <th>modelo</th>
@@ -24,13 +25,15 @@
                          <th>nombre del usuario</th>
                         
                         <th>estatus</th>
-                         
+                          <th>Reagendar</th>
+                          <th>Acciones sobre la Cita</th>
                     </tr>
                 </thead>
                 <tbody>
                   
                     <g:each in="${detalleservicio}" var="deta">
                         <tr>
+                            <td>${deta.servicios.fechaterminacion}</td>
                             <td>
                                 <g:if test="${deta.servicios.observacionesMecanico == ''}">
                                     Ninguna
@@ -45,13 +48,22 @@
                             <td>${deta.servicios.usuarios.username}</td>
                             <td>${deta.usuarios.username}</td>
                             <g:if test="${deta.servicios.estatus == 'terminado'}" >
-                                <td style="background-color: #009688; color: white;">${deta.servicios.estatus}</td>
+                                <td style="color:red";>${deta.servicios.estatus}</td>
                             </g:if>
                             <g:if test="${deta.servicios.estatus == 'pendiente'}" >
-                                <td style="background-color: #E65100; color: white;">${deta.servicios.estatus}</td>
+                                <td style="color:darkcyan"; >${deta.servicios.estatus}</td>
                             </g:if>
-                               
+                            
+                             <td>
+                                 <g:if test="${deta.servicios.estatus =='terminado'}" >
+<g:link controller="Servicios" action="reagendarCita" style="background-color: #E65100; color: white;" class="btn btn-success " id="${deta.servicios.id}" > Hacer</g:link>  </g:if></td> 
+    <td><g:if test="${deta.servicios.estatus =='terminado'}" >
+    <g:link controller="Servicios" action="eliminarCita" style="background-color: #E65100; color: white;" class="btn btn-success " id="${deta.servicios.id}"> Eliminar</g:link>
+   </g:if>
+                             </td>
+                       
                         </tr>
+                               
                     </g:each>
                 </tbody>
             </table>
