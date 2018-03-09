@@ -3,7 +3,7 @@ dataSource {
     jmxExport = true
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
-    password = "123456"
+    password = "joel"
     dialect = org.hibernate.dialect.PostgreSQLDialect
     //username = "postgres"
     //password = 'joel'
@@ -24,7 +24,7 @@ environments {
     development {
         dataSource {
             driverClassName = "org.postgresql.Driver"
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/mantenimientoauto"
         }
     }

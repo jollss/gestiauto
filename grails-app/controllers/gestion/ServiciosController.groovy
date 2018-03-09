@@ -43,7 +43,13 @@ class ServiciosController {
                 def detalle = DetalleServicio.findAllByServicios(it)
                 detalles << detalle
             }
-            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles]
+            def detalleServicioTerminados=[]
+            serviciosTerminados.each {
+                def detalleterminado = DetalleServicio.findAllByServicios(it)
+                detalleServicioTerminados << detalleterminado
+            }
+            
+            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles,detalleServicioTerminados:detalleServicioTerminados]
         } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
             redirect(action: "crearcita")
         } else {
@@ -62,10 +68,11 @@ class ServiciosController {
         [servicios: servicios]
     }
 
-    def save(long id) {
-        def servicios = Servicios.get(id)
+    def save(long id ) {
+        def servicios = Servicios.get(id )
         servicios.observacionesMecanico = params.observaciones
         servicios.estatus = params.estatus
+        servicios.fechaterminacion=new Date() 
         servicios.save(flush: true)
         redirect(action: "index")
     }
@@ -77,12 +84,13 @@ class ServiciosController {
         [marcas: Marca.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
     }
 
-    def guardar() {
+    def guardar(long id) {
         def usuarios = springSecurityService.currentUser
         def p = new Servicios()
         p.estatus = params.estatus
         p.comentariosUsuario = params.comentariosUsuario
         p.diaServicio = params.diaServicio
+        p.fechaterminacion=new Date() 
         p.horaServicio = params.horaServicio
         p.marca = Marca.get(params.selectmarcas as long)
         p.automovil = Automovil.get(params.selectaut as long)
@@ -109,9 +117,10 @@ class ServiciosController {
         redirect(action: "citaterminada")
     }
 
-    def citasUsuario() {
+    def citasUsuario()  {
         def usuarios = springSecurityService.currentUser
         [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]
+        
     }
 
     def findAutoByMarca() {
@@ -209,4 +218,49 @@ class ServiciosController {
             redirect(action: "detalleUsuario")
         }
     }
+    
+    def eliminarCita()
+    {
+        
+        def eliminarcitadetalle=Servicios.get(params.id as long)
+        def consultar=DetalleServicio.findAllWhere(servicios:eliminarcitadetalle)
+        consultar[0].delete(flush:true)
+        def eliminarcitaservicio=Servicios.get(params.id as long)
+        eliminarcitaservicio.delete(flush:true)
+        redirect(action: "citasUsuario")
+        
+    }
+    def reagendarCita()
+    {
+            def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
+        def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
+   
+     def consultarreagendacion=Servicios.get(params.id as long)
+     [consultarreagendacion:consultarreagendacion,usuario:usuario,tiposervicios: Tiposervicio.findAll(),]
+   
+    }
+    def guardarReagendacion(){
+        println params
+        def modificarservicio = Servicios.get(params.id as long)
+        modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
+        if(modificarservicio.usuarios==null){            
+            modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
+            modificarservicio.horaServicio=params.horaServicio
+            modificarservicio.diaServicio=params.diaServicio
+            modificarservicio.estatus='reagendar' 
+ 
+            println "mismo usuario"          
+        }
+      else if(modificarservicio.usuarios !=null){
+            modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
+            modificarservicio.horaServicio=params.horaServicio
+            modificarservicio.diaServicio=params.diaServicio
+            modificarservicio.estatus='reagendar'
+            modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
+                  
+            println "nuevo usuario"
+        }
+        modificarservicio.save(flush:true) 
+         redirect(action: "citasUsuario")
+    }    
 }
