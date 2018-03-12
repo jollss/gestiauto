@@ -87,7 +87,7 @@
                 
                         
                         <select name="selectusu">
-                            <option selected value="0">Selecciona una Opcion</option> 
+                            <option selected value="${consultarreagendacion.usuarios.id}">${consultarreagendacion.usuarios.username}</option> 
                             <g:each in="${usuario}" var="usr">
                      <g:if test="${usr.secAppUser.username != consultarreagendacion.usuarios.username}">
  </option> <option value= ${usr.secAppUser.id} > ${usr.secAppUser.username}</option>

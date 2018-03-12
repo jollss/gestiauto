@@ -16,19 +16,19 @@ grails.project.groupId = appName // change this to alter the default package nam
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 grails.mime.types = [ // the first one is the default format
-                      all          : '*/*', // 'all' maps to '*' or the first available format in withFormat
-                      atom         : 'application/atom+xml',
-                      css          : 'text/css',
-                      csv          : 'text/csv',
-                      form         : 'application/x-www-form-urlencoded',
-                      html         : ['text/html', 'application/xhtml+xml'],
-                      js           : 'text/javascript',
-                      json         : ['application/json', 'text/json'],
-                      multipartForm: 'multipart/form-data',
-                      rss          : 'application/rss+xml',
-                      text         : 'text/plain',
-                      hal          : ['application/hal+json', 'application/hal+xml'],
-                      xml          : ['text/xml', 'application/xml']
+    all          : '*/*', // 'all' maps to '*' or the first available format in withFormat
+    atom         : 'application/atom+xml',
+    css          : 'text/css',
+    csv          : 'text/csv',
+    form         : 'application/x-www-form-urlencoded',
+    html         : ['text/html', 'application/xhtml+xml'],
+    js           : 'text/javascript',
+    json         : ['application/json', 'text/json'],
+    multipartForm: 'multipart/form-data',
+    rss          : 'application/rss+xml',
+    text         : 'text/plain',
+    hal          : ['application/hal+json', 'application/hal+xml'],
+    xml          : ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -121,22 +121,22 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'gestion.secureapp
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gestion.secureapp.SecAppUserSecAppRole'
 grails.plugin.springsecurity.authority.className = 'gestion.secureapp.SecAppRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        //inicio de index de sistemagestion donde estan los cudraditos
+    //inicio de index de sistemagestion donde estan los cudraditos
         "/login/auth"                                            : ["permitAll"],
         '/'                                                      : ['permitAll'],
         '/index'                                                 : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/index.gsp'                                             : ['ROLE_MECANICO', 'ROLE_USUARIO'],
-        //fin
-        //Automoviles inicio
+    //fin
+    //Automoviles inicio
         '/automovil/nuevoAuto'                                   : ['ROLE_MECANICO'],
         '/automovil/guardarAuto'                                 : ['ROLE_MECANICO'],
         '/automovil/guardarModificacion'                         : ['ROLE_MECANICO'],
         '/automovil/index'                                       : ['ROLE_MECANICO'],
         '/automovil/modificarAuto'                               : ['ROLE_MECANICO'],
         '/automovil/eliminarAuto'                                : ['ROLE_MECANICO'],
-        //Automoviles fin
-        //Servicios inicio
-        '/servicios/save'                               : ['ROLE_MECANICO'],
+    //Automoviles fin
+    //Servicios inicio
+        '/servicios/save'                                        : ['ROLE_MECANICO'],
         '/servicios/crearUsuario'                                : ['ROLE_ADMIN'],
         '/servicios/index'                                       : ['ROLE_USUARIO', 'ROLE_MECANICO', 'ROLE_ADMIN'],
         '/servicios/crearcita'                                   : ['ROLE_USUARIO', 'ROLE_MECANICO'],
@@ -150,40 +150,40 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/servicios/detalleUsuario'                              : ['ROLE_ADMIN'],
         '/servicios/eliminarUsuario'                             : ['ROLE_ADMIN'],
         '/servicios/editarUsuario'                               : ['ROLE_ADMIN'],
-            '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
-  '/servicios/eliminarCita'                               : ['ROLE_USUARIO'],
-     '/servicios/reagendarCita'                               : ['ROLE_USUARIO'],
-     '/reagendarCita/reagendarCita'          : ['ROLE_USUARIO'],
-     '/servicios/prueba'                               : ['ROLE_USUARIO'],
-    '/servicios/guardarReagendacion'                               : ['ROLE_USUARIO'],
-    
+        '/servicios/hacerservicio'                               : ['ROLE_MECANICO'],
+        '/servicios/eliminarCita'                                : ['ROLE_USUARIO'],
+        '/servicios/reagendarCita'                               : ['ROLE_USUARIO'],
+        '/reagendarCita/reagendarCita'                           : ['ROLE_USUARIO'],
+        '/servicios/prueba'                                      : ['ROLE_USUARIO'],
+        '/servicios/guardarReagendacion'                         : ['ROLE_USUARIO'],
+        '/servicios/hacerReagendacion'                           : ['ROLE_MECANICO'],
     
 
-        //Servicios fin
-        //Servicios inicio
+    //Servicios fin
+    //Servicios inicio
         '/tiposervicio/index'                                    : ['ROLE_MECANICO'],
         '/tiposervicio/modificarTipoServicio'                    : ['ROLE_USUARIO', 'ROLE_MECANICO'],
         '/tiposervicio/nuevoTipoServicio'                        : ['ROLE_MECANICO'],
         '/tiposervicio/crearServicio'                            : ['ROLE_MECANICO'],
         '/tiposervicio/eliminaServicio'                          : ['ROLE_MECANICO'],
-        //Servicios fin
-        //inicio Marca
+    //Servicios fin
+    //inicio Marca
         '/marca/modificarMarca'                                  : ['ROLE_MECANICO'],
         '/marca/nuevaMarca'                                      : ['ROLE_MECANICO'],
         '/marca/eliminarMarca'                                   : ['ROLE_MECANICO'],
         '/marca/guardarModificacion'                             : ['ROLE_MECANICO'],
         '/marca/index'                                           : ['ROLE_MECANICO'],
         '/marca/guardarMarca'                                    : ['ROLE_MECANICO'],
-        //Marca fin
-        //Inicio Refaccion
+    //Marca fin
+    //Inicio Refaccion
         '/refaccion/listaPedidos'                                : ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion'                              : ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion/refaccionPor'                 : ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion/detallesRefaccionPorDemanda'  : ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion/detallesRefaccionPorSiniestro': ['ROLE_MECANICO'],
         '/refaccion/pedirRefaccion/resumenPeticion'              : ['ROLE_MECANICO'],
-        //Fin refaccion
-        //Inicio Refaccion
+    //Fin refaccion
+    //Inicio Refaccion
         '/pedido/listaPedidos'                                   : ['ROLE_MECANICO'],
         '/pedido/consultaPedido'                                 : ['ROLE_MECANICO'],
         '/pedido/guardaRefaccion'                                : ['ROLE_MECANICO'],
@@ -194,7 +194,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/pedido/pedirRefaccion/detallesRefaccionPorDemanda'     : ['ROLE_MECANICO'],
         '/pedido/pedirRefaccion/detallesRefaccionPorSiniestro'   : ['ROLE_MECANICO'],
         '/pedido/pedirRefaccion/resumenPeticion'                 : ['ROLE_MECANICO'],
-        //Fin refaccion
+    //Fin refaccion
         '/index.gsp'                                             : ['permitAll'],
         '/assets/**'                                             : ['permitAll'],
         '/**/js/**'                                              : ['permitAll'],

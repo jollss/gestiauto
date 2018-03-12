@@ -53,7 +53,9 @@
                             <g:if test="${deta.servicios.estatus == 'pendiente'}" >
                                 <td style="color:darkcyan"; >${deta.servicios.estatus}</td>
                             </g:if>
-                            
+                             <g:if test="${deta.servicios.estatus == 'reagendar'}" >
+                                <td>${deta.servicios.estatus}</td>
+                            </g:if>
                              <td>
                                  <g:if test="${deta.servicios.estatus =='terminado'}" >
 <g:link controller="Servicios" action="reagendarCita" style="background-color: #E65100; color: white;" class="btn btn-success " id="${deta.servicios.id}" > Hacer</g:link>  </g:if></td> 

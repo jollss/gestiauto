@@ -15,9 +15,10 @@ class Servicios {
     Tiposervicio tiposervicio
     Date  fechaterminacion
     String comentariosNuevoUsuario
+    String activo
      static constraints = {
         comentariosNuevoUsuario  nullable: true
-        usuarios nullbel:true
+    activo  nullable: true
       
     }
     static mapping= {

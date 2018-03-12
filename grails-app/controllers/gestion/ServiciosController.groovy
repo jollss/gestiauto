@@ -1,4 +1,5 @@
 package gestion
+
 /*import
 import:Este import es del package gestion.secureapp que permite utilizar los domains de SecAppUser,SecAppRole y su SecAppUserSecAppRole,
 ya que sin este packge no se podria utilizar las propiedades de estos objetos ya que como tal no existen en el package de gestion.
@@ -36,20 +37,39 @@ class ServiciosController {
         def usuarios = springSecurityService.currentUser
         def tipoUsuarioActual = UsuarioService.tipoUsuarioActual    
         if (tipoUsuarioActual == "[ROLE_MECANICO]") {
+            def bitacora=Bitacora.findAll()
             def servicios = Servicios.findAllWhere(usuarios: usuarios, estatus: "pendiente")
             def serviciosTerminados = Servicios.findAllWhere(usuarios: usuarios, estatus: "terminado")
+            def serviciosReagendados = Servicios.findAllWhere(usuarios: usuarios, estatus: "reagendar")
             def detalles = []
             servicios.each {
+                def mapa=[:]
                 def detalle = DetalleServicio.findAllByServicios(it)
-                detalles << detalle
+                mapa.usuarios = detalle
+                mapa.cuantosPendientes = servicios.size()
+                detalles << mapa
             }
             def detalleServicioTerminados=[]
             serviciosTerminados.each {
+                def mapa=[:]
                 def detalleterminado = DetalleServicio.findAllByServicios(it)
-                detalleServicioTerminados << detalleterminado
+                mapa.usuarios = detalleterminado
+                mapa.cuantosTerminados = serviciosTerminados.size()
+                detalleServicioTerminados << mapa
+            }
+            def detalleserviciosReagendados=[]
+            serviciosReagendados.each {
+                def mapa=[:]
+                  
+                def detallereagendado = DetalleServicio.findAllByServicios(it)
+                mapa.usuarios = detallereagendado
+                mapa.cuantosReagendados = serviciosReagendados.size()
+                 
+                detalleserviciosReagendados << mapa
             }
             
-            [servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles,detalleServicioTerminados:detalleServicioTerminados]
+            
+            [bitacora:bitacora,servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles,detalleServicioTerminados:detalleServicioTerminados,detalleserviciosReagendados:detalleserviciosReagendados]
         } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
             redirect(action: "crearcita")
         } else {
@@ -83,6 +103,7 @@ class ServiciosController {
         def usuarios = springSecurityService.currentUser
         [marcas: Marca.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
     }
+    
 
     def guardar(long id) {
         def usuarios = springSecurityService.currentUser
@@ -102,7 +123,21 @@ class ServiciosController {
             detalleservicio.servicios = p
             detalleservicio.usuarios = springSecurityService.currentUser
             detalleservicio.save(flush: true)
-            // [detalleservicio:detalleservicio]
+            def guardarbitacora = new Bitacora()
+            guardarbitacora.servicios=p
+            guardarbitacora.comentariosUsuario=params.comentariosUsuario
+            guardarbitacora.diaServicio=params.diaServicio  
+            guardarbitacora.horaServicio=params.horaServicio
+            guardarbitacora.marca=Marca.get(params.selectmarcas as long)
+            guardarbitacora.automovil = Automovil.get(params.selectaut as long)
+            guardarbitacora.tiposervicio = Tiposervicio.get(params.selecttipo as long)
+            guardarbitacora.observacionesMecanico = params.observacionesMecanico
+            guardarbitacora.usuarios = SecAppUser.get(params.selectusu as long)
+            guardarbitacora.detalleservicio=detalleservicio
+            guardarbitacora.estatus = params.estatus
+            guardarbitacora.fechaterminacion = new Date()          
+            guardarbitacora.nombreUsuario = springSecurityService.currentUser
+            guardarbitacora.save(flush: true)
             redirect(action: "citasUsuario")
 
 
@@ -157,11 +192,9 @@ class ServiciosController {
     def detalleUsuario() {
         def activo = SecAppUser.findAllWhere(enabled: true)
         def desactivo = SecAppUser.findAllWhere(enabled: false)
-
         def detalles = []
         activo.each {
             def mapa = [:]
-
             def servicios = Servicios.findAllWhere(usuarios: it)
             def servicio = DetalleServicio.findAllWhere(usuarios: it)
             def detalle = SecAppUserSecAppRole.findAllBySecAppUser(it)
@@ -174,11 +207,11 @@ class ServiciosController {
         desactivo.each {
             def mapa = [:]
             def servicios = Servicios.findAllWhere(usuarios: it)
-             def servicio = DetalleServicio.findAllWhere(usuarios: it)
+            def servicio = DetalleServicio.findAllWhere(usuarios: it)
             def detal = SecAppUserSecAppRole.findAllBySecAppUser(it)
             mapa.usuarios = detal
             mapa.cuantos = servicios.size()
-             mapa.cuanto=servicio.size()
+            mapa.cuanto=servicio.size()
             deta << mapa
         }
         [deta: deta, detalles: detalles]
@@ -207,8 +240,8 @@ class ServiciosController {
             def eliminarusuariorole = SecAppUser.get(params.id as long)
             def eliminar = SecAppUserSecAppRole.findAllWhere(secAppUser: eliminarusuariorole)
             eliminar.each
-                    {
-                    }
+            {
+            }
             eliminar[0].delete(flush: true)
             def eli = SecAppUser.get(params.id as long)
             eli.delete(flush: true)
@@ -232,35 +265,36 @@ class ServiciosController {
     }
     def reagendarCita()
     {
-            def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
+        def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
         def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
    
-     def consultarreagendacion=Servicios.get(params.id as long)
-     [consultarreagendacion:consultarreagendacion,usuario:usuario,tiposervicios: Tiposervicio.findAll(),]
+        def consultarreagendacion=Servicios.get(params.id as long)
+        [consultarreagendacion:consultarreagendacion,usuario:usuario,tiposervicios: Tiposervicio.findAll(),]
    
     }
     def guardarReagendacion(){
         println params
         def modificarservicio = Servicios.get(params.id as long)
-        modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
-        if(modificarservicio.usuarios==null){            
-            modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
-            modificarservicio.horaServicio=params.horaServicio
-            modificarservicio.diaServicio=params.diaServicio
-            modificarservicio.estatus='reagendar' 
- 
-            println "mismo usuario"          
-        }
-      else if(modificarservicio.usuarios !=null){
+     
+        if(params.selectusu !=0 as long ) {
             modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
             modificarservicio.horaServicio=params.horaServicio
             modificarservicio.diaServicio=params.diaServicio
             modificarservicio.estatus='reagendar'
             modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
-                  
-            println "nuevo usuario"
+            modificarservicio.save(flush:true) 
+   
         }
-        modificarservicio.save(flush:true) 
-         redirect(action: "citasUsuario")
+        else {
+            modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
+            modificarservicio.horaServicio=params.horaServicio
+            modificarservicio.diaServicio=params.diaServicio
+            modificarservicio.estatus='reagendar' 
+            modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
+            modificarservicio.save(flush:true) 
+                
+        }
+        redirect(action: "citasUsuario")
     }    
+    def hacerReagendacion(){}
 }

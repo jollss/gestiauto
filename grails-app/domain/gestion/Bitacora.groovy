@@ -3,7 +3,7 @@ package gestion
 import gestion.secureapp.SecAppUser
 
 class Bitacora {
-    Servicios servicio    
+    Servicios servicios   
     String observacionesMecanico
     String estatus
     String comentariosUsuario
@@ -14,10 +14,6 @@ class Bitacora {
     SecAppUser usuarios
     Tiposervicio tiposervicio
     DetalleServicio detalleservicio
-    int nombreUsuario
-    
-    
-    static mapping= {
-        id generate  : 'sequence', column:'id_bitacora', params:[sequence:'bitacora']
-    }
+    Date  fechaterminacion
+    SecAppUser nombreUsuario
 }
