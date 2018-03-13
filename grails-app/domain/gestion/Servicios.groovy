@@ -14,11 +14,10 @@ class Servicios {
     SecAppUser usuarios
     Tiposervicio tiposervicio
     Date  fechaterminacion
-    String comentariosNuevoUsuario
-    String activo
+    String comentariosNuevoUsuario 
      static constraints = {
         comentariosNuevoUsuario  nullable: true
-    activo  nullable: true
+ 
       
     }
     static mapping= {

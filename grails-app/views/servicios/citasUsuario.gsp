@@ -30,8 +30,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
-                    <g:each in="${detalleservicio}" var="deta">
+                  <g:each in="${detalleservicio}" var="deta">
+                
                         <tr>
                             <td>${deta.servicios.fechaterminacion}</td>
                             <td>
@@ -60,13 +60,15 @@
                                  <g:if test="${deta.servicios.estatus =='terminado'}" >
 <g:link controller="Servicios" action="reagendarCita" style="background-color: #E65100; color: white;" class="btn btn-success " id="${deta.servicios.id}" > Hacer</g:link>  </g:if></td> 
     <td><g:if test="${deta.servicios.estatus =='terminado'}" >
+       
     <g:link controller="Servicios" action="eliminarCita" style="background-color: #E65100; color: white;" class="btn btn-success " id="${deta.servicios.id}"> Eliminar</g:link>
    </g:if>
                              </td>
                        
                         </tr>
-                               
+                             
                     </g:each>
+                           
                 </tbody>
             </table>
     </div>

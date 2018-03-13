@@ -2,7 +2,19 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     
         <title>Reagendacion</title>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script>
+$(function () {
+$.datepicker.setDefaults($.datepicker.regional["es"]);
+$("#datepicker").datepicker({
+firstDay: 1
+});
+});
+</script>
     </head>
 
     <body>
@@ -17,7 +29,7 @@
                 <div class="form-group row col-sm-6">
                     <label class="col-sm-12 col-form-label">Fecha y Hora de Inicio del Servicio:</label>
                     <div class="col-sm-4">
-                        <g:textField name="tiempo" placeholder="${consultarreagendacion.diaServicio} ${consultarreagendacion.horaServicio}" disabled="username" />
+                        <g:textField name="tiempo" placeholder="${consultarreagendacion.diaServicio} ${consultarreagendacion.horaServicio}" disabled="tiempo" />
                     </div>
                 </div>
                 <div class="form-group row col-sm-6">
@@ -32,26 +44,29 @@
                     <div class="form-group row col-sm-6">
                         <label class="col-sm-12 col-form-label">Marca de Modelo Seleccionada</label>
                         <div class="col-sm-12">
-                            <g:textField name="observaciones" placeholder="${consultarreagendacion.marca.nombreMarca}" disabled="marca" />
+                            <g:textField name="marca" placeholder="${consultarreagendacion.marca.nombreMarca}" disabled="marca" />
+                             <input type="hidden" name="marcas" value="${consultarreagendacion.marca.id}">
                         </div>
                     </div>
                         <div class="form-group row col-sm-6">
                         <label class="col-sm-12 col-form-label">Modelo de Auto Seleccionado </label>
                         <div class="col-sm-4">
- <g:textField name="observaciones" placeholder="${consultarreagendacion.automovil.nombreAuto}" disabled="marca" />
+ <g:textField name="automovil" placeholder="${consultarreagendacion.automovil.nombreAuto}" disabled="automovil" />
+ <input type="hidden" name="automovils" value="${consultarreagendacion.automovil.id}">
                         </div>
 
                     </div> 
                <div class="form-group row col-sm-6">
                         <label class="col-sm-12 col-form-label">Mecanico que Realizo Servicio</label>
                         <div class="col-sm-12">
-                            <g:textField name="observaciones" placeholder="${consultarreagendacion.usuarios.username}" disabled="marca" />
+                            <g:textField name="usuario" placeholder="${consultarreagendacion.usuarios.username}" disabled="usuario" />
                         </div>
                     </div>
                      <div class="form-group row col-sm-6">
                         <label class="col-sm-12 col-form-label">Tipo de Servicio Seleccionado</label>
                         <div class="col-sm-12">
-                            <g:textField name="observaciones" placeholder="${consultarreagendacion.tiposervicio.nombreServicio}" disabled="marca" />
+                            <g:textField  name="tiposervicio" placeholder="${consultarreagendacion.tiposervicio.nombreServicio}" disabled="tiposervicio" />
+                           <input type="hidden" name="tiposervicios" value="${consultarreagendacion.tiposervicio.id}">
                         </div>
                     </div>
               </div>
@@ -61,22 +76,24 @@
                         <g:textArea class="form-control" name="comentariosUsuario" placeholder="${consultarreagendacion.observacionesMecanico}" disabled="comentariosUsuario"/>
                     </div>
                 </div>
-<div class="col-sm-7">
+ <div class="col-sm-7">
+          
 
-                    <div class="form-group row col-sm-6">
-                        <label class="col-sm-12 col-form-label">Nueva Fecha:</label>
-                        <div class="col-sm-12">
-                            <g:textField class="form-control" name="diaServicio" placeholder="dia/mes/año" id="datepicker"/>
-               
-                        </div>
-                    </div>
-
-                    <div class="form-group row col-sm-6">
-                        <label class="col-sm-12 col-form-label">Nueva Hora:</label>
-                        <div class="col-sm-8">
-                            <input type="time" class="form-control" name="horaServicio" placeholder="ejem:15:30"></div>
-                    </div>
+      
+      
+            <div class="form-group row col-sm-6">
+                <label class="col-sm-12 col-form-label">Fecha:</label>
+                <div class="col-sm-12">
+                    <g:textField class="form-control" name="diaServicio" placeholder="dia/mes/año" id="datepicker"/>
                 </div>
+            </div>
+
+            <div class="form-group row col-sm-6">
+                <label class="col-sm-12 col-form-label">Hora:</label>
+                <div class="col-sm-8">
+                    <input type="time" class="form-control" name="horaServicio" placeholder="ejem:15:30"></div>
+                </div>
+            </div>
 
 
 

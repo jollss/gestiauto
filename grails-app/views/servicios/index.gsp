@@ -21,6 +21,7 @@
             <thead class="thead-inverse">
                 <tr>
                      <th>Dia Asiganado</th>
+                     <th>Hora Asiganado</th>
                     <th>Observaciones</th>
                     <th>Estatus</th>
                     <th>Comentarios del usuario</th>
@@ -37,6 +38,7 @@
                
                     <tr>
                         <td>${serv.usuarios[0].servicios.diaServicio}</td>
+                        <td>${serv.usuarios[0].servicios.horaServicio}</td>
                         <td>${serv.usuarios[0].servicios.observacionesMecanico} </td>
                         <td>${serv.usuarios[0].servicios.estatus}</td>
                         <td>${serv.usuarios[0].servicios.comentariosUsuario}</td>
@@ -113,17 +115,19 @@
             <tbody>
                 <g:each in="${bitacora}" var="bi">
                     <tr>
-                        <td> ${bi.servicios.usuarios.username}</td>
-                        <td>${bi.detalleservicio.usuarios.username}</td>
-                        <td>${bi.servicios.observacionesMecanico}</td>
-                         <td>${bi.servicios.marca.nombreMarca}</td>
-                        <td>${bi.servicios.comentariosUsuario}</td>
-                        <td>${bi.servicios.automovil.nombreAuto}</td>
-                      <td>${bi.servicios.tiposervicio.nombreServicio}</td>
-                      <td>${bi.servicios.diaServicio}</td>
-                      <td>${bi.servicios.horaServicio}</td>
-                      <td>${bi.servicios.fechaterminacion}</td>
-                      <td>${bi.servicios.estatus}</td>
+                        <td> ${bi.usuarios.username}</td>
+                        <td>${bi.nombreUsuario.username}</td>
+                        <td>${bi.comentariosUsuario}</td>
+                        <td>${bi.observacionesMecanico}</td>
+                         <td>${bi.marca.nombreMarca}</td>
+                        
+                        
+                        <td>${bi.automovil.nombreAuto}</td>
+                      <td>${bi.tiposervicio.nombreServicio}</td>
+                      <td>${bi.diaServicio}</td>
+                      <td>${bi.horaServicio}</td>
+                      <td>${bi.fechaterminacion}</td>
+                      <td>${bi.estatus}</td>
                     </tr>
                 </g:each>
             </tbody>

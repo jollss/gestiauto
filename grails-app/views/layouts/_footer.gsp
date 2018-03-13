@@ -12,6 +12,8 @@
     <script src="/gestion/js/libs/jquery-ui.min.js"></script>
     <script src="/gestion/js/libs/bootstrap.js"></script>
     <script src="/gestion/js/libs/miScript.js"></script>
+
+
     <footer class="footer">
       <div class="container">
         <div class="row">
