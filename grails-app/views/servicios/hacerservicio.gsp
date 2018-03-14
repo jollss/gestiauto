@@ -15,6 +15,7 @@
     </center>
 
     <g:form controller="Servicios" action="save">
+        <input type="hidden" name="folio" value="${consultardetadelservicio[0].servicios.folio}">
         <g:hiddenField name="usuario" value="${consultardetadelservicio.usuarios[0].id}" /> 
  <g:hiddenField name="id" value="${consultardetadelservicio[0].servicios.id}" /> <br> Fecha:
  <g:textField name="diaServicio" value="${consultardetadelservicio[0].servicios.diaServicio}" readonly="diaServicio" /> <br><br> Hora:

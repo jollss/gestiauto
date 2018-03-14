@@ -1,7 +1,5 @@
 package gestion
-
 import gestion.secureapp.SecAppUser
-
 class Bitacora {
     String observacionesMecanico
     String estatus
@@ -13,6 +11,10 @@ class Bitacora {
     SecAppUser usuarios
     Tiposervicio tiposervicio
     Date  fechaterminacion
-    SecAppUser nombreUsuario
-    
+    SecAppUser nombreUsuario   
+    String folio
+     static constraints = {
+        fechaterminacion         nullable: true     
+        folio                    nullable: true    
+    }
 }

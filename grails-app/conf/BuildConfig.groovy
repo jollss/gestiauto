@@ -80,5 +80,6 @@ grails.project.dependency.resolution = {
         //compile "org.grails.plugins:spring-security-core:2.0.0"
         compile "org.grails.plugins:spring-security-core:2.0.0"
         compile ":webflow:2.1.0"
+        //compile "org.grails.plugins:random:0.2"
     }
 }

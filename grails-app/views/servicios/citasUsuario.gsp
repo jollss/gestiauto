@@ -16,24 +16,27 @@
             <table class="table table-bordered table-striped col-sm-4">
                  <thead class="thead-inverse">
                     <tr>
-                        <th>Fecha de Termiacion</th>
+                        <th>Fecha de Agendacion del  Servicio</th>
+                        <th>Fecha de Terminacion del  Servicio</th>
                         <th>observaciones</th>
                         <th>Servicio Realizado</th>
                         <th>modelo</th>
                         <th>marca del auto</th>
                         <th>nombre del Mecanico</th>
                          <th>nombre del usuario</th>
-                        
+                             <th>Folio</th>
                         <th>estatus</th>
                           <th>Reagendar</th>
                           <th>Acciones sobre la Cita</th>
+                          
                     </tr>
                 </thead>
                 <tbody>
                   <g:each in="${detalleservicio}" var="deta">
                 
                         <tr>
-                            <td>${deta.servicios.fechaterminacion}</td>
+                            <td>${deta.servicios.diaServicio}-${deta.servicios.horaServicio}</td>
+                            <td>${deta.servicios.fechaterminacion ? "${deta.servicios.fechaterminacion}":"PENDIENTE"}</td>
                             <td>
                                 <g:if test="${deta.servicios.observacionesMecanico == ''}">
                                     Ninguna
@@ -47,6 +50,7 @@
                             <td>${deta.servicios.automovil.nombreAuto}</td>
                             <td>${deta.servicios.usuarios.username}</td>
                             <td>${deta.usuarios.username}</td>
+                            <td>${deta.servicios.folio}</td>
                             <g:if test="${deta.servicios.estatus == 'terminado'}" >
                                 <td style="color:red";>${deta.servicios.estatus}</td>
                             </g:if>

@@ -63,12 +63,9 @@ class ServiciosController {
                   
                 def detallereagendado = DetalleServicio.findAllByServicios(it)
                 mapa.usuarios = detallereagendado
-                mapa.cuantosReagendados = serviciosReagendados.size()
-                 
+                mapa.cuantosReagendados = serviciosReagendados.size()                 
                 detalleserviciosReagendados << mapa
-            }
-            
-            
+            }            
             [bitacora:bitacora,servicios: servicios, serviciosTerminados: serviciosTerminados, detalles: detalles,detalleServicioTerminados:detalleServicioTerminados,detalleserviciosReagendados:detalleserviciosReagendados]
         } else if (tipoUsuarioActual == "[ROLE_USUARIO]") {
             redirect(action: "crearcita")
@@ -88,57 +85,57 @@ class ServiciosController {
         def consultardetadelservicio=DetalleServicio.findAllWhere(servicios:servicios)
         [servicios: servicios,consultardetadelservicio:consultardetadelservicio]
     }
-
     def save(long id ) {
-       def usuarios = springSecurityService.currentUser
-       def servicios = Servicios.get(id )
-    servicios.observacionesMecanico=params.observaciones
-       servicios.estatus = params.estatus
+        def usuarios = springSecurityService.currentUser
+        def servicios = Servicios.get(id )
+        servicios.observacionesMecanico=params.observaciones
+        servicios.estatus = params.estatus
         servicios.fechaterminacion=new Date() 
-      servicios.save(flush: true)
-     def bitacoraservicioterminado= new Bitacora()
-     bitacoraservicioterminado. nombreUsuario= SecAppUser.get(params.usuario as long)
-      bitacoraservicioterminado.diaServicio=params.diaServicio
-      bitacoraservicioterminado.horaServicio=params.horaServicio
-      bitacoraservicioterminado.observacionesMecanico=params.observaciones
-       bitacoraservicioterminado.marca=Marca.get(params.marcas as long )
-       bitacoraservicioterminado.automovil=Automovil.get(params.automovils as long )
-       bitacoraservicioterminado.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
-       bitacoraservicioterminado.estatus=params.estatus
-       bitacoraservicioterminado.fechaterminacion = new Date() 
-       bitacoraservicioterminado.usuarios = springSecurityService.currentUser
-       bitacoraservicioterminado.comentariosUsuario ="prueba "
-       bitacoraservicioterminado.save(flush:true)
-      redirect(action: "index")
+       servicios.save(flush: true)
+        def bitacoraservicioterminado= new Bitacora()
+        bitacoraservicioterminado. nombreUsuario= SecAppUser.get(params.usuario as long)
+        bitacoraservicioterminado.diaServicio=params.diaServicio
+        bitacoraservicioterminado.horaServicio=params.horaServicio
+        bitacoraservicioterminado.observacionesMecanico=params.observaciones
+        bitacoraservicioterminado.marca=Marca.get(params.marcas as long )
+        bitacoraservicioterminado.automovil=Automovil.get(params.automovils as long )
+        bitacoraservicioterminado.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
+        bitacoraservicioterminado.estatus=params.estatus
+        bitacoraservicioterminado.folio=params.folio
+        bitacoraservicioterminado.fechaterminacion = new Date() 
+        bitacoraservicioterminado.usuarios = springSecurityService.currentUser
+        bitacoraservicioterminado.comentariosUsuario ="Servicio Terminado "
+        bitacoraservicioterminado.save(flush:true)
+        redirect(action: "index")
     }
-
     def crearcita() {
         def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
         def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
         def usuarios = springSecurityService.currentUser
         [marcas: Marca.findAll(), automoviles: Automovil.findAll(), tiposervicios: Tiposervicio.findAll(), usuario: usuario]
     }
-    
-
     def guardar(long id) {
         def usuarios = springSecurityService.currentUser
+        def verCode = UUID.randomUUID().toString()
+def cortarudd=verCode.substring(9,13)
         def p = new Servicios()
-        p.estatus = params.estatus
+        p.estatus = 'pendiente'
         p.comentariosUsuario = params.comentariosUsuario
         p.diaServicio = params.diaServicio
-        p.fechaterminacion=new Date() 
         p.horaServicio = params.horaServicio
         p.marca = Marca.get(params.selectmarcas as long)
         p.automovil = Automovil.get(params.selectaut as long)
         p.tiposervicio = Tiposervicio.get(params.selecttipo as long)
+        p.folio=usuarios.username+params.selecttipo+params.selectaut+params.selectusu+cortarudd
         p.observacionesMecanico = params.observacionesMecanico
         p.usuarios = SecAppUser.get(params.selectusu as long)
-        if (p.save(flush: true)) {
+        if (p.save()) {    
             def detalleservicio = new DetalleServicio()
             detalleservicio.servicios = p
             detalleservicio.usuarios = springSecurityService.currentUser
             detalleservicio.save(flush: true)
             def guardarbitacora = new Bitacora()
+            guardarbitacora.folio=usuarios.username+params.selecttipo+params.selectaut+params.selectusu+cortarudd
             guardarbitacora.comentariosUsuario=params.comentariosUsuario
             guardarbitacora.diaServicio=params.diaServicio  
             guardarbitacora.horaServicio=params.horaServicio
@@ -147,31 +144,26 @@ class ServiciosController {
             guardarbitacora.tiposervicio = Tiposervicio.get(params.selecttipo as long)
             guardarbitacora.observacionesMecanico = params.observacionesMecanico
             guardarbitacora.usuarios = SecAppUser.get(params.selectusu as long)
-            guardarbitacora.estatus = params.estatus
-            guardarbitacora.fechaterminacion = new Date()          
+            guardarbitacora.estatus = 'pendiente '     
             guardarbitacora.nombreUsuario = springSecurityService.currentUser
             guardarbitacora.usuarios = SecAppUser.get(params.selectusu as long)
             guardarbitacora.save(flush: true)
+         flash.message = "tu numero de folio es"+p.folio
+
             redirect(action: "citasUsuario")
-
-
         } else {
             println "No se guardo nada vale chetos la vida "
         }
     }
-
     def delete(long id) {
         def servicios = Servicios.get(params.id as long)
         servicios.delete(flush: true)
         redirect(action: "citaterminada")
     }
-
     def citasUsuario()  {
         def usuarios = springSecurityService.currentUser
-        [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]
-        
+        [detalleservicio: DetalleServicio.findAllWhere(usuarios: usuarios)]        
     }
-
     def findAutoByMarca() {
         def paramIdRec = params.marca.id
         paramIdRec.trim()
@@ -183,12 +175,10 @@ class ServiciosController {
 
         render(template: 'autoSelection', model: [automoviles: marca.automoviles])
     }
-
     def crearUsuario() {
         def rol = SecAppRole.findAll()
         [rol: rol]
     }
-
     def guardarusu() {
         def nuevo = new SecAppUser()
         nuevo.username = params.username
@@ -202,7 +192,6 @@ class ServiciosController {
         nuevorol.save(flush: true)
         redirect(action: "detalleUsuario")
     }
-
     def detalleUsuario() {
         def activo = SecAppUser.findAllWhere(enabled: true)
         def desactivo = SecAppUser.findAllWhere(enabled: false)
@@ -230,10 +219,7 @@ class ServiciosController {
         }
         [deta: deta, detalles: detalles]
     }
-
     def editarUsuario() {
-
-
         def desactivarusuario = SecAppUser.get(params.id as long)
         if (desactivarusuario.enabled == true) {
             desactivarusuario.enabled = false
@@ -242,10 +228,7 @@ class ServiciosController {
         }
         desactivarusuario.save(flush: true)
         redirect(action: "detalleUsuario")
-
-
     }
-
     def eliminarUsuario() {
         def usuarios = SecAppUser.get(params.id as long)
         def consultarservicios = Servicios.findAllWhere(usuarios: usuarios)
@@ -264,30 +247,25 @@ class ServiciosController {
             //   render(view: "detalleUsuario",  model: [name:"el usuario tiene servicios pendientes "])
             redirect(action: "detalleUsuario")
         }
-    }
-    
+    }    
     def eliminarCita()
-    {
-        
+    {        
         def eliminarcitadetalle=Servicios.get(params.id as long)
         def consultar=DetalleServicio.findAllWhere(servicios:eliminarcitadetalle)
         consultar[0].delete(flush:true)
         def eliminarcitaservicio=Servicios.get(params.id as long)
         eliminarcitaservicio.delete(flush:true)
-        redirect(action: "citasUsuario")
-        
+        redirect(action: "citasUsuario")        
     }
     def reagendarCita()
     {
         def rol = SecAppRole.findByAuthority("ROLE_MECANICO")
-        def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)
-   
+        def usuario = SecAppUserSecAppRole.findAllBySecAppRole(rol)   
         def consultarreagendacion=Servicios.get(params.id as long)
-        [consultarreagendacion:consultarreagendacion,usuario:usuario,tiposervicios: Tiposervicio.findAll(),]
-   
+        [consultarreagendacion:consultarreagendacion,usuario:usuario,tiposervicios: Tiposervicio.findAll(),]   
     }
     def guardarReagendacion(){
-       def usuarios = springSecurityService.currentUser
+        def usuarios = springSecurityService.currentUser
         def modificarservicio = Servicios.get(params.id as long)
         if(params.selectusu !=0 as long ) {
             modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
@@ -295,21 +273,21 @@ class ServiciosController {
             modificarservicio.diaServicio=params.diaServicio
             modificarservicio.estatus='reagendar'
             modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
-           modificarservicio.save(flush:true) 
-             def bitacoraservicioreagendado= new Bitacora()
-      bitacoraservicioreagendado. nombreUsuario=springSecurityService.currentUser 
-      bitacoraservicioreagendado.diaServicio=params.diaServicio
-      bitacoraservicioreagendado.horaServicio=params.horaServicio
-     bitacoraservicioreagendado.observacionesMecanico='Servicio Reagendado'
-     bitacoraservicioreagendado.marca=Marca.get(params.marcas as long )
-       bitacoraservicioreagendado.automovil=Automovil.get(params.automovils as long )
-       bitacoraservicioreagendado.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
-      bitacoraservicioreagendado.estatus='reagendar'
-      bitacoraservicioreagendado.fechaterminacion = new Date() 
-      bitacoraservicioreagendado.usuarios =SecAppUser.get(params.selectusu as long)
-     bitacoraservicioreagendado.comentariosUsuario =params.comentariosNuevoUsuario
-      bitacoraservicioreagendado.save(flush:true)
-   
+            modificarservicio.save(flush:true) 
+            def bitacoraservicioreagendado= new Bitacora()
+            bitacoraservicioreagendado. nombreUsuario=springSecurityService.currentUser 
+            bitacoraservicioreagendado.diaServicio=params.diaServicio
+            bitacoraservicioreagendado.horaServicio=params.horaServicio
+            bitacoraservicioreagendado.folio=params.folio
+            bitacoraservicioreagendado.observacionesMecanico='Servicio Reagendado'
+            bitacoraservicioreagendado.marca=Marca.get(params.marcas as long )
+            bitacoraservicioreagendado.automovil=Automovil.get(params.automovils as long )
+            bitacoraservicioreagendado.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
+            bitacoraservicioreagendado.estatus='reagendar'
+            bitacoraservicioreagendado.fechaterminacion = new Date() 
+            bitacoraservicioreagendado.usuarios =SecAppUser.get(params.selectusu as long)
+            bitacoraservicioreagendado.comentariosUsuario =params.comentariosNuevoUsuario
+            bitacoraservicioreagendado.save(flush:true)   
         }
         else {
             modificarservicio.comentariosNuevoUsuario=params.comentariosNuevoUsuario
@@ -318,22 +296,29 @@ class ServiciosController {
             modificarservicio.estatus='reagendar' 
             modificarservicio.usuarios=SecAppUser.get(params.selectusu as long)
             modificarservicio.save(flush:true) 
-               def bitacoraservicioreagendados= new Bitacora()
-      bitacoraservicioreagendados. nombreUsuario=springSecurityService.currentUser 
-      bitacoraservicioreagendados.diaServicio=params.diaServicio
-      bitacoraservicioreagendados.horaServicio=params.horaServicio
-     bitacoraservicioreagendados.observacionesMecanico='Servicio Reagendado'
-     bitacoraservicioreagendados.marca=Marca.get(params.marcas as long )
-       bitacoraservicioreagendados.automovil=Automovil.get(params.automovils as long )
-       bitacoraservicioreagendados.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
-      bitacoraservicioreagendados.estatus='reagendar'
-      bitacoraservicioreagendados.fechaterminacion = new Date() 
-      bitacoraservicioreagendados.usuarios =SecAppUser.get(params.selectusu as long)
-     bitacoraservicioreagendados.comentariosUsuario =params.comentariosNuevoUsuario
-      bitacoraservicioreagendados.save(flush:true)
-                
+            def bitacoraservicioreagendados= new Bitacora()
+            bitacoraservicioreagendados. nombreUsuario=springSecurityService.currentUser 
+            bitacoraservicioreagendados.diaServicio=params.diaServicio
+            bitacoraservicioreagendados.horaServicio=params.horaServicio
+            bitacoraservicioreagendados.observacionesMecanico='Servicio Reagendado'
+            bitacoraservicioreagendados.marca=Marca.get(params.marcas as long )
+            bitacoraservicioreagendados.automovil=Automovil.get(params.automovils as long )
+            bitacoraservicioreagendados.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
+            bitacoraservicioreagendados.estatus='reagendar'
+            bitacoraservicioreagendados.fechaterminacion = new Date() 
+            bitacoraservicioreagendados.usuarios =SecAppUser.get(params.selectusu as long)
+            bitacoraservicioreagendados.comentariosUsuario =params.comentariosNuevoUsuario
+            bitacoraservicioreagendados.save(flush:true)                
         }
         redirect(action: "citasUsuario")
     }    
-    def hacerReagendacion(){}
+    def hacerReagendacion(){  
+        def consultarreagendacion=Servicios.get(params.id as long)
+        def consultarserviciodetallereagendacion=DetalleServicio.findAllWhere(servicios:consultarreagendacion)
+        [consultarserviciodetallereagendacion:consultarserviciodetallereagendacion]          
+    }
+    def guardarReagendacionTerminada(){
+
+    }
+    
 }

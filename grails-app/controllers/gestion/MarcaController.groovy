@@ -60,6 +60,7 @@ class MarcaController {
      */
     def modificarMarca(long id) {
         def marca = Marca.get(id)
+     
         [marca: marca]
     }
 
@@ -72,8 +73,16 @@ class MarcaController {
      */
     def guardarModificacion(long id) {
         def marca = Marca.get(id)
-        marca.nombreMarca = params.nombre
-        marca.save(flush: true)
+        def marcas = Servicios.findByMarca(marca)
+        if (marcas) {
+            flash.error = "Tiene un servicio, no se puede modificar el Automovil"
+        } else {
+            flash.message = "Se ha Modificado correctamente el Automovil"
+            marca.nombreMarca = params.nombre
+            marca.save(flush: true)
+        }
+
+    
         redirect(action: "index")
     }
 

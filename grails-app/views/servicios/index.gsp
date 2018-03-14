@@ -106,7 +106,8 @@
                     <th>Tipo del Servicio</th>
                     <th>Dia inicial del Servicio</th>
                     <th>Hora inicial del Servicio</th>
-                    <th>Fecha de Terminacion del Servicio</th>
+                    <th>Fecha y Hora de Terminacion del Servicio</th>
+                    <th>Folio del Servicio</th>
                     <th>Estatus del Servicio</th>
                      
                   
@@ -127,6 +128,7 @@
                       <td>${bi.diaServicio}</td>
                       <td>${bi.horaServicio}</td>
                       <td>${bi.fechaterminacion}</td>
+                         <td>${bi.folio}</td>
                       <td>${bi.estatus}</td>
                     </tr>
                 </g:each>

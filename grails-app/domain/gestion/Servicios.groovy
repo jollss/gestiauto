@@ -1,9 +1,6 @@
 package gestion
-
 import gestion.secureapp.SecAppUser
-
-class Servicios {
-    
+class Servicios {    
     String observacionesMecanico
     String estatus
     String comentariosUsuario
@@ -15,10 +12,11 @@ class Servicios {
     Tiposervicio tiposervicio
     Date  fechaterminacion
     String comentariosNuevoUsuario 
-     static constraints = {
+    String folio
+    static constraints = {
         comentariosNuevoUsuario  nullable: true
- 
-      
+        fechaterminacion         nullable: true     
+         folio         nullable: true    
     }
     static mapping= {
         id generate  : 'sequence', column:'id_servicio', params:[sequence:'servicio']

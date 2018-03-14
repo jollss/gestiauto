@@ -9,14 +9,11 @@
     <g:render template="/layouts/navbar" />
     <g:render template="/layouts/header" />
     <div class="container col-sm-9">
-        
+ 
         <h1>Crear cita</h1>
         <g:form controller="Servicios" action="guardar">
             
             <div class="col-sm-7">
-            <g:hiddenField name="estatus" value="pendiente"/><br/>
-
-      
       
             <div class="form-group row col-sm-6">
                 <label class="col-sm-12 col-form-label">Fecha:</label>

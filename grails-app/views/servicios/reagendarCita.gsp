@@ -24,6 +24,7 @@ firstDay: 1
 
             <h1>Reagendar cita</h1>
             <g:form controller="Servicios" action="guardarReagendacion">
+                <input type="hidden" name="folio" value="${consultarreagendacion.folio}">
                  <g:hiddenField name="id" value="${consultarreagendacion.id}" />
                 <div class="col-sm-7">
                 <div class="form-group row col-sm-6">

@@ -80,16 +80,30 @@ class AutomovilController {
      *    en los registros de la base de datos, mostrar pantalla y modificarlo.
      * @param id - Parámetro necesario para la modificación de un registro.
      * @return redirect; Redirecciona a action 'index'.
+     *   def marcas = Servicios.findByMarca(marca)
+        if (marcas) {
+            flash.error = "Tiene un servicio, no se puede modificar el Automovil"
+        } else {
+            flash.message = "Se ha Modificado correctamente el Automovil"
+            marca.nombreMarca = params.nombre
+            marca.save(flush: true)
+        }
      */
     def guardarModificacion(long id) {
         def autoTemp = Automovil.get(id)
         def marca = Marca.findById(Long.valueOf(params.id_marca))
-        println(params)
-        if (String.valueOf(params.nombre.trim()) != '') {
-            autoTemp.nombreAuto = params.nombre
-        }
+             if (String.valueOf(params.nombre.trim()) != '') {
+                 flash.error = "Tiene un servicio, no se puede modificar la marca"
+                    }
+        else {
+            flash.message = "Se ha Modificado correctamente el Automovil"
+           autoTemp.nombreAuto = params.nombre
         autoTemp.marcas = marca
+      
         autoTemp.save(flush: true)
+        }
+      
+        
         redirect(action: "index")
     }
 }

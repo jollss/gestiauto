@@ -1,6 +1,9 @@
+
 <nav class="navbar navbar-default sidebar col-sm-3 py-4" role="navigation">
+    
     <div class="container-fluid">
         <div class="navbar-header">
+    
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-sidebar-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -11,6 +14,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+           
             <h3>Controladores</h3>
             <sec:ifAnyGranted roles="ROLE_USUARIO">
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name }}">
