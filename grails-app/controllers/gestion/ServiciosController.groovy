@@ -284,7 +284,6 @@ def cortarudd=verCode.substring(9,13)
             bitacoraservicioreagendado.automovil=Automovil.get(params.automovils as long )
             bitacoraservicioreagendado.tiposervicio=Tiposervicio.get(params.tiposervicios as long )
             bitacoraservicioreagendado.estatus='reagendar'
-            bitacoraservicioreagendado.fechaterminacion = new Date() 
             bitacoraservicioreagendado.usuarios =SecAppUser.get(params.selectusu as long)
             bitacoraservicioreagendado.comentariosUsuario =params.comentariosNuevoUsuario
             bitacoraservicioreagendado.save(flush:true)   
@@ -315,10 +314,15 @@ def cortarudd=verCode.substring(9,13)
     def hacerReagendacion(){  
         def consultarreagendacion=Servicios.get(params.id as long)
         def consultarserviciodetallereagendacion=DetalleServicio.findAllWhere(servicios:consultarreagendacion)
-        [consultarserviciodetallereagendacion:consultarserviciodetallereagendacion]          
+        def consultarsoloesefolio=s
+        // def consultaranterirormecanico=Bitacora.findAllByEstatus("terminado")
+         //  def consultaranterioresusuario=Bitacora.findAllByEstatus("pendiente")
+
+       
+       // [consultaranterirormecanico:consultaranterirormecanico,consultarserviciodetallereagendacion:consultarserviciodetallereagendacion]
     }
     def guardarReagendacionTerminada(){
-
+        println params
     }
     
 }

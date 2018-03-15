@@ -166,7 +166,7 @@
                         <td>${re.usuarios[0].servicios.automovil.nombreAuto}</td>
                         <td>${re.usuarios[0].usuarios.username}</td>
                         <td style="color:darkviolet";">${re.usuarios[0].servicios.estatus}</td>
-                      <td><g:link style="background-color: #E65100; color: white;" class="btn btn-success " controller="Servicios" action="hacerReagendacion" id="${re.usuarios[0].servicios.id}"> Hacer</g:link>
+                      <td><g:link style="background-color: #E65100; color: white;" class="btn btn-success " controller="Servicios" action="hacerReagendacion" id="${re.usuarios[0].servicios.folio}" id="${re.usuarios[0].servicios.id}"> Hacer</g:link>
 </td>
                     </tr>
                 </g:each>
