@@ -179,18 +179,35 @@ def cortarudd=verCode.substring(9,13)
         def rol = SecAppRole.findAll()
         [rol: rol]
     }
+    def buscarusuario(){
+        
+           def buscarusuario=SecAppUser.findAllByUsername(params.username)
+        println buscarusuario
+        if(buscarusuario){
+            //flash.error = "El usuario ya exite con el nombre de "+params.username      
+            return  true 
+        }
+       
+       return  false
+    }
     def guardarusu() {
+       // def buscarusuario=SecAppUser.findAllByUsername(params.username)
+        //println buscarusuario
+       // if(buscarusuario){
+         //   flash.error = "El usuario ya exite con el nombre de "+params.username            
+       // }
         def nuevo = new SecAppUser()
         nuevo.username = params.username
         nuevo.password = params.password
         nuevo.enabled = params.select.toBoolean()
         def rol = SecAppRole.get(params.selectusuario as long)
-        nuevo.save(flush: true)
+        // nuevo.save(flush: true)
         def nuevorol = new SecAppUserSecAppRole()
         nuevorol.secAppUser = nuevo
         nuevorol.secAppRole = rol
-        nuevorol.save(flush: true)
-        redirect(action: "detalleUsuario")
+       // flash.message = "Se ha creado correctamente"
+        //  nuevorol.save(flush: true)
+        // redirect(action: "detalleUsuario")
     }
     def detalleUsuario() {
         def activo = SecAppUser.findAllWhere(enabled: true)
@@ -324,5 +341,6 @@ def cortarudd=verCode.substring(9,13)
     def guardarReagendacionTerminada(){
         println params
     }
+
     
 }

@@ -4,13 +4,10 @@
 <link rel="stylesheet" href="/gestion/css/libs/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/>
 <script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/libs/pedidoController.js"></script>
-
+<!--<script src="../js/libs/pedidoController.js"></script>-->
+<script src="../js/RegistrarUsuarios.js"></script>
 <script src="../js/funciones.js"></script>
     <script src="../js/funciones2.js"></script>
-     
-    
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
